@@ -1,0 +1,10 @@
+# cache de downloads (grande, recriado pela coleta)
+data/bruto/
+# gerado no build a partir de data/normalizado + data/curadoria
+site/public/data/
+site/dist/
+site/node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+*.part

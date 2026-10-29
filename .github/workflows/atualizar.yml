@@ -1,0 +1,95 @@
+name: Atualizar dados
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"   # toda segunda, 06h de Brasília: orçamento e execução
+    - cron: "0 8 3 * *"   # dia 3 de cada mês: estrutura (SIORG)
+  workflow_dispatch:
+    inputs:
+      fonte:
+        description: Fonte a atualizar
+        type: choice
+        options: [tudo, siorg, orcamento]
+        default: tudo
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    outputs:
+      mudou: ${{ steps.coleta.outputs.mudou }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Escolher fonte
+        id: fonte
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then f="${{ inputs.fonte }}"
+          elif [ "${{ github.event.schedule }}" = "0 8 3 * *" ]; then f=siorg
+          else f=orcamento; fi
+          echo "fonte=$f" >> "$GITHUB_OUTPUT"
+
+      # Meses de execução já baixados não mudam: o cache evita baixá-los de novo.
+      - uses: actions/cache@v6
+        with:
+          path: data/bruto
+          key: bruto-${{ steps.fonte.outputs.fonte }}-${{ github.run_id }}
+          restore-keys: bruto-${{ steps.fonte.outputs.fonte }}-
+
+      - name: Coletar e normalizar
+        id: coleta
+        run: |
+          set +e
+          python -m etl atualizar ${{ steps.fonte.outputs.fonte }} --sinalizar-mudanca
+          codigo=$?
+          set -e
+          if [ $codigo -eq 3 ]; then echo "mudou=true" >> "$GITHUB_OUTPUT"
+          elif [ $codigo -ne 0 ]; then exit $codigo
+          else echo "mudou=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Validar
+        run: |
+          python -m etl validar > validacao.txt || { cat validacao.txt; exit 1; }
+          cat validacao.txt
+          if grep -q '^AVISO' validacao.txt; then
+            { echo "A validação automática de $(date -I) encontrou pontos para revisão humana:"; echo; echo '```'; cat validacao.txt; echo '```';
+              echo; echo "Edite os arquivos em \`data/curadoria/\` (ver README) e rode \`python -m etl validar\`."; } > corpo.md
+            bash .github/scripts/issue.sh "Curadoria: pontos para revisão" corpo.md curadoria
+          fi
+
+      - name: Commit dos dados novos
+        if: steps.coleta.outputs.mudou == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/normalizado
+          git commit -m "Dados: atualização automática (${{ steps.fonte.outputs.fonte }}, $(date -I))"
+          git push
+
+      - name: Alerta de falha
+        if: failure()
+        run: |
+          { echo "A atualização automática falhou em $(date -I)."; echo;
+            echo "Fonte: ${{ steps.fonte.outputs.fonte }}"; echo "Execução: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"; } > corpo.md
+          bash .github/scripts/issue.sh "Falha na atualização: ${{ steps.fonte.outputs.fonte }}" corpo.md coleta
+
+  publicar:
+    needs: atualizar
+    if: needs.atualizar.outputs.mudou == 'true'
+    uses: ./.github/workflows/publicar.yml

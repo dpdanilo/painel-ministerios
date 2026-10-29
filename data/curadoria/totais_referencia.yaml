@@ -1,0 +1,10 @@
+# Totais publicados por terceiros, usados pelo validador para conferir o orçamento coletado.
+# `tolerancia` é relativa (0.02 = 2%).
+
+totais:
+  - ministerio: mcid
+    exercicio: 2026
+    campo: dotacao_inicial
+    valor: 16600000000
+    tolerancia: 0.02
+    fonte: "Raio-X do Orçamento 2026 (Câmara), LOA pós-vetos – Lei 15.346/2026; ver docs/estrutura-ministerios-referencia.md"

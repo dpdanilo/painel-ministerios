@@ -1,0 +1,41 @@
+# Políticas públicas pelo nome conhecido, ligadas a programas/ações do orçamento e a unidades.
+# Cada vínculo precisa de justificativa e fonte. Só entra o que a fonte sustenta: vínculos
+# plausíveis mas não confirmados ficam em `pendentes` (aparecem no validador, não no site).
+
+politicas:
+  - id: mcmv
+    nome: Minha Casa, Minha Vida
+    ministerio: mcid
+    norma: lei-14620-2023
+    unidades: ["74011"]          # Secretaria Nacional de Habitação
+    vinculos:
+      - {exercicio: 2026, acao: "00CX", justificativa: "Título da ação cita a Lei 14.620/2023 (MCMV)", fonte: "Portal da Transparência, Orçamento da Despesa 2026"}
+      - {exercicio: 2026, acao: "00CY", justificativa: "Título da ação cita a Lei 14.620/2023 (MCMV)", fonte: "Portal da Transparência, Orçamento da Despesa 2026"}
+      - {exercicio: 2026, acao: "00CW", justificativa: "Título da ação cita a Lei 14.620/2023 (MCMV)", fonte: "Portal da Transparência, Orçamento da Despesa 2026"}
+      - {exercicio: 2026, acao: "00AF", justificativa: "FAR é o fundo que financia o MCMV (Lei 14.620/2023)", fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14620.htm}
+    pendentes:
+      - {acao: "00TI", motivo: "Apoio à produção habitacional de interesse social: confirmar vínculo com o MCMV"}
+      - {acao: "00VE", motivo: "FGHab: confirmar vínculo com o MCMV"}
+    nota: Grande parte do MCMV é financiada por fundos fora da LOA do órgão (FGTS, FAR, FDS), por isso o orçamento aqui é só a parcela da União.
+
+  - id: periferia-viva
+    nome: Periferia Viva
+    ministerio: mcid
+    unidades: ["308749"]         # Secretaria Nacional de Periferias
+    vinculos:
+      - {exercicio: 2026, programa: "5602", justificativa: "Programa orçamentário de mesmo nome", fonte: "Portal da Transparência, Orçamento da Despesa 2026"}
+
+  - id: capacidades
+    nome: Programa Nacional de Capacitação das Cidades (Capacidades)
+    ministerio: mcid
+    unidades: ["309781"]         # SNDUM
+    vinculos:
+      - {exercicio: 2026, acao: "8872", justificativa: "Título da ação cita o programa Capacidades", fonte: "Portal da Transparência, Orçamento da Despesa 2026"}
+
+  - id: novo-pac
+    nome: Novo PAC
+    ministerio: mcid
+    unidades: ["309792"]         # Diretoria de Monitoramento de Programas (CGPAC)
+    vinculos: []
+    pendentes:
+      - {marcador: "PA", motivo: "Campo 'Programa Governo' = PA na execução da despesa parece marcar o Novo PAC, mas o nome vem 'Sem informação'. Confirmar antes de usar."}

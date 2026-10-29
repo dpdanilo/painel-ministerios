@@ -1,0 +1,53 @@
+# Quem ocupa (ou ocupou) os principais cargos. O SIORG publica as instâncias de cargo,
+# mas sem o nome do titular, por isso esta lista é curada.
+#
+# - `unidade`: código SIORG da unidade.
+# - `papel`: titular | adjunto | substituto
+# - `valido_de` / `valido_ate`: datas do ato de nomeação/exoneração (DOU). `null` = não
+#   verificado ainda. Não preencher por estimativa.
+# - `partido` fica em pessoas.yaml (filiação com vigência).
+
+fonte_padrao: &qq
+  fonte: https://www.gov.br/cidades/pt-br/acesso-a-informacao/institucional/quem-e-quem
+  verificado_em: 2026-10-29
+
+ocupacoes:
+  # --- Direção
+  - {pessoa: antonio-vladimir-moura-lima, cargo: Ministro de Estado, unidade: "308798", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: mirna-quindere-belmino-chaves, cargo: Secretária-Executiva, unidade: "308920", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: karenina-martins-teixeira-dian, cargo: Secretária-Executiva Adjunta, unidade: "308920", papel: adjunto, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: claudia-de-araujo-guimaraes-kattar, cargo: Chefe de Gabinete do Ministro, unidade: "308919", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria-Executiva
+  - {pessoa: rodrigo-dalvi-santana, cargo: Subsecretário de Planejamento, Orçamento e Administração, unidade: "309791", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: paula-coelho-da-nobrega, cargo: Diretora de Monitoramento de Programas, unidade: "309792", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: victor-monteiro-almeida, cargo: Diretor de Governança e Colegiados, unidade: "309793", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: alice-de-almeida-vasconcellos-de-carvalho, cargo: Diretora de Sustentabilidade e Projetos Especiais, unidade: "489969", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria Nacional de Desenvolvimento Urbano e Metropolitano
+  - {pessoa: carlos-roberto-queiroz-tome-junior, cargo: Secretário Nacional de Desenvolvimento Urbano e Metropolitano, unidade: "309781", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: cristiana-scorza-guimaraens, cargo: Diretora de Estruturação do Desenvolvimento Urbano e Metropolitano, unidade: "309783", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: yuri-rafael-della-giustina, cargo: Diretor de Adaptação das Cidades à Transição Climática e Transformação Digital, unidade: "308726", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria Nacional de Habitação
+  - {pessoa: augusto-henrique-alves-rabelo, cargo: Secretário Nacional de Habitação, unidade: "74011", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: felipe-braganca-itaborahy, cargo: Diretor de Planejamento e Política Nacional de Habitação, unidade: "317520", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: monique-toledo-salgado, cargo: Diretora de Habitação Rural, unidade: "309063", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: fabricio-de-andrade-lebeis, cargo: Diretor de Provisão Habitacional, unidade: "74013", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: amanda-alves-olalquiaga, cargo: Diretora de Produção Social da Moradia, unidade: "74014", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria Nacional de Mobilidade Urbana
+  - {pessoa: marcos-daniel-souza-dos-santos, cargo: Secretário Nacional de Mobilidade Urbana, unidade: "308727", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: marcell-alexandre-de-oliveira-costa, cargo: Diretor de Infraestrutura da Mobilidade Urbana, unidade: "308728", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: danielle-costa-de-holanda, cargo: Diretora de Regulação da Mobilidade e Trânsito Urbano, unidade: "308729", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria Nacional de Saneamento Ambiental
+  - {pessoa: marcio-leao-coelho, cargo: Secretário Nacional de Saneamento Ambiental, unidade: "74015", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: clesivania-santos-rodrigues-e-silva-vieira, cargo: Diretora de Repasses e Financiamentos (substituta), unidade: "90225", papel: substituto, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: flavio-marcos-passos-gomes-junior, cargo: Diretor de Saneamento Rural e de Pequenos Municípios, unidade: "308748", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: marcello-martinelli-de-mello-pitrez, cargo: Diretor de Cooperação Técnica, unidade: "277717", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+
+  # --- Secretaria Nacional de Periferias
+  - {pessoa: vitor-araripe-freire-pacheco, cargo: Secretário Nacional de Periferias, unidade: "308749", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: simone-gueresi-de-mello, cargo: Diretora de Regularização, Urbanização Integrada e Qualificação de Territórios Periféricos, unidade: "308750", papel: titular, valido_de: null, valido_ate: null, <<: *qq}
+  - {pessoa: rodolfo-baesso-moura, cargo: Diretor de Mitigação e Prevenção de Risco, unidade: "308751", papel: titular, valido_de: null, valido_ate: null, <<: *qq}

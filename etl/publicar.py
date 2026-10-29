@@ -1,0 +1,178 @@
+"""Gera os arquivos estáticos lidos pelo site (site/public/data).
+
+- index.json                → carregado na abertura: lista de ministérios, sínteses, fontes.
+- ministerios/<id>.json     → carregado ao abrir um ministério.
+Só dados normalizados e curados entram aqui; nada de dado bruto.
+"""
+from __future__ import annotations
+
+import json
+import re
+import shutil
+from collections import defaultdict
+
+from . import curadoria
+from .comum import NORMALIZADO, PUBLICADO, agora_utc, fontes, ler_csv
+
+
+def _gravar(caminho, obj) -> int:
+    caminho.parent.mkdir(parents=True, exist_ok=True)
+    texto = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+    caminho.write_text(texto, encoding="utf-8")
+    return len(texto.encode())
+
+
+def _f(v) -> float:
+    return round(float(v or 0), 2)
+
+
+def separar_competencias(texto: str) -> list[str]:
+    """Quebra "I - ...; II - ...; e III - ..." em itens."""
+    if not texto:
+        return []
+    partes = re.split(r"(?:^|;\s*(?:e\s+)?)\s*(?=[IVXL]+\s*[-–]\s)", texto.strip())
+    itens = [re.sub(r"^[IVXL]+\s*[-–]\s*", "", p).strip(" ;.") for p in partes]
+    return [i[0].upper() + i[1:] for i in itens if i]
+
+
+def _vigente(r) -> bool:
+    return not r.get("valido_ate")
+
+
+def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -> dict:
+    unidades = [u for u in ler_csv(NORMALIZADO / "unidade.csv") if u["ministerio_id"] == m["id"] and _vigente(u)]
+    cargos = [c for c in ler_csv(NORMALIZADO / "cargo.csv") if c["ministerio_id"] == m["id"] and _vigente(c)]
+
+    cargos_por_unidade = defaultdict(list)
+    for c in cargos:
+        cargos_por_unidade[c["cod_unidade"]].append([c["tipo"], c["categoria"], c["nivel"], c["denominacao"],
+                                                    int(c["quantidade"]), c["mobilidade"]])
+
+    raiz = next(u for u in unidades if u["profundidade"] == "0")
+    lista_unidades = [{
+        "c": u["cod_siorg"], "p": u["cod_pai"], "s": u["sigla"], "n": u["nome"], "b": u["bloco"],
+        "a": u["atividade"], "t": u["tipo"], "d": int(u["profundidade"]),
+        "comp": separar_competencias(u["competencia"]) if u is not raiz else [],
+        "ato": {"tipo": u["ato_tipo"], "numero": u["ato_numero"], "vigencia": u["ato_vigencia"], "url": u["ato_url"]}
+        if u["ato_tipo"] else None,
+    } for u in unidades]
+
+    pessoas = {p["id"]: p for p in curadoria.pessoas()}
+    cods = {u["cod_siorg"] for u in unidades}
+    ocupantes = []
+    for o in curadoria.ocupacoes():
+        if o["unidade"] not in cods:
+            continue
+        p = pessoas.get(o["pessoa"], {})
+        fil = [f for f in p.get("filiacoes") or [] if not f.get("valido_ate")]
+        ocupantes.append({
+            "pessoa": o["pessoa"], "nome": p.get("nome", o["pessoa"]), "cargo": o.get("cargo"),
+            "unidade": o["unidade"], "papel": o.get("papel"), "de": o.get("valido_de"), "ate": o.get("valido_ate"),
+            "partido": fil[0]["partido"] if fil else None, "fonte": o.get("fonte"), "verificado_em": o.get("verificado_em"),
+        })
+
+    orcamento = montar_orcamento(m, exercicio)
+    politicas = [p for p in curadoria.politicas() if p["ministerio"] == m["id"]]
+    for p in politicas:
+        p.pop("pendentes", None)
+    eventos = [e for e in curadoria.eventos() if m["id"] in (e.get("origem") or []) + (e.get("destino") or [])]
+    citadas = {m.get(k) for k in ("norma_criacao", "norma_organizacao", "norma_estrutura")}
+    citadas |= {e.get("norma") for e in eventos} | {p.get("norma") for p in politicas}
+    verificados = [o["verificado_em"] for o in ocupantes if o.get("verificado_em")]
+
+    siorg = fontes_reg.get("siorg", {})
+    orc_fonte = fontes_reg.get(f"transparencia-orcamento-{exercicio}", {})
+    return {
+        "id": m["id"], "sigla": m["sigla"], "nome": m["nome"], "cod_siorg": m["cod_siorg"],
+        "orgao_orcamentario": m.get("orgao_orcamentario"),
+        "norma_criacao": m.get("norma_criacao"), "norma_organizacao": m.get("norma_organizacao"),
+        "norma_estrutura": m.get("norma_estrutura"), "valido_de": m.get("valido_de"),
+        "competencias": separar_competencias(raiz["competencia"]),
+        "unidades": lista_unidades,
+        "cargos": cargos_por_unidade,
+        "ocupantes": ocupantes,
+        "orcamento": orcamento,
+        "politicas": politicas,
+        "eventos": eventos,
+        "normas": {k: normas[k] for k in sorted(c for c in citadas if c and c in normas)},
+        "fontes": {
+            "estrutura": {"nome": siorg.get("nome"), "url": siorg.get("url"), "data": siorg.get("coletado_em"),
+                          "referencia": siorg.get("data_referencia")},
+            "orcamento": {"nome": orc_fonte.get("nome"), "url": orc_fonte.get("url"), "data": orc_fonte.get("data_referencia")},
+            "ocupantes": {"nome": "gov.br – Quem é Quem (curadoria)", "url": ocupantes[0]["fonte"] if ocupantes else None,
+                          "data": max(verificados) if verificados else None},
+            "politicas": {"nome": "Curadoria (data/curadoria/politicas_publicas.yaml)", "url": None, "data": None},
+        },
+    }
+
+
+def montar_orcamento(m: dict, exercicio: int) -> dict | None:
+    orgao = m.get("orgao_orcamentario")
+    ex = str(exercicio)
+    # Linhas só com restos a pagar de anos anteriores (sem dotação nem execução no ano) ficam de fora.
+    valores = ("dotacao_inicial", "dotacao_atual", "empenhado", "liquidado", "pago")
+    linhas = [r for r in ler_csv(NORMALIZADO / "orcamento.csv")
+              if r["exercicio"] == ex and r["cod_orgao_superior"] == orgao and any(float(r[c]) for c in valores)]
+    if not linhas:
+        return None
+    uos = {u["cod_uo"]: u["nome"] for u in ler_csv(NORMALIZADO / "uo.csv") if u["exercicio"] == ex and u["cod_orgao_superior"] == orgao}
+    programas = {p["cod_programa"]: p["nome"] for p in ler_csv(NORMALIZADO / "programa.csv") if p["exercicio"] == ex}
+    acoes = {a["cod_acao"]: a["nome"] for a in ler_csv(NORMALIZADO / "acao.csv") if a["exercicio"] == ex}
+    usados_p = {r["cod_programa"] for r in linhas}
+    usados_a = {r["cod_acao"] for r in linhas}
+
+    mensal = defaultdict(lambda: [0.0, 0.0, 0.0])
+    for r in ler_csv(NORMALIZADO / "orcamento_mensal.csv"):
+        if r["exercicio"] == ex and r["cod_uo"] in uos:
+            v = mensal[(int(r["mes"]), r["cod_programa"])]
+            v[0] += float(r["empenhado"]); v[1] += float(r["liquidado"]); v[2] += float(r["pago"])
+
+    corresp = {c["cod_uo"]: c.get("cod_siorg") for c in curadoria.correspondencias() if c["ministerio"] == m["id"]}
+    return {
+        "exercicio": exercicio,
+        "data_extracao": max(r["data_extracao"] for r in linhas),
+        "colunas": ["uo", "programa", "acao", "dotacao_inicial", "dotacao_atual", "empenhado", "liquidado", "pago",
+                    "empenhado_emendas"],
+        "linhas": [[r["cod_uo"], r["cod_programa"], r["cod_acao"], _f(r["dotacao_inicial"]), _f(r["dotacao_atual"]),
+                    _f(r["empenhado"]), _f(r["liquidado"]), _f(r["pago"]), _f(r["empenhado_emendas"])]
+                   for r in linhas],
+        "mensal_colunas": ["mes", "programa", "empenhado", "liquidado", "pago"],
+        "mensal": [[k[0], k[1], round(v[0], 2), round(v[1], 2), round(v[2], 2)] for k, v in sorted(mensal.items())],
+        "uos": {c: {"nome": n, "siorg": corresp.get(c)} for c, n in uos.items()},
+        "programas": {c: programas.get(c, c) for c in sorted(usados_p)},
+        "acoes": {c: acoes.get(c, c) for c in sorted(usados_a)},
+    }
+
+
+def publicar(exercicio: int) -> dict[str, int]:
+    """Regera site/public/data do zero. Devolve o tamanho (bytes) de cada arquivo."""
+    if PUBLICADO.exists():
+        shutil.rmtree(PUBLICADO)
+    normas = {n["id"]: n for n in curadoria.normas()}
+    fontes_reg = fontes()
+    tamanhos, resumo = {}, []
+    for m in curadoria.no_escopo():
+        dados = montar_ministerio(m, exercicio, normas, fontes_reg)
+        tamanhos[f"ministerios/{m['id']}.json"] = _gravar(PUBLICADO / "ministerios" / f"{m['id']}.json", dados)
+        orc = dados["orcamento"]
+        tot = defaultdict(float)
+        for linha in (orc or {}).get("linhas", []):
+            for i, c in enumerate(orc["colunas"][3:], start=3):
+                tot[c] += linha[i]
+        titular = next((o for o in dados["ocupantes"] if o["unidade"] == m["cod_siorg"] and o["papel"] == "titular"), None)
+        resumo.append({
+            "id": m["id"], "sigla": m["sigla"], "nome": m["nome"],
+            "ministro": titular and {"nome": titular["nome"], "partido": titular["partido"]},
+            "n_unidades": len(dados["unidades"]),
+            "n_cargos": sum(c[4] for lista in dados["cargos"].values() for c in lista),
+            "n_secretarias": sum(1 for u in dados["unidades"] if u["d"] == 1 and u["b"] == "singular"),
+            "orcamento": orc and {"exercicio": orc["exercicio"], **{k: round(v, 2) for k, v in tot.items()}},
+        })
+    index = {
+        "gerado_em": agora_utc(),
+        "exercicio": exercicio,
+        "ministerios": resumo,
+        "fontes": {k: {c: v[c] for c in ("nome", "url", "data_referencia", "coletado_em")} for k, v in fontes_reg.items()},
+    }
+    tamanhos["index.json"] = _gravar(PUBLICADO / "index.json", index)
+    return tamanhos

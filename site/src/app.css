@@ -1,0 +1,145 @@
+/* Tokens de cor. Identidade (vermelho, Montserrat) igual à do vira-2026; gráficos usam a
+   paleta categórica validada (azul / laranja / verde-água), nunca o vermelho da marca. */
+:root {
+  color-scheme: light;
+  --marca: #d21212;
+  --marca-esc: #a80e0e;
+  --sobre-marca: #ffffff;
+  --fundo: #faf6f2;
+  --cartao: #ffffff;
+  --cartao-2: #f6f1ec;
+  --texto: #2b2525;
+  --sec: #6b5f5f;
+  --mudo: #857a7a;
+  --linha: #eadfd6;
+  --foco: #1c5cab;
+  --link: #a80e0e;
+
+  --surface-1: #fcfcfb;
+  --grade: #e1e0d9;
+  --eixo: #c3c2b7;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  /* Etapas da despesa (ordinal, uma só matiz): dotação → empenhado → pago */
+  --etapa-1: #b7d3f6;
+  --etapa-2: #5598e7;
+  --etapa-3: #1c5cab;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --marca: #e33a3a;
+    --marca-esc: #b51f1f;
+    --fundo: #141212;
+    --cartao: #1f1c1c;
+    --cartao-2: #2a2626;
+    --texto: #f0ecea;
+    --sec: #c4bab7;
+    --mudo: #9a908d;
+    --linha: #3a3434;
+    --foco: #86b6ef;
+    --link: #ff8a80;
+    --surface-1: #1a1a19;
+    --grade: #2c2c2a;
+    --eixo: #383835;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --etapa-1: #184f95;
+    --etapa-2: #3987e5;
+    --etapa-3: #9ec5f4;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --marca: #e33a3a;
+  --marca-esc: #b51f1f;
+  --fundo: #141212;
+  --cartao: #1f1c1c;
+  --cartao-2: #2a2626;
+  --texto: #f0ecea;
+  --sec: #c4bab7;
+  --mudo: #9a908d;
+  --linha: #3a3434;
+  --foco: #86b6ef;
+  --link: #ff8a80;
+  --surface-1: #1a1a19;
+  --grade: #2c2c2a;
+  --eixo: #383835;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --etapa-1: #184f95;
+  --etapa-2: #3987e5;
+  --etapa-3: #9ec5f4;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.45;
+  font-size: 16px;
+}
+a { color: var(--link); }
+a:hover { color: var(--marca); }
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; border-radius: 4px; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: "Montserrat", sans-serif; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+h2 { font-size: 1.25rem; margin: 0 0 12px; }
+h3 { font-size: 1rem; margin: 0 0 8px; }
+.num { font-variant-numeric: tabular-nums; }
+.mudo { color: var(--mudo); }
+.sec { color: var(--sec); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.conteudo { max-width: 1180px; margin: 0 auto; padding: 20px 16px 48px; }
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  padding: 18px;
+  min-width: 0;
+}
+.cartao + .cartao { margin-top: 16px; }
+.grade-blocos { display: grid; gap: 16px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.tile { background: var(--cartao); border: 1px solid var(--linha); border-radius: 12px; padding: 12px 14px; min-width: 0; }
+.tile .rot { font-size: 0.82rem; color: var(--sec); }
+.tile .val { font-size: 1.45rem; font-weight: 700; margin-top: 2px; overflow-wrap: anywhere; }
+.tile .det { font-size: 0.8rem; color: var(--mudo); margin-top: 2px; }
+.tile.hero .val { font-size: clamp(1.45rem, 5vw, 2rem); white-space: nowrap; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.75rem; font-weight: 600; padding: 1px 8px; border-radius: 999px;
+  background: var(--cartao-2); color: var(--sec); border: 1px solid var(--linha); white-space: nowrap;
+}
+.chip.fim { border-color: transparent; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linha); vertical-align: top; }
+th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--sec); font-weight: 700; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+.tabela-rolagem { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.botao {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px;
+  border-radius: 999px; border: 1.5px solid var(--linha); background: var(--cartao); cursor: pointer;
+  font-size: 0.88rem; font-weight: 600; text-decoration: none; color: var(--texto);
+}
+.botao:hover { border-color: var(--marca); color: var(--texto); }
+select, input[type="search"] {
+  font: inherit; font-size: 0.92rem; min-height: 38px; padding: 0 12px; border-radius: 10px;
+  border: 1.5px solid var(--linha); background: var(--cartao); color: var(--texto); max-width: 100%;
+}
+.filtros { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-bottom: 14px; }
+.filtros label { display: grid; gap: 4px; font-size: 0.8rem; color: var(--sec); font-weight: 600; min-width: 0; flex: 1 1 240px; max-width: 420px; }
+.filtros select, .filtros input { width: 100%; }

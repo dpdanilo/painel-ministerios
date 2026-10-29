@@ -1,0 +1,33 @@
+# Não existe chave comum entre SIORG e orçamento: esta tabela liga cada Unidade
+# Orçamentária (UO) à unidade do SIORG que a representa.
+# `cod_siorg: null` = UO sem unidade própria no SIORG (ex.: fundos).
+
+correspondencias:
+  - ministerio: mcid
+    cod_uo: "56101"
+    nome_uo: Ministério das Cidades (administração direta)
+    cod_siorg: "308798"
+    valido_de: 2023-01-01
+    fonte: "Portal da Transparência, Orçamento da Despesa 2026 (órgão 56000, UO 56101) + SIORG 308798"
+
+  - ministerio: mcid
+    cod_uo: "56202"
+    nome_uo: Companhia Brasileira de Trens Urbanos – CBTU
+    cod_siorg: "372"
+    valido_de: 2023-01-01
+    fonte: "Portal da Transparência, Orçamento da Despesa 2026 (UO 56202) + SIORG 372 (entidade vinculada ao MCID)"
+
+  - ministerio: mcid
+    cod_uo: "56201"
+    nome_uo: Empresa de Trens Urbanos de Porto Alegre – Trensurb
+    cod_siorg: "958"
+    valido_de: 2023-01-01
+    fonte: "Portal da Transparência, Orçamento da Despesa 2026 (UO 56201) + SIORG 958 (entidade vinculada ao MCID)"
+
+  - ministerio: mcid
+    cod_uo: "56902"
+    nome_uo: Fundo Nacional de Habitação de Interesse Social – FNHIS
+    cod_siorg: null
+    valido_de: 2023-01-01
+    nota: "Fundo sem unidade própria no SIORG; é gerido pelo Conselho Gestor do FNHIS (SIORG 89595)."
+    fonte: "Portal da Transparência, Orçamento da Despesa 2026 (UO 56902)"

@@ -1,0 +1,33 @@
+# Pessoas citadas em ocupacoes.yaml. A filiação partidária é curada (fase 3), sempre com
+# fonte e vigência. Lista vazia = ainda não verificado (o painel mostra "não informado").
+#
+# filiacoes:
+#   - {partido: PT, valido_de: 2001-01-01, valido_ate: null, fonte: <url>}
+
+pessoas:
+  - {id: antonio-vladimir-moura-lima, nome: Antonio Vladimir Moura Lima, filiacoes: []}
+  - {id: mirna-quindere-belmino-chaves, nome: Mirna Quinderé Belmino Chaves, filiacoes: []}
+  - {id: karenina-martins-teixeira-dian, nome: Karênina Martins Teixeira Dian, filiacoes: []}
+  - {id: claudia-de-araujo-guimaraes-kattar, nome: Cláudia de Araujo Guimarães Kattar, filiacoes: []}
+  - {id: rodrigo-dalvi-santana, nome: Rodrigo Dalvi Santana, filiacoes: []}
+  - {id: paula-coelho-da-nobrega, nome: Paula Coelho da Nóbrega, filiacoes: []}
+  - {id: victor-monteiro-almeida, nome: Victor Monteiro Almeida, filiacoes: []}
+  - {id: alice-de-almeida-vasconcellos-de-carvalho, nome: Alice de Almeida Vasconcellos de Carvalho, filiacoes: []}
+  - {id: carlos-roberto-queiroz-tome-junior, nome: Carlos Roberto Queiroz Tomé Junior, filiacoes: []}
+  - {id: cristiana-scorza-guimaraens, nome: Cristiana Scorza Guimaraens, filiacoes: []}
+  - {id: yuri-rafael-della-giustina, nome: Yuri Rafael Della Giustina, filiacoes: []}
+  - {id: augusto-henrique-alves-rabelo, nome: Augusto Henrique Alves Rabelo, filiacoes: []}
+  - {id: felipe-braganca-itaborahy, nome: Felipe Bragança Itaborahy, filiacoes: []}
+  - {id: monique-toledo-salgado, nome: Monique Toledo Salgado, filiacoes: []}
+  - {id: fabricio-de-andrade-lebeis, nome: Fabrício de Andrade Lebeis, filiacoes: []}
+  - {id: amanda-alves-olalquiaga, nome: Amanda Alves Olalquiaga, filiacoes: []}
+  - {id: marcos-daniel-souza-dos-santos, nome: Marcos Daniel Souza dos Santos, filiacoes: []}
+  - {id: marcell-alexandre-de-oliveira-costa, nome: Marcell Alexandre de Oliveira Costa, filiacoes: []}
+  - {id: danielle-costa-de-holanda, nome: Danielle Costa de Holanda, filiacoes: []}
+  - {id: marcio-leao-coelho, nome: Márcio Leão Coelho, filiacoes: []}
+  - {id: clesivania-santos-rodrigues-e-silva-vieira, nome: Clesivania Santos Rodrigues e Silva Vieira, filiacoes: []}
+  - {id: flavio-marcos-passos-gomes-junior, nome: Flávio Marcos Passos Gomes Júnior, filiacoes: []}
+  - {id: marcello-martinelli-de-mello-pitrez, nome: Marcello Martinelli de Mello Pitrez, filiacoes: []}
+  - {id: vitor-araripe-freire-pacheco, nome: Vitor Araripe Freire Pacheco, filiacoes: []}
+  - {id: simone-gueresi-de-mello, nome: Simone Gueresi de Mello, filiacoes: []}
+  - {id: rodolfo-baesso-moura, nome: Rodolfo Baêsso Moura, filiacoes: []}

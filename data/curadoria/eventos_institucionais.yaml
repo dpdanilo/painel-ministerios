@@ -1,0 +1,30 @@
+# Criações, extinções, fusões, desmembramentos e recriações de ministérios.
+# tipo: criacao | extincao | fusao | desmembramento | recriacao | renomeacao
+# `origem` e `destino` usam os `id` de ministerios.yaml (listas, para fusões N:N).
+
+eventos:
+  - id: mcid-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mcid]
+    norma: mpv-103-2003
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mdr-fusao-2019
+    tipo: fusao
+    data: 2019-01-01
+    origem: [mcid, mi]
+    destino: [midr]
+    norma: mpv-870-2019
+    descricao: Cidades e Integração Nacional fundidos no Ministério do Desenvolvimento Regional.
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  - id: mcid-recriacao-2023
+    tipo: recriacao
+    data: 2023-01-01
+    origem: [midr]
+    destino: [mcid, midr]
+    norma: mpv-1154-2023
+    descricao: Ministério das Cidades recriado a partir do MDR, que passa a se chamar Ministério da Integração e do Desenvolvimento Regional.
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm

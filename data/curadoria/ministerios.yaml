@@ -1,0 +1,62 @@
+# Identidade persistente de cada ministério e suas versões ao longo do tempo.
+# - `id` nunca muda, mesmo que o nome ou a sigla mudem (permite rastrear extinções e recriações).
+# - `no_painel: true` coloca o ministério no escopo das coletas e do site.
+# - Datas em AAAA-MM-DD. `valido_ate: null` = vigente.
+# - Toda versão precisa de `fonte`.
+
+ministerios:
+  - id: mcid
+    no_painel: true
+    versoes:
+      - nome: Ministério das Cidades
+        sigla: MCidades
+        cod_siorg: null            # código SIORG da 1ª fase não verificado (curar na fase 4)
+        orgao_orcamentario: "56000"
+        valido_de: 2003-01-01
+        valido_ate: 2019-01-01
+        norma_criacao: mpv-103-2003
+        norma_extincao: mpv-870-2019
+        fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+      - nome: Ministério das Cidades
+        sigla: MCID
+        cod_siorg: "308798"
+        orgao_orcamentario: "56000"
+        valido_de: 2023-01-01
+        valido_ate: null
+        norma_criacao: mpv-1154-2023
+        norma_organizacao: lei-14600-2023   # lei que define a área de competência
+        norma_estrutura: dec-12553-2025     # decreto da Estrutura Regimental vigente
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308798
+
+  # Ministérios citados nos eventos do MCidades. Ainda fora do painel (fase 2/4).
+  - id: midr
+    no_painel: false
+    versoes:
+      - nome: Ministério do Desenvolvimento Regional
+        sigla: MDR
+        cod_siorg: null
+        orgao_orcamentario: null
+        valido_de: 2019-01-01
+        valido_ate: 2023-01-01
+        norma_criacao: mpv-870-2019
+        fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+      - nome: Ministério da Integração e do Desenvolvimento Regional
+        sigla: MIDR
+        cod_siorg: "308799"
+        orgao_orcamentario: null
+        valido_de: 2023-01-01
+        valido_ate: null
+        norma_criacao: mpv-1154-2023
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308799
+
+  - id: mi
+    no_painel: false
+    versoes:
+      - nome: Ministério da Integração Nacional
+        sigla: MI
+        cod_siorg: null
+        orgao_orcamentario: null
+        valido_de: null            # anterior ao escopo atual (curar na fase 4)
+        valido_ate: 2019-01-01
+        norma_extincao: mpv-870-2019
+        fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm

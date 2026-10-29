@@ -1,0 +1,67 @@
+# Normas referenciadas pela curadoria. `id` = <tipo>-<número sem pontos>-<ano>.
+# Links do Planalto servem só para consulta humana (o ETL não acessa o Planalto).
+
+normas:
+  - id: mpv-103-2003
+    tipo: Medida Provisória
+    numero: "103"
+    data: 2003-01-01
+    ementa: Dispõe sobre a organização da Presidência da República e dos Ministérios (cria o Ministério das Cidades).
+    url: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: lei-10683-2003
+    tipo: Lei
+    numero: "10.683"
+    data: 2003-05-28
+    ementa: Organização da Presidência da República e dos Ministérios (conversão da MP 103/2003).
+    url: https://www.planalto.gov.br/ccivil_03/leis/2003/l10.683.htm
+
+  - id: mpv-870-2019
+    tipo: Medida Provisória
+    numero: "870"
+    data: 2019-01-01
+    ementa: Organização da Presidência e dos Ministérios; cria o Ministério do Desenvolvimento Regional a partir dos Ministérios das Cidades e da Integração Nacional.
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  - id: lei-13844-2019
+    tipo: Lei
+    numero: "13.844"
+    data: 2019-06-18
+    ementa: Organização da Presidência da República e dos Ministérios (conversão da MP 870/2019).
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/L13844.htm
+
+  - id: mpv-1154-2023
+    tipo: Medida Provisória
+    numero: "1.154"
+    data: 2023-01-01
+    ementa: Organização da Presidência e dos Ministérios; recria o Ministério das Cidades.
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: lei-14600-2023
+    tipo: Lei
+    numero: "14.600"
+    data: 2023-06-19
+    ementa: Organização básica dos órgãos da Presidência da República e dos Ministérios (conversão da MP 1.154/2023).
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14600.htm
+
+  - id: lei-14620-2023
+    tipo: Lei
+    numero: "14.620"
+    data: 2023-07-13
+    ementa: Dispõe sobre o Programa Minha Casa, Minha Vida.
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14620.htm
+
+  - id: dec-12553-2025
+    tipo: Decreto
+    numero: "12.553"
+    data: null                 # data de assinatura a confirmar no DOU
+    vigencia: 2025-08-12       # docs/estrutura-ministerios-referencia.md
+    ementa: Aprova a Estrutura Regimental e o Quadro Demonstrativo dos Cargos do Ministério das Cidades.
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/D12553.htm
+
+  - id: lei-14204-2021
+    tipo: Lei
+    numero: "14.204"
+    data: 2021-09-16
+    ementa: Cria os Cargos Comissionados Executivos (CCE) e as Funções Comissionadas Executivas (FCE).
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/L14204.htm
