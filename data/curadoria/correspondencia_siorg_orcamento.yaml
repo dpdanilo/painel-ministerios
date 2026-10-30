@@ -31,3 +31,2705 @@ correspondencias:
     valido_de: 2023-01-01
     nota: "Fundo sem unidade própria no SIORG; é gerido pelo Conselho Gestor do FNHIS (SIORG 89595)."
     fonte: "Portal da Transparência, Orçamento da Despesa 2026 (UO 56902)"
+
+  # --- Sugeridas automaticamente em 2026-10-29 (revisar)
+  - ministerio: agu
+    cod_uo: "63101"
+    nome_uo: "ADVOCACIA-GERAL DA UNIAO - AGU"
+    cod_siorg: "46"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Advocacia-Geral da União - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: cgu
+    cod_uo: "37101"
+    nome_uo: "CONTROLADORIA GERAL DA UNIAO"
+    cod_siorg: "214460"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Controladoria-Geral da União - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mapa
+    cod_uo: "22101"
+    nome_uo: "MINISTERIO DA AGRICULTURA E PECUARIA"
+    cod_siorg: "308793"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Agricultura e Pecuária - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mapa
+    cod_uo: "22202"
+    nome_uo: "EMPRESA BRASILEIRA DE PESQUISA AGROPECUARIA"
+    cod_siorg: "25"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Empresa Brasileira de Pesquisa Agropecuária) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mapa
+    cod_uo: "22906"
+    nome_uo: "FUNDO DE DEFESA DA ECONOMIA CAFEEIRA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Defesa da Economia Cafeeira) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mapa
+    cod_uo: "74901"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FUNCAFE/MAPA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Defesa da Economia Cafeeira) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcom
+    cod_uo: "41101"
+    nome_uo: "MINISTERIO DAS COMUNICACOES"
+    cod_siorg: "264359"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério das Comunicações - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcom
+    cod_uo: "41231"
+    nome_uo: "AGENCIA NACIONAL DE TELECOMUNICACOES"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agêncial Nacional de Telecomunicações) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcom
+    cod_uo: "41902"
+    nome_uo: "FUNDO DE UNIVERS.DOS SERV.DE TELECOMUN-FUST"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Universalização dos Serviços de Telecomunicações) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcom
+    cod_uo: "41903"
+    nome_uo: "FUNDO P/O DESENV.TECNOL.DAS TELECOM.-FUNTTEL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo para o Desenvolvimento Tecnológico das Telecomunicações) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcom
+    cod_uo: "74905"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FUNTTEL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo para o Desenvolvimento Tecnológico das Telecomunicações) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcom
+    cod_uo: "74920"
+    nome_uo: "REC SOB SUPERV FUNDO UNIV SERV TELECOM FUST"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Universalização dos Serviços de Telecomunicações) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcti
+    cod_uo: "24101"
+    nome_uo: "MINIST. DA CIENCIA, TECNOLOGIA E INOVOVACAO"
+    cod_siorg: "267175"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Ciência, Tecnologia e Inovação - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcti
+    cod_uo: "24201"
+    nome_uo: "CONSELHO NAC.DE DESENV.CIENTIF.E TECNOLOGICO"
+    cod_siorg: "8"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Conselho Nacional de Desenvolvimento Científico e Tecnológico) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcti
+    cod_uo: "24204"
+    nome_uo: "COMISSAO NACIONAL DE ENERGIA NUCLEAR - CNEN"
+    cod_siorg: "223"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comissão Nacional de Energia Nuclear) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcti
+    cod_uo: "24205"
+    nome_uo: "AGENCIA ESPACIAL BRASILEIRA - AEB"
+    cod_siorg: "4243"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Espacial Brasileira) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcti
+    cod_uo: "24209"
+    nome_uo: "CENTRO NAC DE TECN ELETRONICA AVANCADA S/A"
+    cod_siorg: "98519"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Centro Nacional de Tecnologia Eletrônica Avançada S.A.) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mcti
+    cod_uo: "24901"
+    nome_uo: "FUNDO NACIONAL DE DESENV.CIENT.E TECNOLOGICO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Desenvolvimento Científico e Tecnológico) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mcti
+    cod_uo: "74910"
+    nome_uo: "REC.S/SUP.DO FUNDO NAC.DES.CIENT.E TEC.-FNDCT"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Desenvolvimento Científico e Tecnológico) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "52101"
+    nome_uo: "MINISTERIO DA DEFESA"
+    cod_siorg: "41066"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Defesa - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52111"
+    nome_uo: "COMANDO DA AERONAUTICA"
+    cod_siorg: "48"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando da Aeronáutica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52121"
+    nome_uo: "COMANDO DO EXERCITO"
+    cod_siorg: "94"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando do Exército) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52131"
+    nome_uo: "COMANDO DA MARINHA"
+    cod_siorg: "185"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando da Marinha) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52133"
+    nome_uo: "SECRET.DA COMISSAO INTERMIN.P/OS REC.DO MAR"
+    cod_siorg: "185"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando da Marinha) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52211"
+    nome_uo: "CAIXA DE FINANC. IMOBILIARIO DA AERONAUTICA"
+    cod_siorg: "930"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Caixa de Financiamento Imobiliário da Aeronáutica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52221"
+    nome_uo: "INDUSTRIA DE MATERIAL BELICO DO BRASIL-IMBEL"
+    cod_siorg: "134"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Indústria de Material Bélico do Brasil) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52222"
+    nome_uo: "FUNDACAO OSORIO"
+    cod_siorg: "8406"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Osório) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52232"
+    nome_uo: "CAIXA DE CONST.DE CASAS DO PESSOAL DA MARINHA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Caixa de Construções de Casas para o Pessoal da Marinha do Brasil) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "52233"
+    nome_uo: "AMAZONIA AZUL TECNOLOGIAS DE DEFESA S.A."
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Amazônia Azul Tecnologia de Defesa S.A.) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "52901"
+    nome_uo: "FUNDO DO MINISTERIO DA DEFESA"
+    cod_siorg: "41066"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Defesa - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52902"
+    nome_uo: "FUNDO DE ADM. DO HOSPITAL DAS FORCAS ARMADAS"
+    cod_siorg: "41066"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Defesa - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52903"
+    nome_uo: "FUNDO DO SERVICO MILITAR"
+    cod_siorg: "41066"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Defesa - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52911"
+    nome_uo: "FUNDO AERONAUTICO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Aeronáutico) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "52921"
+    nome_uo: "FUNDO DO EXERCITO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo do Exército) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "52931"
+    nome_uo: "FUNDO NAVAL"
+    cod_siorg: "185"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando da Marinha) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "52932"
+    nome_uo: "FUNDO DE DESENV.DO ENS.PROFISSIONAL MARITIMO"
+    cod_siorg: "185"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comando da Marinha) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "72152"
+    nome_uo: "RECURSOS SOB SUPER. DO MINISTERIO DA DEFESA"
+    cod_siorg: "41066"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Defesa - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: md
+    cod_uo: "74204"
+    nome_uo: "REC.S/SUP. CAIXA CONST.CASAS P/PESSOAL DA MB"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Caixa de Construções de Casas para o Pessoal da Marinha do Brasil) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: md
+    cod_uo: "74205"
+    nome_uo: "REC.SOB SUP.CAIXA DE FIN.IMOB.DA AERONAUTICA"
+    cod_siorg: "930"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Caixa de Financiamento Imobiliário da Aeronáutica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mda
+    cod_uo: "49101"
+    nome_uo: "MINIST.DO DESENVOLV.AGRARIO E AGRI.FAMILIAR"
+    cod_siorg: "308794"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Desenvolvimento Agrário e Agricultura Familiar - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mda
+    cod_uo: "49201"
+    nome_uo: "INSTITUTO NAC. DE COLONIZACAO E REF. AGRARIA"
+    cod_siorg: "1799"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional de Colonização e Reforma Agrária) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mda
+    cod_uo: "49202"
+    nome_uo: "COMPANHIA NACIONAL DE ABASTECIMENTO"
+    cod_siorg: "2114"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Companhia Nacional de Abastecimento) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mda
+    cod_uo: "74203"
+    nome_uo: "REC. SOB SUPERVISAO DO INCRA-MDA"
+    cod_siorg: "1799"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional de Colonização e Reforma Agrária) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mda
+    cod_uo: "74906"
+    nome_uo: "REC.S/SUP.FUNDO/TERRAS REF.AG.-BANCO DA TERRA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Terras) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mdhc
+    cod_uo: "81101"
+    nome_uo: "MINISTERIO DOS DIREITOS HUMANOS - MDH"
+    cod_siorg: "308816"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério dos Direitos Humanos e Cidadania - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mdhc
+    cod_uo: "81901"
+    nome_uo: "FUNDO NAC.PARA A CRIANCA E O ADOLESCENTE-FNCA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional para a Criança e o Adolescente) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mdhc
+    cod_uo: "81902"
+    nome_uo: "FUNDO NACIONAL DO IDOSO - FNI"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional do Idoso) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mdic
+    cod_uo: "28101"
+    nome_uo: "MINIST.DESENVOLV.INDUSTR.COMERCIO E SERVICOS"
+    cod_siorg: "308814"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Desenvolvimento, Indústria, Comércio e Serviços - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mdic
+    cod_uo: "28202"
+    nome_uo: "INSTIT.NAC. DE METROL. QUALID. E TECNOLOGIA"
+    cod_siorg: "240"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional de Metrologia, Qualidade e Tecnologia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mdic
+    cod_uo: "28203"
+    nome_uo: "INSTITUTO NACIONAL DA PROPRIEDADE INDUSTRIAL"
+    cod_siorg: "382"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional da Propriedade Industrial) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mdic
+    cod_uo: "28233"
+    nome_uo: "SUPERINTENDENCIA DA ZONA FRANCA DE MANAUS"
+    cod_siorg: "166"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência da Zona Franca de Manaus) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mdic
+    cod_uo: "28904"
+    nome_uo: "FUNDO DE GAR.P/PROMOC.DA COMPETITIVIDADE-FGPC"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Garantia para a Promoção da Competitividade) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mds
+    cod_uo: "55101"
+    nome_uo: "MIN.DESENV.E ASSIT.SOCIAL,FAM.E COMBATE FOME"
+    cod_siorg: "308796"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome - Unidades com vín) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mds
+    cod_uo: "55901"
+    nome_uo: "FUNDO NACIONAL DE ASSISTENCIA SOCIAL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Assistência Social) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mds
+    cod_uo: "73109"
+    nome_uo: "RECURSOS SOB SUPERV.MIN.DO ESPORTE E TURISMO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome - Unidades com vín) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26101"
+    nome_uo: "MINISTERIO DA EDUCACAO"
+    cod_siorg: "244"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Educação - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26104"
+    nome_uo: "INSTITUTO NACIONAL DE EDUCACAO DE SURDOS"
+    cod_siorg: "244"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Educação - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26105"
+    nome_uo: "INSTITUTO BENJAMIN CONSTANT"
+    cod_siorg: "244"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Educação - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26201"
+    nome_uo: "COLEGIO PEDRO II"
+    cod_siorg: "256"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Colégio Pedro II) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26230"
+    nome_uo: "FUND. UNIVERSIDADE FEDERAL VALE SAO FRANCISCO"
+    cod_siorg: "69624"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Vale do São Francisco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26231"
+    nome_uo: "UNIVERSIDADE FEDERAL DE ALAGOAS"
+    cod_siorg: "420"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Alagoas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26232"
+    nome_uo: "UNIVERSIDADE FEDERAL DA BAHIA"
+    cod_siorg: "421"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26233"
+    nome_uo: "UNIVERSIDADE FEDERAL DO CEARA"
+    cod_siorg: "416"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Ceará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26234"
+    nome_uo: "UNIVERSIDADE FEDERAL DO ESPIRITO SANTO"
+    cod_siorg: "425"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Espírito Santo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26235"
+    nome_uo: "UNIVERSIDADE FEDERAL DE GOIAS"
+    cod_siorg: "422"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Goiás) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26236"
+    nome_uo: "UNIVERSIDADE FEDERAL FLUMINENSE"
+    cod_siorg: "427"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Fluminense) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26237"
+    nome_uo: "UNIVERSIDADE FEDERAL DE JUIZ DE FORA"
+    cod_siorg: "424"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Juiz de Fora) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26238"
+    nome_uo: "UNIVERSIDADE FEDERAL DE MINAS GERAIS"
+    cod_siorg: "423"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26239"
+    nome_uo: "UNIVERSIDADE FEDERAL DO PARA"
+    cod_siorg: "415"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26240"
+    nome_uo: "UNIVERSIDADE FEDERAL DA PARAIBA"
+    cod_siorg: "419"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Paraíba) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26241"
+    nome_uo: "UNIVERSIDADE FEDERAL DO PARANA"
+    cod_siorg: "428"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Paraná) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26242"
+    nome_uo: "UNIVERSIDADE FEDERAL DE PERNAMBUCO"
+    cod_siorg: "418"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Pernambuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26243"
+    nome_uo: "UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE"
+    cod_siorg: "417"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio Grande do Norte) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26244"
+    nome_uo: "UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL"
+    cod_siorg: "430"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio Grande do Sul) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26245"
+    nome_uo: "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO"
+    cod_siorg: "426"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26246"
+    nome_uo: "UNIVERSIDADE FEDERAL DE SANTA CATARINA"
+    cod_siorg: "429"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Santa Catarina) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26247"
+    nome_uo: "UNIVERSIDADE FEDERAL DE SANTA MARIA"
+    cod_siorg: "431"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Santa Maria) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26248"
+    nome_uo: "UNIVERSIDADE FEDERAL RURAL DE PERNAMBUCO"
+    cod_siorg: "433"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Rural de Pernambuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26249"
+    nome_uo: "UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO"
+    cod_siorg: "432"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Rural do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26250"
+    nome_uo: "UNIVERSIDADE FEDERAL DE RORAIMA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Roraima) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26251"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE TOCANTINS"
+    cod_siorg: "52702"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Tocantins) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26252"
+    nome_uo: "UNIVERSIDADE FEDERAL DE CAMPINA GRANDE"
+    cod_siorg: "67671"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Campina Grande) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26253"
+    nome_uo: "UNIVERSIDADE FEDERAL RURAL DA AMAZONIA"
+    cod_siorg: "457"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Rural da Amazônia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26254"
+    nome_uo: "UNIVERSIDADE FEDERAL DO TRIANGULO MINEIRO"
+    cod_siorg: "459"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Triângulo Mineiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26255"
+    nome_uo: "UNIVERSIDADE FED.VALES JEQUITINHONHA E MUCURI"
+    cod_siorg: "460"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal dos Vales do Jequitinhonha e Mucuri) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26256"
+    nome_uo: "CENTRO FED.DE EDUC.TECNOL.CELSO S.DA FONSECA"
+    cod_siorg: "448"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Centro Federal de Educação Tecnológica Celso Suckow da Fonseca) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26257"
+    nome_uo: "CENTRO FED.DE EDUC.TECNOL.DE MINAS GERAIS"
+    cod_siorg: "445"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Centro Federal de Educação Tecnológica de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26258"
+    nome_uo: "UNIVERSIDADE TECNOLOGICA FEDERAL DO PARANA"
+    cod_siorg: "454"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Tecnológica Federal do Paraná) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26260"
+    nome_uo: "UNIVERSIDADE FEDERAL DE ALFENAS"
+    cod_siorg: "461"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Alfenas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26261"
+    nome_uo: "UNIVERSIDADE FEDERAL DE ITAJUBA - MG"
+    cod_siorg: "462"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Itajubá) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26262"
+    nome_uo: "UNIVERSIDADE FEDERAL DE SAO PAULO"
+    cod_siorg: "464"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de São Paulo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26263"
+    nome_uo: "UNIVERSIDADE FEDERAL DE LAVRAS"
+    cod_siorg: "463"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Lavras) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26264"
+    nome_uo: "UNIVERSIDADE FEDERAL RURAL DO SEMI-ARIDO"
+    cod_siorg: "458"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Rural do Semi-Árido) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26266"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DO PAMPA"
+    cod_siorg: "94739"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Pampa) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26267"
+    nome_uo: "UNIVERS. FEDERAL DA INTEG. LATINO AMERICANA"
+    cod_siorg: "105793"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Integração Latino-Americana) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26268"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE RONDONIA"
+    cod_siorg: "1209"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Rondônia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26269"
+    nome_uo: "UNIVERSIDADE FEDERAL DO ESTADO RIO DE JANEIRO"
+    cod_siorg: "260"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Estado do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26270"
+    nome_uo: "FUNDACAO UNIVERSIDADE DO AMAZONAS"
+    cod_siorg: "465"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade do Amazonas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26271"
+    nome_uo: "FUNDACAO UNIVERSIDADE DE BRASILIA"
+    cod_siorg: "470"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade de Brasília) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26272"
+    nome_uo: "FUNDACAO UNIVERSIDADE DO MARANHAO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade do Maranhão) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26273"
+    nome_uo: "UNIVERSIDADE FEDERAL DO RIO GRANDE - FURG"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio Grande) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26274"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE UBERLANDIA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Uberlândia) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26275"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DO ACRE"
+    cod_siorg: "466"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Acre) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26276"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE MATO GROSSO"
+    cod_siorg: "471"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Mato Grosso) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26277"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE OURO PRETO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Ouro Preto) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26278"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE PELOTAS"
+    cod_siorg: "477"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Pelotas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26279"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DO PIAUI"
+    cod_siorg: "468"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Piauí) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26280"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE SAO CARLOS"
+    cod_siorg: "475"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de São Carlos) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26281"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE SERGIPE"
+    cod_siorg: "469"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Sergipe) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26282"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE VICOSA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Viçosa) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26283"
+    nome_uo: "FUNDACAO UNIVERSIDADE FED.DE MATO GROS.DO SUL"
+    cod_siorg: "827"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Mato Grosso do Sul) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26284"
+    nome_uo: "FUN.UNIV.FED.DE CIENCIAS DA SAUDE DE P.ALEGRE"
+    cod_siorg: "970"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Ciências da Saúde de Porto Alegre) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26285"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DE S.J.DEL-REI"
+    cod_siorg: "1734"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de São João Del-Rei) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26286"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DO AMAPA"
+    cod_siorg: "1710"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Amapá) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26290"
+    nome_uo: "INEP-INST.NAC.DE ESTUDOS E PESQ.EDUCACIONAIS"
+    cod_siorg: "249"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26291"
+    nome_uo: "FUND.COORD.DE APERF.DE PESSOAL NIVEL SUPERIOR"
+    cod_siorg: "250"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Coordenação de Aperfeiçoamento de Pessoal de Nível Superior) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26292"
+    nome_uo: "FUNDACAO JOAQUIM NABUCO"
+    cod_siorg: "257"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Joaquim Nabuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26294"
+    nome_uo: "HOSPITAL DE CLINICAS DE PORTO ALEGRE"
+    cod_siorg: "258"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Hospital de Clínicas de Porto Alegre) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26298"
+    nome_uo: "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCACAO"
+    cod_siorg: "253"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Desenvolvimento da Educação) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26350"
+    nome_uo: "FUNDACAO UNIVERSIDADE FED. DA GRANDE DOURADOS"
+    cod_siorg: "84712"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal da Grande Dourados) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26351"
+    nome_uo: "UNIVERSIDADE FEDERAL DO RECONCAVO DA BAHIA"
+    cod_siorg: "84710"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Recôncavo da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26352"
+    nome_uo: "FUNDACAO UNIVERSIDADE FEDERAL DO ABC"
+    cod_siorg: "84703"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do ABC) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26358"
+    nome_uo: "HOSPITAL UNIVERSITARIO PROF.ALBERTO NUNES"
+    cod_siorg: "420"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Alagoas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26359"
+    nome_uo: "COMPLEXO HOSPITALAR E DE SAUDE DA UFBA"
+    cod_siorg: "421"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26362"
+    nome_uo: "HOSPITAL UNIVERSITARIO WALTER CANTIDIO"
+    cod_siorg: "416"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Ceará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26363"
+    nome_uo: "MATERNIDADE ASSIS CHATEAUBRIAN"
+    cod_siorg: "416"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Ceará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26364"
+    nome_uo: "HOSPITAL UNIVERSIT. CASSIANO ANTONIO MORAIS"
+    cod_siorg: "425"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Espírito Santo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26365"
+    nome_uo: "HOSPITAL DAS CLINICAS DA UFGO"
+    cod_siorg: "422"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Goiás) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26366"
+    nome_uo: "HOSPITAL UNIVERSITARIO ANTONIO PEDRO"
+    cod_siorg: "427"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal Fluminense) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26367"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UFJF"
+    cod_siorg: "424"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Juiz de Fora) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26368"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UFMG"
+    cod_siorg: "423"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26369"
+    nome_uo: "HOSPITAL UNIVERSITARIO JOAO DE BARROS BARRETO"
+    cod_siorg: "415"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26370"
+    nome_uo: "HOSPITAL UNIVERSITARIO BETINA FERRO SOUZA"
+    cod_siorg: "415"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26371"
+    nome_uo: "HOSPITAL UNIVERSITARIO LAURO WANDERLEY"
+    cod_siorg: "419"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Paraíba) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26372"
+    nome_uo: "HOSPITAL DE CLINICAS DA UFPR"
+    cod_siorg: "428"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Paraná) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26373"
+    nome_uo: "HOSPITAL DAS CLINICAS DA UFPE"
+    cod_siorg: "418"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Pernambuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26374"
+    nome_uo: "COMPLEXO HOSPITALAR E DE SAUDE DA UFRN"
+    cod_siorg: "417"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio Grande do Norte) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26378"
+    nome_uo: "COMPLEXO HOSPITALAR E DE SAUDE DA UFRJ"
+    cod_siorg: "426"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26385"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UFGD"
+    cod_siorg: "84712"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal da Grande Dourados) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26386"
+    nome_uo: "HOSPITAL UNIVER.POLYDORO ERNANI DE SAO THIAGO"
+    cod_siorg: "429"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Santa Catarina) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26387"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UFSM"
+    cod_siorg: "431"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Santa Maria) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26388"
+    nome_uo: "HOSPITAL UNIVERSITARIO ALCIDES CARNEIRO"
+    cod_siorg: "67671"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Campina Grande) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26389"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UFTM"
+    cod_siorg: "459"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Triângulo Mineiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26391"
+    nome_uo: "HOSPITAL UNIVERSITARIO GAFFREE E GUINLE"
+    cod_siorg: "260"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Estado do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26392"
+    nome_uo: "HOSPITAL GETULIO VARGAS"
+    cod_siorg: "465"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade do Amazonas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26393"
+    nome_uo: "HOSPITAL UNIVERSITARIO DE BRASILIA"
+    cod_siorg: "470"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade de Brasília) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26394"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA FUMA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade do Maranhão) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26395"
+    nome_uo: "HOSPITAL UNIVERSITARIO MIGUEL RIET JUNIOR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Rio Grande) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26396"
+    nome_uo: "HOSP.DAS CLINICAS DA UNIV.FED.DE UBERLANDIA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Uberlândia) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26397"
+    nome_uo: "HOSPITAL JULIO MULLER"
+    cod_siorg: "471"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Mato Grosso) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26398"
+    nome_uo: "HOSPITAL DAS CLINICAS DA FUFPEL"
+    cod_siorg: "477"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Pelotas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26399"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA FUFPI"
+    cod_siorg: "468"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal do Piauí) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26400"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA FUFSE"
+    cod_siorg: "469"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Universidade Federal de Sergipe) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26402"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE ALAGOAS"
+    cod_siorg: "100900"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Alagoas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26403"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO AMAZONAS"
+    cod_siorg: "100910"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Amazonas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26404"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.BAIANO"
+    cod_siorg: "100920"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Baiano) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26405"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO CEARA"
+    cod_siorg: "100911"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Ceará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26406"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO ESP.SANTO"
+    cod_siorg: "100912"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26407"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.GOIANO"
+    cod_siorg: "100913"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Goiano) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26408"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO MARANHAO"
+    cod_siorg: "100921"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Maranhão) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26409"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE MINAS GERAIS"
+    cod_siorg: "100914"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26410"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO NORTE DE MG"
+    cod_siorg: "100901"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Norte de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26411"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO SUDESTE MG"
+    cod_siorg: "100902"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Sudeste de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26412"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO SUL DE MG"
+    cod_siorg: "100915"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Sul de Minas Gerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26413"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO TRIA.MINEIRO"
+    cod_siorg: "100903"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Triângulo Mineiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26414"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO MATO GROSSO"
+    cod_siorg: "100916"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Mato Grosso) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26415"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO MAT.G.DO SUL"
+    cod_siorg: "100904"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Mato Grosso do Sul) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26416"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO PARA"
+    cod_siorg: "100917"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26417"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DA PARAIBA"
+    cod_siorg: "100905"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia da Paraíba) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26418"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE PERNAMBUCO"
+    cod_siorg: "100922"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Pernambuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26419"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO RS"
+    cod_siorg: "100918"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26420"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.FARROUPILHA"
+    cod_siorg: "100906"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Farroupilha) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26421"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE RONDONIA"
+    cod_siorg: "100907"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Rondônia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26422"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.CATARINENSE"
+    cod_siorg: "100919"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Catarinense) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26423"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE SERGIPE"
+    cod_siorg: "100909"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Sergipe) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26424"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO TOCANTINS"
+    cod_siorg: "100908"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Tocantins) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26425"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO ACRE"
+    cod_siorg: "94427"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Acre) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26426"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO AMAPA"
+    cod_siorg: "94428"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Amapá) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26427"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DA BAHIA"
+    cod_siorg: "444"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26428"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE BRASILIA"
+    cod_siorg: "94430"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Brasília) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26429"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE GOIAS"
+    cod_siorg: "451"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Goiás) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26430"
+    nome_uo: "INST.FED.DE ED.,CIENC.E TEC.DO S.PERNAMBUCANO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Sertão de Pernambuco) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26431"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO PIAUI"
+    cod_siorg: "434"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Piauí) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26432"
+    nome_uo: "INSTITUTO FEDERAL DO PARANA - IFPR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal do Paraná) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mec
+    cod_uo: "26433"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO R.DE JANEIRO"
+    cod_siorg: "100930"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26434"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.FLUMINENSE"
+    cod_siorg: "100931"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Fluminense) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26435"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DO RN"
+    cod_siorg: "439"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26436"
+    nome_uo: "INST.FED.DE EDUC.,CIE.E TEC.SUL-RIO-GRANDENSE"
+    cod_siorg: "456"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia Sul-rio-grandense) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26437"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE RORAIMA"
+    cod_siorg: "3561"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Roraima) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26438"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE STA.CATARINA"
+    cod_siorg: "455"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26439"
+    nome_uo: "INST.FED.DE EDUC.,CIENC.E TEC.DE SAO PAULO"
+    cod_siorg: "453"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Federal de Educação, Ciência e Tecnologia de São Paulo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26440"
+    nome_uo: "UNIVERSIDADE FEDERAL DA FRONTEIRA SUL"
+    cod_siorg: "103730"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal da Fronteira Sul) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26441"
+    nome_uo: "UNIVERSIDADE FEDERAL DO OESTE DO PARA"
+    cod_siorg: "104667"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Oeste do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26442"
+    nome_uo: "UNIV.DA INTEG.INTERN.DA LUSOF.AFRO-BRASILEIRA"
+    cod_siorg: "109912"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade da Integração Internacional da Lusofonia Afro-Brasileira) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26443"
+    nome_uo: "HU BRASIL/EMPRESA BRAS.DE SERV.HOSPITALARES."
+    cod_siorg: "117267"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Empresa Brasileira de Serviços Hospitalares) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26445"
+    nome_uo: "HOSPITAL UNIVERSITARIO DA UNIFESP"
+    cod_siorg: "464"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de São Paulo) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26447"
+    nome_uo: "UNIVERSIDADE FEDERAL DO OESTE DA BAHIA - UFOB"
+    cod_siorg: "122386"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Oeste da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26448"
+    nome_uo: "UNIV.FED.DO SUL E SUDESTE DO PARA - UNIFESSPA"
+    cod_siorg: "122381"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Sul e Sudeste do Pará) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26449"
+    nome_uo: "UNIVERSIDADE FEDERAL DO CARIRI - UFCA"
+    cod_siorg: "122391"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Cariri) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26450"
+    nome_uo: "UNIVERSIDADE FEDERAL DO SUL DA BAHIA"
+    cod_siorg: "122378"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Sul da Bahia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26452"
+    nome_uo: "UNIVERSIDADE FEDERAL DE CATALAO"
+    cod_siorg: "226371"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Catalão) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26453"
+    nome_uo: "UNIVERSIDADE FEDERAL DE JATAI"
+    cod_siorg: "226372"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Jataí) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26454"
+    nome_uo: "UNIVERSIDADE FEDERAL DE RONDONOPOLIS"
+    cod_siorg: "226373"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal de Rondonópolis) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26455"
+    nome_uo: "UNIVERSIDADE FEDERAL DO DELTA DO PARNAIBA"
+    cod_siorg: "227867"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Delta do Parnaíba) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26456"
+    nome_uo: "UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO"
+    cod_siorg: "227868"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Agreste de Pernambuco) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "26457"
+    nome_uo: "UNIVERSIDADE FEDERAL DO NORTE DO TOCANTINS"
+    cod_siorg: "241361"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Universidade Federal do Norte do Tocantins) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "73107"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MEC"
+    cod_siorg: "253"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Desenvolvimento da Educação) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mec
+    cod_uo: "74902"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FIES"
+    cod_siorg: "253"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Desenvolvimento da Educação) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: memp
+    cod_uo: "69101"
+    nome_uo: "SECRETARIA DA MICRO E PEQUENA EMPRESA-SMPE/PR"
+    cod_siorg: "330683"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte - Unidades com víncu) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mesp
+    cod_uo: "51101"
+    nome_uo: "MINISTERIO DO ESPORTE"
+    cod_siorg: "308797"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Esporte - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "25101"
+    nome_uo: "MINISTERIO DA FAZENDA"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "25103"
+    nome_uo: "SEC ESPECIAL DA RECEITA FEDERAL DO BRASIL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Receita Federal do Brasil) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mf
+    cod_uo: "25104"
+    nome_uo: "PROCURADORIA GERAL DA FAZENDA NACIONAL"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "25203"
+    nome_uo: "COMISSAO DE VALORES MOBILIARIOS"
+    cod_siorg: "478"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Comissão de Valores Mobiliários) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "25208"
+    nome_uo: "SUPERINTENDENCIA DE SEGUROS PRIVADOS"
+    cod_siorg: "235"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência de Seguros Privados) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "25903"
+    nome_uo: "FUNDO DE COMPENSACAO E VARIACOES SALARIAIS"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Compensação de Variações Salariais) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mf
+    cod_uo: "71101"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MF - EFU"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "71103"
+    nome_uo: "ENCARGOS FINANC.DA UNIAO-SENTENCAS JUDICIAIS"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "71104"
+    nome_uo: "REMUN.DE AGENTES FINANC. - REC.SOB SUPERV./MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "71904"
+    nome_uo: "FUNDO DE ESTAB.DO SEG.RURAL-FESR-R.S/SUP.MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "71905"
+    nome_uo: "FUNDO DE GAR. A EXPORTACAO-FGE-REC.SOB SUP.MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "73101"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "73108"
+    nome_uo: "TRANSF.CONSTITUCIONAIS-REC.SOB SUP. MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "73901"
+    nome_uo: "FUNDO CONSTITUCIONAL DO DISTRITO FEDERAL-FCDF"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Constitucional do Distrito Federal) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mf
+    cod_uo: "74101"
+    nome_uo: "RECURSOS SOB SUPERV. DO MIN. FAZENDA - OOC/MF"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "74102"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MIN. DA FAZENDA"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "74201"
+    nome_uo: "RECURSOS SOB SUPERV. DA SUSEP-MF"
+    cod_siorg: "235"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência de Seguros Privados) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "75101"
+    nome_uo: "REC.SOB SUPERV. DO ME - DIVIDA PUB FED"
+    cod_siorg: "308800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Fazenda - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mf
+    cod_uo: "90000"
+    nome_uo: "RESERVA DE CONTINGENCIA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Reserva de Contingência) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mgi
+    cod_uo: "46101"
+    nome_uo: "MINIST.DA GESTAO E DA INOVACAO EM SERV.PUBLIC"
+    cod_siorg: "308803"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Gestão e da Inovação em Serviços Públicos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "46201"
+    nome_uo: "FUNDACAO ESCOLA NACIONAL DE ADM.PUBLICA-ENAP"
+    cod_siorg: "956"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Escola Nacional de Administração Pública) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "46203"
+    nome_uo: "INSTITUTO NACIONAL TECNOLOGIA DA INFORMACAO"
+    cod_siorg: "47388"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional de Tecnologia da Informação) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "72140"
+    nome_uo: "RECURSOS SOB GESTAO DO MGI"
+    cod_siorg: "308803"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Gestão e da Inovação em Serviços Públicos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "72146"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MGI"
+    cod_siorg: "308803"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Gestão e da Inovação em Serviços Públicos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "72225"
+    nome_uo: "RECURSOS SOB SUPERVISAO DA RFB"
+    cod_siorg: "308803"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Gestão e da Inovação em Serviços Públicos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mgi
+    cod_uo: "73113"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MGI"
+    cod_siorg: "308803"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Gestão e da Inovação em Serviços Públicos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53101"
+    nome_uo: "MIN. DA INTEGR. E DO DESENVOLVIMENTO REGIONAL"
+    cod_siorg: "308799"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Integração e do Desenvolvimento Regional - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53201"
+    nome_uo: "COMPANHIA DE DESENV. DO VALE DO SAO FRANCISCO"
+    cod_siorg: "169"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53202"
+    nome_uo: "SUPERINTEND.DO DESENVOLV.DA AMAZONIA-SUDAM"
+    cod_siorg: "91138"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência do Desenvolvimento da Amazônia) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53203"
+    nome_uo: "SUPERINT. DO DESENVOLV. DO NORDESTE - SUDENE"
+    cod_siorg: "91144"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência do Desenvolvimento do Nordeste) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53204"
+    nome_uo: "DEPARTAMENTO NAC. DE OBRAS CONTRA AS SECAS"
+    cod_siorg: "367"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Departamento Nacional de Obras Contra as Secas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53207"
+    nome_uo: "SUPERINT. DE DESENV. DO CENTRO-OESTE - SUDECO"
+    cod_siorg: "100113"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência de Desenvolvimento do Centro-Oeste) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "53210"
+    nome_uo: "AGENCIA NACIONAL DE AGUAS - ANA"
+    cod_siorg: "46876"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Águas e Saneamento Básico) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: midr
+    cod_uo: "74913"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FNO-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Constitucional de Financiamento do Norte) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: midr
+    cod_uo: "74914"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FCO-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Constitucional de Financiamento do Centro-Oeste) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: midr
+    cod_uo: "74915"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FNE-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Constitucional de Financiamento do Nordeste) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: midr
+    cod_uo: "74917"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FDA-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Desenvolvimento da Amazônia) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: midr
+    cod_uo: "74918"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FDNE-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Desenvolvimento do Nordeste) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: midr
+    cod_uo: "74919"
+    nome_uo: "FUNDO DE DESENV. DO CENTRO-OESTE-FDCO-MDR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Desenvolvimento do Centro-Oeste) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: minc
+    cod_uo: "42101"
+    nome_uo: "MINISTERIO DA CULTURA"
+    cod_siorg: "308821"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Cultura - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42201"
+    nome_uo: "FUNDACAO CASA RUI BARBOSA"
+    cod_siorg: "261"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Casa de Rui Barbosa) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42202"
+    nome_uo: "BIBLIOTECA NACIONAL"
+    cod_siorg: "984"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Biblioteca Nacional) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42203"
+    nome_uo: "FUNDACAO CULTURAL PALMARES"
+    cod_siorg: "1782"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Cultural Palmares) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42204"
+    nome_uo: "INSTITUTO DO PATRIMONIO HIST. E ART. NACIONAL"
+    cod_siorg: "2045"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto do Patrimônio Histórico e Artístico Nacional) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42205"
+    nome_uo: "FUNDACAO NACIONAL DE ARTES"
+    cod_siorg: "2330"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Nacional de Artes) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42206"
+    nome_uo: "AGENCIA NACIONAL DO CINEMA"
+    cod_siorg: "57682"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional do Cinema) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42207"
+    nome_uo: "INSTITUTO BRASILEIRO DE MUSEUS"
+    cod_siorg: "100584"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Brasileiro de Museus) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: minc
+    cod_uo: "42902"
+    nome_uo: "FUNDO NACIONAL DE CULTURA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Cultura) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: minc
+    cod_uo: "73120"
+    nome_uo: "RECURSOS POLITICA NACIONAL ALDIR BLANC"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Cultura) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: minc
+    cod_uo: "74912"
+    nome_uo: "RECURSOS SOB SUPERV. DO FUNDO NAC. DE CULTURA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Cultura) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mir
+    cod_uo: "67101"
+    nome_uo: "MINISTERIO DA IGUALDADE RACIAL"
+    cod_siorg: "308823"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Igualdade Racial - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mjsp
+    cod_uo: "30101"
+    nome_uo: "MINISTERIO DA JUSTICA E SEGURANCA PUBLICA"
+    cod_siorg: "235881"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Justiça e Segurança Pública - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mjsp
+    cod_uo: "30107"
+    nome_uo: "DEPARTAMENTO DE POLICIA RODOVIARIA FEDERAL"
+    cod_siorg: "704"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Polícia Rodoviária Federal) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mjsp
+    cod_uo: "30108"
+    nome_uo: "DEPARTAMENTO DE POLICIA FEDERAL"
+    cod_siorg: "324"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Polícia Federal) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mjsp
+    cod_uo: "30211"
+    nome_uo: "CONSELHO ADMINISTRATIVO DE DEFESA ECONOMICA"
+    cod_siorg: "322"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Conselho Administrativo de Defesa Econômica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mjsp
+    cod_uo: "30212"
+    nome_uo: "AUTORIDADE NACIONAL DE PROTECAO DE DADOS-ANPD"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Autoridade Nacional de Proteção de Dados) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mjsp
+    cod_uo: "30905"
+    nome_uo: "FUNDO DE DEFESA DOS DIREITOS DIFUSOS"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Defesa de Direitos Difusos) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mjsp
+    cod_uo: "30907"
+    nome_uo: "FUNDO PENITENCIARIO NACIONAL - FUNPEN"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Penitenciário Nacional) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mjsp
+    cod_uo: "30911"
+    nome_uo: "FUNDO NACIONAL DE SEGURANCA PUBLICA - FNSP"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Segurança Pública) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mjsp
+    cod_uo: "30912"
+    nome_uo: "FUNDO NACIONAL ANTIDROGAS"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional Antidrogas) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mma
+    cod_uo: "44101"
+    nome_uo: "MINIST. DO MEIO AMBIENTE E MUDANCA DO CLIMA"
+    cod_siorg: "1927"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Meio Ambiente e Mudança do Clima - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "44102"
+    nome_uo: "SERVICO FLORESTAL BRASILEIRO - SFB"
+    cod_siorg: "89539"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Serviço Florestal Brasileiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "44201"
+    nome_uo: "INST.BRAS.DO MEIO AMB.E REC.NAT.RENOVAVEIS"
+    cod_siorg: "1812"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "44206"
+    nome_uo: "INSTITUTO DE PESQUISAS JARDIM BOTANICO DO RJ"
+    cod_siorg: "1913"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto de Pesquisas Jardim Botânico do Rio de Janeiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "44207"
+    nome_uo: "INST.CHICO MENDES DE CONSER.DA BIODIVERSIDADE"
+    cod_siorg: "91842"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Chico Mendes de Conservação da Biodiversidade) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "44901"
+    nome_uo: "FUNDO NACIONAL DO MEIO AMBIENTE"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional do Meio Ambiente) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mma
+    cod_uo: "44902"
+    nome_uo: "FUNDO NACIONAL SOBRE MUDANCAS DO CLIMA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional sobre Mudança no Clima) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mma
+    cod_uo: "73111"
+    nome_uo: "RECURSOS SOB SUPERV. DO MIN. DO MEIO AMBIENTE"
+    cod_siorg: "89539"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Serviço Florestal Brasileiro) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mma
+    cod_uo: "74916"
+    nome_uo: "REC.S/SUP.DO FUNDO NAC. S/MUDANCAS DO CLIMA"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional sobre Mudança no Clima) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mme
+    cod_uo: "32101"
+    nome_uo: "MINISTERIO DE MINAS E ENERGIA"
+    cod_siorg: "2852"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério de Minas e Energia - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32202"
+    nome_uo: "COMPANHIA DE PESQUISA DE RECURSOS MINERAIS"
+    cod_siorg: "227"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Companhia de Pesquisa de Recursos Minerais) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32265"
+    nome_uo: "AGENCIA NACIONAL DO PETROLEO - ANP"
+    cod_siorg: "25281"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional do Petróleo, Gás Natural e Biocombustíveis) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32266"
+    nome_uo: "AGENCIA NACIONAL DE ENERGIA ELETRICA - ANEEL"
+    cod_siorg: "21089"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Energia Elétrica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32314"
+    nome_uo: "EMPRESA DE PESQUISA ENERGETICA - EPE"
+    cod_siorg: "76608"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Empresa de Pesquisa Energética) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32396"
+    nome_uo: "AGENCIA NACIONAL DE MINERACAO"
+    cod_siorg: "222120"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Mineração) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32398"
+    nome_uo: "NUCLEBRAS EQUIPAMENTOS PESADOS S/A"
+    cod_siorg: "48739"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Nuclebrás Equipamentos Pesados S.A.) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "32401"
+    nome_uo: "AUTORIDADE NACIONAL DE SEGURANCA NUCLEAR"
+    cod_siorg: "273855"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (AUTORIDADE NACIONAL DE SEGURANCA NUCLEAR) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "73116"
+    nome_uo: "RECURSOS SOB SUPERVISAO DA ANP"
+    cod_siorg: "25281"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional do Petróleo, Gás Natural e Biocombustíveis) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "73118"
+    nome_uo: "RECURSOS SOB SUPERVISAO DA ANEEL"
+    cod_siorg: "21089"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Energia Elétrica) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mme
+    cod_uo: "73119"
+    nome_uo: "RECURSOS SOB SUPERVISAO DA ANM"
+    cod_siorg: "222120"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Mineração) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mmulheres
+    cod_uo: "65101"
+    nome_uo: "MINISTERIO DAS MULHERES"
+    cod_siorg: "308815"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério das Mulheres - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpa
+    cod_uo: "58101"
+    nome_uo: "MINISTERIO DA PESCA E AQUICULTURA"
+    cod_siorg: "308795"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Pesca e Aquicultura - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpi
+    cod_uo: "30205"
+    nome_uo: "FUND. NACIONAL DOS POVOS INDIGENAS - PATR.IND"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Nacional do Índio - Patrimônio Indígena) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mpi
+    cod_uo: "84101"
+    nome_uo: "MINISTERIO DOS POVOS INDIGENAS - ADM DIRETA"
+    cod_siorg: "308824"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério dos Povos Indígenas - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpi
+    cod_uo: "84201"
+    nome_uo: "FUNDACAO NACIONAL DOS POVOS INDIGENAS"
+    cod_siorg: "173"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Nacional dos Povos Indígenas) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpo
+    cod_uo: "47101"
+    nome_uo: "MINISTERIO DO PLANEJAMENTO E ORCAMENTO"
+    cod_siorg: "308804"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Planejamento e Orçamento - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpo
+    cod_uo: "47204"
+    nome_uo: "INSTITUTO DE PESQUISA ECONOMICA APLICADA"
+    cod_siorg: "7"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto de Pesquisa Econômica Aplicada) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpo
+    cod_uo: "47205"
+    nome_uo: "FUNDACAO INST.BRAS.DE GEOGRAFIA E ESTATISTICA"
+    cod_siorg: "3"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Instituto Brasileiro de Geografia e Estatística) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpo
+    cod_uo: "71102"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO MPO"
+    cod_siorg: "308804"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Planejamento e Orçamento - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpor
+    cod_uo: "68101"
+    nome_uo: "MINISTERIO DE PORTOS E AEROPORTOS"
+    cod_siorg: "308817"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério de Portos e Aeroportos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpor
+    cod_uo: "68201"
+    nome_uo: "AGENCIA NAC. DE TRANSPORTES AQUAVIARIOS-ANTAQ"
+    cod_siorg: "54843"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Transportes Aquaviários) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpor
+    cod_uo: "68213"
+    nome_uo: "AGENCIA NACIONAL DE AVIACAO CIVIL"
+    cod_siorg: "86144"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Aviação Civil) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mpor
+    cod_uo: "68901"
+    nome_uo: "FUNDO DA MARINHA MERCANTE"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo da Marinha Mercante) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mpor
+    cod_uo: "68902"
+    nome_uo: "FUNDO NACIONAL DE AVIACAO CIVIL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Aviação Civil) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mpor
+    cod_uo: "74904"
+    nome_uo: "REC.SOB SUP./FUNDO DA MAR.MERCANTE/FMM-PORTOS"
+    cod_siorg: "308817"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério de Portos e Aeroportos - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mps
+    cod_uo: "33101"
+    nome_uo: "MINISTERIO DA PREVIDENCIA SOCIAL"
+    cod_siorg: "308819"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Previdência Social - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mps
+    cod_uo: "33201"
+    nome_uo: "INSTITUTO NACIONAL DO SEGURO SOCIAL"
+    cod_siorg: "1934"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional do Seguro Social) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mps
+    cod_uo: "33206"
+    nome_uo: "SUPERINT.NACIONAL DE PREVIDENCIA COMPLEMENTAR"
+    cod_siorg: "105915"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Superintendência Nacional de Previdência Complementar) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mps
+    cod_uo: "33904"
+    nome_uo: "FUNDO DO REGIME GERAL DA PREVIDENCIA SOCIAL"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo do Regime Geral da Previdência Social) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mps
+    cod_uo: "72233"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO INSS"
+    cod_siorg: "1934"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Instituto Nacional do Seguro Social) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mre
+    cod_uo: "35101"
+    nome_uo: "MINISTERIO DAS RELACOES EXTERIORES"
+    cod_siorg: "263"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério das Relações Exteriores - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mre
+    cod_uo: "35201"
+    nome_uo: "FUNDACAO ALEXANDRE DE GUSMAO"
+    cod_siorg: "299"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Alexandre de Gusmão) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "36201"
+    nome_uo: "FUNDACAO OSWALDO CRUZ"
+    cod_siorg: "315"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Oswaldo Cruz) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "36210"
+    nome_uo: "HOSPITAL NOSSA SENHORA DA CONCEICAO S/A"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Hospital Nossa Senhora da Conceição S.A.) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: ms
+    cod_uo: "36211"
+    nome_uo: "FUNDACAO NACIONAL DE SAUDE"
+    cod_siorg: "2207"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Nacional de Saúde) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "36212"
+    nome_uo: "AGENCIA NACIONAL DE VIGILANCIA SANITARIA"
+    cod_siorg: "36687"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Vigilância Sanitária) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "36213"
+    nome_uo: "AGENCIA NACIONAL DE SAUDE SUPLEMENTAR"
+    cod_siorg: "45013"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Saúde Suplementar) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "36901"
+    nome_uo: "FUNDO NACIONAL DE SAUDE"
+    cod_siorg: "304"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério da Saúde - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: ms
+    cod_uo: "74202"
+    nome_uo: "RECURSOS SOB SUPERVISAO DA ANS"
+    cod_siorg: "45013"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Saúde Suplementar) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mt
+    cod_uo: "39101"
+    nome_uo: "MINISTERIO DOS TRANSPORTES"
+    cod_siorg: "308818"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério dos Transportes - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mt
+    cod_uo: "39207"
+    nome_uo: "VALEC-ENGENHARIA, CONSTRUCOES E FERROVIAS S/A"
+    cod_siorg: "1800"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (VALEC Engenharia, Construções e Ferrovias S.A.) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mt
+    cod_uo: "39250"
+    nome_uo: "AGENCIA NAC. DE TRANSPORTES TERRESTRES - ANTT"
+    cod_siorg: "54793"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Agência Nacional de Transportes Terrestres) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mt
+    cod_uo: "39252"
+    nome_uo: "DEPTO.NAC.DE INFRA-ESTRUTURA DE TRANSPORTES"
+    cod_siorg: "54844"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Departamento Nacional de Infraestrutura de Transportes) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mt
+    cod_uo: "39905"
+    nome_uo: "FUNDO NACIONAL DE SEG. E EDUCACAO DO TRANSITO"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Nacional de Segurança e Educação de Trânsito) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mte
+    cod_uo: "40101"
+    nome_uo: "MINISTERIO DO TRABALHO E EMPREGO"
+    cod_siorg: "308820"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Trabalho e Emprego - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mte
+    cod_uo: "40203"
+    nome_uo: "FUNDACAO JORGE DUPRAT FIG.DE SEG.MED.TRABALHO"
+    cod_siorg: "221"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundação Jorge Duprat Figueiredo, de Segurança e Medicina do Trabalho) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mte
+    cod_uo: "40901"
+    nome_uo: "FUNDO DE AMPARO AO TRABALHADOR - FAT"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo de Amparo ao Trabalhador) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mtur
+    cod_uo: "54101"
+    nome_uo: "MINISTERIO DO TURISMO"
+    cod_siorg: "72084"
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Ministério do Turismo - Unidades com vínculo direto) × SIORG, gerada em 2026-10-29"
+
+  - ministerio: mtur
+    cod_uo: "54901"
+    nome_uo: "FUNDO GERAL DE TURISMO - FUNGETUR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Geral de Turismo) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."
+
+  - ministerio: mtur
+    cod_uo: "74908"
+    nome_uo: "RECURSOS SOB SUPERVISAO DO FUNGETUR/MTUR"
+    cod_siorg: null
+    valido_de: "2026-01-01"
+    metodo: "automatico_nome"
+    fonte: "Correspondência automática por nome: Portal da Transparência (Fundo Geral de Turismo) × SIORG, gerada em 2026-10-29"
+    nota: "Sem correspondência automática pelo nome; revisar."

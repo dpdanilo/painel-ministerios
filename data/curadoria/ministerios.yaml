@@ -2,11 +2,15 @@
 # - `id` nunca muda, mesmo que o nome ou a sigla mudem (permite rastrear extinções e recriações).
 # - `no_painel: true` coloca o ministério no escopo das coletas e do site.
 # - Datas em AAAA-MM-DD. `valido_ate: null` = vigente.
+# - `categoria`: ministerio | presidencia (órgão essencial da Presidência com status de ministério)
+#   | orgao (outro órgão com status de ministério: AGU, CGU).
+# - `valido_de: null` = data de início ainda não curada (fase 4). Não preencher por estimativa.
 # - Toda versão precisa de `fonte`.
 
 ministerios:
   - id: mcid
     no_painel: true
+    categoria: ministerio
     versoes:
       - nome: Ministério das Cidades
         sigla: MCidades
@@ -28,9 +32,9 @@ ministerios:
         norma_estrutura: dec-12553-2025     # decreto da Estrutura Regimental vigente
         fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308798
 
-  # Ministérios citados nos eventos do MCidades. Ainda fora do painel (fase 2/4).
   - id: midr
-    no_painel: false
+    no_painel: true
+    categoria: ministerio
     versoes:
       - nome: Ministério do Desenvolvimento Regional
         sigla: MDR
@@ -43,7 +47,7 @@ ministerios:
       - nome: Ministério da Integração e do Desenvolvimento Regional
         sigla: MIDR
         cod_siorg: "308799"
-        orgao_orcamentario: null
+        orgao_orcamentario: "53000"
         valido_de: 2023-01-01
         valido_ate: null
         norma_criacao: mpv-1154-2023
@@ -51,6 +55,7 @@ ministerios:
 
   - id: mi
     no_painel: false
+    categoria: ministerio
     versoes:
       - nome: Ministério da Integração Nacional
         sigla: MI
@@ -60,3 +65,467 @@ ministerios:
         valido_ate: 2019-01-01
         norma_extincao: mpv-870-2019
         fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  # --- Demais ministérios e órgãos com status de ministério (SIORG, out/2026)
+  - id: agu
+    no_painel: true
+    categoria: orgao
+    versoes:
+      - nome: Advocacia-Geral da União
+        sigla: AGU
+        cod_siorg: "46"
+        orgao_orcamentario: "63000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/46
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 63000 (Advocacia-Geral da União)"
+
+  - id: cc
+    no_painel: true
+    categoria: presidencia
+    versoes:
+      - nome: Casa Civil da Presidência da República
+        sigla: CC-PR
+        cod_siorg: "2837"
+        orgao_orcamentario: null   # orçamento consolidado na UO 20101 (Presidência da República)
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/2837
+
+  - id: cgu
+    no_painel: true
+    categoria: orgao
+    versoes:
+      - nome: Controladoria-Geral da União
+        sigla: CGU
+        cod_siorg: "214460"
+        orgao_orcamentario: "37000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/214460
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 37000 (Controladoria-Geral da União)"
+
+  - id: gsi
+    no_painel: true
+    categoria: presidencia
+    versoes:
+      - nome: Gabinete de Segurança Institucional da Presidência da República
+        sigla: GSI/PR
+        cod_siorg: "27"
+        orgao_orcamentario: null   # orçamento consolidado na UO 20101 (Presidência da República)
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/27
+
+  - id: mapa
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Agricultura e Pecuária
+        sigla: MAPA
+        cod_siorg: "308793"
+        orgao_orcamentario: "22000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308793
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 22000 (Ministério da Agricultura e Pecuária)"
+
+  - id: mcti
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Ciência, Tecnologia e Inovação
+        sigla: MCTI
+        cod_siorg: "267175"
+        orgao_orcamentario: "24000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/267175
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 24000 (Ministério da Ciência, Tecnologia e Inovação)"
+
+  - id: minc
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Cultura
+        sigla: MinC
+        cod_siorg: "308821"
+        orgao_orcamentario: "42000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308821
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 42000 (Ministério da Cultura)"
+
+  - id: md
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Defesa
+        sigla: MD
+        cod_siorg: "41066"
+        orgao_orcamentario: "52000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/41066
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 52000 (Ministério da Defesa)"
+
+  - id: mec
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Educação
+        sigla: MEC
+        cod_siorg: "244"
+        orgao_orcamentario: "26000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/244
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 26000 (Ministério da Educação)"
+
+  - id: mf
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Fazenda
+        sigla: MF
+        cod_siorg: "308800"
+        orgao_orcamentario: "25000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308800
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 25000 (Ministério da Fazenda)"
+
+  - id: mgi
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Gestão e da Inovação em Serviços Públicos
+        sigla: MGI
+        cod_siorg: "308803"
+        orgao_orcamentario: "46000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308803
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 46000 (Ministério da Gestão e da Inovação em Serviços Públicos)"
+
+  - id: mir
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Igualdade Racial
+        sigla: MIR
+        cod_siorg: "308823"
+        orgao_orcamentario: "67000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308823
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 67000 (Ministério da Igualdade Racial)"
+
+  - id: mjsp
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Justiça e Segurança Pública
+        sigla: MJSP
+        cod_siorg: "235881"
+        orgao_orcamentario: "30000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/235881
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 30000 (Ministério da Justiça e Segurança Pública)"
+
+  - id: mpa
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Pesca e Aquicultura
+        sigla: MPA
+        cod_siorg: "308795"
+        orgao_orcamentario: "58000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308795
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 58000 (Ministério da Pesca e Aquicultura)"
+
+  - id: mps
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Previdência Social
+        sigla: MPS
+        cod_siorg: "308819"
+        orgao_orcamentario: "33000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308819
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 33000 (Ministério da Previdência Social)"
+
+  - id: ms
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério da Saúde
+        sigla: MS
+        cod_siorg: "304"
+        orgao_orcamentario: "36000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/304
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 36000 (Ministério da Saúde)"
+
+  - id: mcom
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério das Comunicações
+        sigla: MCOM
+        cod_siorg: "264359"
+        orgao_orcamentario: "41000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/264359
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 41000 (Ministério das Comunicações)"
+
+  - id: mmulheres
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério das Mulheres
+        sigla: MMULHERES
+        cod_siorg: "308815"
+        orgao_orcamentario: "65000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308815
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 65000 (Ministério das Mulheres)"
+
+  - id: mre
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério das Relações Exteriores
+        sigla: MRE
+        cod_siorg: "263"
+        orgao_orcamentario: "35000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/263
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 35000 (Ministério das Relações Exteriores)"
+
+  - id: mme
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério de Minas e Energia
+        sigla: MME
+        cod_siorg: "2852"
+        orgao_orcamentario: "32000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/2852
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 32000 (Ministério de Minas e Energia)"
+
+  - id: mpor
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério de Portos e Aeroportos
+        sigla: MPOR
+        cod_siorg: "308817"
+        orgao_orcamentario: "68000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308817
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 68000 (Ministério de Portos e Aeroportos)"
+
+  - id: mda
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Desenvolvimento Agrário e Agricultura Familiar
+        sigla: MDA
+        cod_siorg: "308794"
+        orgao_orcamentario: "49000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308794
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 49000 (Ministério do Desenvolvimento Agrário e Agricultura Familiar)"
+
+  - id: mds
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome
+        sigla: MDS
+        cod_siorg: "308796"
+        orgao_orcamentario: "55000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308796
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 55000 (Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome)"
+
+  - id: mdic
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Desenvolvimento, Indústria, Comércio e Serviços
+        sigla: MDIC
+        cod_siorg: "308814"
+        orgao_orcamentario: "28000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308814
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 28000 (Ministério do Desenvolvimento, Indústria, Comércio e Serviços)"
+
+  - id: memp
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte
+        sigla: MEMP
+        cod_siorg: "330683"
+        orgao_orcamentario: "69000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/330683
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 69000 (Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte)"
+
+  - id: mesp
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Esporte
+        sigla: MESP
+        cod_siorg: "308797"
+        orgao_orcamentario: "51000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308797
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 51000 (Ministério do Esporte)"
+
+  - id: mma
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Meio Ambiente e Mudança do Clima
+        sigla: MMA
+        cod_siorg: "1927"
+        orgao_orcamentario: "44000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/1927
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 44000 (Ministério do Meio Ambiente e Mudança do Clima)"
+
+  - id: mpo
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Planejamento e Orçamento
+        sigla: MPO
+        cod_siorg: "308804"
+        orgao_orcamentario: "47000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308804
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 47000 (Ministério do Planejamento e Orçamento)"
+
+  - id: mte
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Trabalho e Emprego
+        sigla: MTE
+        cod_siorg: "308820"
+        orgao_orcamentario: "40000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308820
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 40000 (Ministério do Trabalho e Emprego)"
+
+  - id: mtur
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério do Turismo
+        sigla: MTur
+        cod_siorg: "72084"
+        orgao_orcamentario: "54000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/72084
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 54000 (Ministério do Turismo)"
+
+  - id: mdhc
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério dos Direitos Humanos e da Cidadania
+        sigla: MDHC
+        cod_siorg: "308816"
+        orgao_orcamentario: "81000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308816
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 81000 (Ministério dos Direitos Humanos e Cidadania)"
+
+  - id: mpi
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério dos Povos Indígenas
+        sigla: MPI
+        cod_siorg: "308824"
+        orgao_orcamentario: "84000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308824
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 84000 (Ministério dos Povos Indígenas)"
+
+  - id: mt
+    no_painel: true
+    categoria: ministerio
+    versoes:
+      - nome: Ministério dos Transportes
+        sigla: MT
+        cod_siorg: "308818"
+        orgao_orcamentario: "39000"
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308818
+        fonte_orcamento: "Portal da Transparência, Orçamento da Despesa 2026: órgão superior 39000 (Ministério dos Transportes)"
+
+  - id: secom
+    no_painel: true
+    categoria: presidencia
+    versoes:
+      - nome: Secretaria de Comunicação Social da Presidência da República
+        sigla: SECOM
+        cod_siorg: "308822"
+        orgao_orcamentario: null   # orçamento consolidado na UO 20101 (Presidência da República)
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/308822
+
+  - id: sri
+    no_painel: true
+    categoria: presidencia
+    versoes:
+      - nome: Secretaria de Relações Institucionais da Presidência da República
+        sigla: SRI/PR
+        cod_siorg: "42673"
+        orgao_orcamentario: null   # orçamento consolidado na UO 20101 (Presidência da República)
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/42673
+
+  - id: sg
+    no_painel: true
+    categoria: presidencia
+    versoes:
+      - nome: Secretaria-Geral da Presidência da República
+        sigla: SG
+        cod_siorg: "219924"
+        orgao_orcamentario: null   # orçamento consolidado na UO 20101 (Presidência da República)
+        valido_de: null
+        valido_ate: null
+        fonte: https://estruturaorganizacional.dados.gov.br/doc/unidade-organizacional/219924

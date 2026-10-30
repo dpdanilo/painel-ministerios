@@ -74,9 +74,54 @@ Registro das escolhas feitas, com o motivo. Datas em ordem cronológica.
 - Quantitativo de cargos no SIORG: 426 no MCID. Ainda não foi conferido contra o Anexo II do Decreto 12.553/2025.
 - `npm audit`: 2 alertas de baixa severidade em `deepmerge` (dependência do plugin Svelte, só no build, sem correção disponível). Não chegam ao site publicado.
 
+## 2026-10-29 · Fase 2 (todos os ministérios, visão de governo, comparação)
+
+### Escopo
+- **38 órgãos**: os 31 ministérios e os 7 órgãos com status de ministério (Casa Civil, Secretaria-Geral, SRI,
+  Secom e GSI, da Presidência, mais AGU e CGU), todos lidos da árvore do SIORG (tipo `orgao`). Ficaram de fora a
+  própria Presidência, a Vice-Presidência, o Gabinete Pessoal, a Assessoria Especial do Presidente e a DPU (autônoma).
+- A ligação com o orçamento foi feita **pelo nome** do órgão superior no Portal da Transparência. Os 33 órgãos com
+  orçamento próprio bateram, e cada linha registra a fonte em `fonte_orcamento`.
+- **Os 5 órgãos da Presidência não têm orçamento separado.** Todos executam pela UO 20101 "Presidência da República".
+  O site mostra estrutura e cargos e explica a ausência. Dividir pela unidade gestora seria possível, mas é estimativa;
+  fica para avaliação futura.
+- `valido_de` dos ministérios novos fica `null`: a data de criação de cada um entra na fase 4, com a norma.
+
+### Dados
+- **Correspondência UO ↔ SIORG gerada automaticamente** (`etl/correspondencia.py`, `metodo: automatico_nome`). A UO
+  `<órgão>101` é a administração direta; as demais são ligadas pelo nome do órgão subordinado. Resultado: 272 de 334
+  UOs ligadas. As 62 restantes são, na maioria, fundos (FNHIS, FUST, Fundo Social…), que não existem como unidade
+  no SIORG, e ficam `null`, com aviso agregado no validador. A geração roda a cada atualização do orçamento, para UOs novas.
+- **Blocos ampliados** para cobrir a variedade dos ministérios: unidades descentralizadas (embaixadas, consulados,
+  superintendências), unidades de pesquisa (MCTI) e Forças Armadas (MD), sempre pela categoria oficial do SIORG.
+- **Conferência anual × mensal do empenhado:** em 5 órgãos a soma mensal passava o arquivo anual em 2% a 9%.
+  No MME, a diferença (R$ 5,02 bi) é o empenhado de outubro de uma única ação, a de royalties (R$ 5,05 bi). O arquivo
+  anual foi gerado dias antes do mensal mais recente. A checagem passou a aceitar o anual entre "até o mês anterior" e "até o último mês".
+
+### Visualização
+- **Orçamento "sem operações especiais" como medida padrão** das visões de governo e de comparação. Dívida (R$ 3,6 tri
+  na Fazenda), transferências constitucionais e sentenças tornariam os demais órgãos invisíveis. O total aparece ao
+  lado, e a aba Orçamento de cada órgão tem a opção de excluí-las. O que não sai: benefícios do RGPS (Previdência, R$ 1,1 tri)
+  e do Bolsa Família, que são despesa finalística, e não operação especial.
+- **Treemap (ECharts) para o mapa do Executivo**, com 4 medidas (orçamento sem OE, total, cargos, unidades) e cor pela
+  categoria do órgão (3 cores, validadas para todos os pares). Clique abre o órgão. O "zoom até a unidade" é feito
+  navegando para o organograma do órgão, que carrega sob demanda.
+- **Comparação de 2 a 6 órgãos**, com cores fixas por órgão (remover um não repinta os outros) e paleta de 6 cores
+  validada para daltonismo. Três dessas cores têm contraste < 3:1 no tema claro, então toda série tem rótulo com a sigla
+  e versão em tabela. O ritmo de execução é mostrado em % da dotação, para comparar órgãos de tamanhos muito diferentes no mesmo eixo.
+- **Competências das unidades em arquivo separado**, carregado ao abrir o detalhe: o JSON da Fazenda caiu de 3,1 MB para
+  0,9 MB (106 KB com gzip).
+- "Órgãos finalísticos" (e não "secretarias nacionais") como rótulo da contagem do 1º nível: na Defesa e no MRE
+  esses órgãos não são secretarias nacionais.
+
+### Limitações conhecidas (fase 2)
+- Ocupantes e partidos só existem para o MCID. Os outros mostram "em curadoria" (fase 3).
+- 62 UOs sem correspondência no SIORG (lista no aviso do validador).
+- A contagem de cargos vem do SIORG e ainda não foi conferida com os decretos de estrutura de cada órgão.
+
 ## Roteiro
-1. ~~MVP: Ministério das Cidades~~ (esta fase)
-2. Todos os ministérios atuais (31 órgãos no SIORG), visão de governo (sunburst/treemap) e comparação
+1. ~~MVP: Ministério das Cidades~~
+2. ~~Todos os ministérios atuais, visão de governo e comparação~~
 3. Ocupantes de todos os ministérios, partidos e histórico (curadoria + DOU/INLABS)
 4. Série histórica desde 2003: eventos institucionais e orçamento de anos anteriores
 5. Automação completa: DOU diário, issues de curadoria por nomeação/exoneração

@@ -58,3 +58,33 @@ test("orçamento: agrupar e acumular", () => {
   assert.deepEqual(acumuladoMensal(orc).map((x) => x.empenhado), [6, 8]);
   assert.deepEqual(acumuladoMensal(orc, { prog: "P1" }).map((x) => x.pago), [1, 2]);
 });
+
+import { somarGoverno, execucao, ordenar, atribuirSlots, niveisDirecao, cargosDirecao } from "./governo.js";
+
+test("governo: somas, execução e ordenação com nulos", () => {
+  const ms = [
+    { id: "a", n_unidades: 10, n_cargos: 5, orcamento: { dotacao_atual: 100, pago: 50 }, orcamento_sem_oe: { dotacao_atual: 80, pago: 40 } },
+    { id: "b", n_unidades: 3, n_cargos: 2, orcamento: null, orcamento_sem_oe: null },
+  ];
+  const t = somarGoverno(ms);
+  assert.deepEqual([t.n, t.unidades, t.cargos, t.dotacao, t.dotacao_sem_oe], [2, 13, 7, 100, 80]);
+  assert.equal(execucao(ms[0]), 0.5);
+  assert.equal(execucao(ms[1]), null);
+  assert.deepEqual(ordenar(ms, execucao).map((m) => m.id), ["a", "b"]);
+  assert.deepEqual(ordenar(ms, execucao, false).map((m) => m.id), ["a", "b"]);
+});
+
+test("comparação: cores estáveis ao remover e adicionar", () => {
+  const s1 = atribuirSlots(["a", "b", "c"]);
+  assert.deepEqual([...s1.values()], [0, 1, 2]);
+  const s2 = atribuirSlots(["a", "c"], s1);
+  assert.equal(s2.get("c"), 2);
+  const s3 = atribuirSlots(["a", "c", "d"], s2);
+  assert.equal(s3.get("d"), 1);
+});
+
+test("comparação: níveis de direção", () => {
+  const d = [{ cargos_por_nivel: { "CCE 1.17": 2, "FCE 1.13": 4, "CCE 2.13": 9, MEST: 1 } }, { cargos_por_nivel: { "CCE 1.18": 1, "CCE 1.13": 1 } }];
+  assert.deepEqual(niveisDirecao(d), [18, 17, 13]);
+  assert.equal(cargosDirecao(d[0], 13), 4);
+});

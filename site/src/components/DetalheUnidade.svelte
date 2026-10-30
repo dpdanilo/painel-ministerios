@@ -3,6 +3,7 @@
   import { rotuloCargo, data as fmtData, num } from "../lib/formato.js";
   import { href, trocarParams } from "../lib/estado.svelte.js";
   import Fonte from "./Fonte.svelte";
+  import { carregar } from "../lib/dados.js";
 
   let { cod, m, idx, selecionar } = $props();
 
@@ -16,6 +17,8 @@
   let uo = $derived(Object.entries(m.orcamento?.uos || {}).find(([, v]) => v.siorg === cod));
   let politicas = $derived(m.politicas.filter((p) => p.unidades?.includes(cod)));
   let totalCargos = $derived(cargos.reduce((s, c) => s + c[4], 0));
+  // Competências das unidades ficam num arquivo à parte (pesado nos ministérios grandes).
+  let competencias = $derived(carregar(`ministerios/${m.id}-competencias.json`));
 </script>
 
 <section class="cartao" aria-labelledby="t-unidade">
@@ -74,12 +77,14 @@
     </ul>
   {/if}
 
-  {#if u.comp?.length}
-    <h3>Competências</h3>
-    <ol class="comp">
-      {#each u.comp as c, i (i)}<li>{c}</li>{/each}
-    </ol>
-  {/if}
+  {#await competencias then comp}
+    {#if comp[cod]?.length}
+      <h3>Competências</h3>
+      <ol class="comp">
+        {#each comp[cod] as c, i (i)}<li>{c}</li>{/each}
+      </ol>
+    {/if}
+  {/await}
 
   {#if uo || politicas.length}
     <h3>Ligações</h3>

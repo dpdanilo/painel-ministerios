@@ -3,6 +3,9 @@ import { normalizar, rotuloCargo } from "./formato.js";
 export const BLOCOS = [
   { id: "assistencia", nome: "Assistência direta e imediata ao Ministro", resumo: "Apoio político, jurídico, de controle e de gestão" },
   { id: "singular", nome: "Órgãos específicos singulares", resumo: "Secretarias finalísticas: executam as políticas públicas" },
+  { id: "descentralizada", nome: "Unidades descentralizadas", resumo: "Superintendências, escritórios regionais e representações no exterior" },
+  { id: "pesquisa", nome: "Unidades de pesquisa", resumo: "Institutos e centros de pesquisa da administração direta" },
+  { id: "forcas", nome: "Forças Armadas", resumo: "Comandos da Marinha, do Exército e da Aeronáutica" },
   { id: "colegiado", nome: "Órgãos colegiados", resumo: "Conselhos e comitês de participação social e gestão de fundos" },
   { id: "vinculada", nome: "Entidades vinculadas", resumo: "Administração indireta sob supervisão do ministério" },
 ];

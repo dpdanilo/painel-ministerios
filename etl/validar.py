@@ -94,8 +94,14 @@ def validar_curadoria(rel: Relatorio, pasta=None, unidades: dict | None = None, 
             rel.aviso(f"{onde}: UO não aparece no orçamento coletado")
     if uos is not None:
         mapeadas = {c["cod_uo"] for c in curadoria.correspondencias(pasta)}
-        for uo in sorted(uos - mapeadas):
-            rel.aviso(f"UO {uo} do orçamento sem correspondência em correspondencia_siorg_orcamento.yaml")
+        faltam = sorted(uos - mapeadas)
+        if faltam:
+            rel.aviso(f"{len(faltam)} UOs do orçamento sem correspondência (rode `python -m etl correspondencias`): "
+                      + ", ".join(faltam[:10]) + ("…" if len(faltam) > 10 else ""))
+    revisar = [c["cod_uo"] for c in curadoria.correspondencias(pasta) if not c.get("cod_siorg") and c.get("metodo") == "automatico_nome"]
+    if revisar:
+        rel.aviso(f"{len(revisar)} UOs sem unidade SIORG correspondente pelo nome (revisar à mão): "
+                  + ", ".join(revisar[:10]) + ("…" if len(revisar) > 10 else ""))
 
     pessoas = {p["id"]: p for p in curadoria.pessoas(pasta)}
     for p in pessoas.values():
@@ -176,7 +182,7 @@ def validar_unidades(rel: Relatorio, linhas: list[dict]) -> None:
             atual = vigentes.get(atual["cod_pai"])
 
 
-def validar_orcamento(rel: Relatorio, linhas: list[dict], pasta=None) -> None:
+def validar_orcamento(rel: Relatorio, linhas: list[dict], pasta=None, mensal: list[dict] | None = None) -> None:
     if not linhas:
         rel.aviso("orçamento ainda não coletado")
         return
@@ -186,12 +192,26 @@ def validar_orcamento(rel: Relatorio, linhas: list[dict], pasta=None) -> None:
         k = (r["cod_orgao_superior"], r["exercicio"])
         for c in ("dotacao_inicial", "dotacao_atual", "empenhado", "liquidado", "pago", "empenhado_orcdesp"):
             totais[k][c] += float(r[c])
+    # O arquivo anual costuma ser gerado alguns dias antes do mensal mais recente, então pode não
+    # conter os lançamentos do último mês: aceita o anual entre "até o mês anterior" e "até o último mês".
+    uo_orgao = {r["cod_uo"]: r["cod_orgao_superior"] for r in linhas}
+    ultimo_mes, emp_ultimo = {}, defaultdict(float)
+    mensal = mensal if mensal is not None else ler_csv(NORMALIZADO / "orcamento_mensal.csv")
+    for r in mensal:
+        k = (uo_orgao.get(r["cod_uo"]), r["exercicio"])
+        ultimo_mes[k] = max(ultimo_mes.get(k, 0), int(r["mes"]))
+    for r in mensal:
+        k = (uo_orgao.get(r["cod_uo"]), r["exercicio"])
+        if int(r["mes"]) == ultimo_mes[k]:
+            emp_ultimo[k] += float(r["empenhado"])
     for (orgao, ex), t in totais.items():
         if t["liquidado"] > t["empenhado"] * 1.001 or t["pago"] > t["liquidado"] * 1.001:
             rel.erro(f"orçamento {orgao}/{ex}: pago > liquidado ou liquidado > empenhado")
-        if t["empenhado_orcdesp"] and abs(t["empenhado"] - t["empenhado_orcdesp"]) / t["empenhado_orcdesp"] > 0.02:
-            rel.aviso(f"orçamento {orgao}/{ex}: empenhado mensal somado ({t['empenhado'] / 1e9:.2f} bi) difere "
-                      f"do arquivo anual ({t['empenhado_orcdesp'] / 1e9:.2f} bi) em mais de 2%")
+        anual, ate_ultimo = t["empenhado_orcdesp"], t["empenhado"]
+        ate_anterior = ate_ultimo - emp_ultimo[(orgao, ex)]
+        if anual and not (min(ate_anterior, ate_ultimo) * 0.98 <= anual <= max(ate_anterior, ate_ultimo) * 1.02):
+            rel.aviso(f"orçamento {orgao}/{ex}: empenhado do arquivo anual ({anual / 1e9:.2f} bi) fora da faixa da "
+                      f"soma mensal ({ate_anterior / 1e9:.2f} a {ate_ultimo / 1e9:.2f} bi)")
     for ref in curadoria.totais_referencia(pasta):
         k = (orgao_de.get(ref["ministerio"]), str(ref["exercicio"]))
         if k not in totais:

@@ -54,7 +54,7 @@
 </script>
 
 <div class="tiles">
-  <div class="tile hero"><div class="rot">Secretarias nacionais</div><div class="val num">{secretarias}</div></div>
+  <div class="tile hero"><div class="rot">Órgãos finalísticos</div><div class="val num">{secretarias}</div><div class="det">secretarias e órgãos singulares do 1º nível</div></div>
   <div class="tile"><div class="rot">Unidades na estrutura</div><div class="val num">{num(m.unidades.length)}</div><div class="det">incluindo colegiados e vinculadas</div></div>
   <div class="tile"><div class="rot">Cargos e funções</div><div class="val num">{num(totalCargos)}</div><div class="det">CCE, FCE e Ministro</div></div>
   <div class="tile"><div class="rot">Unidades finalísticas</div><div class="val num">{pct(fim, m.unidades.length)}</div><div class="det">as demais são de suporte (atividade-meio)</div></div>

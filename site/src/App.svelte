@@ -1,9 +1,10 @@
 <script>
   import { rota, alternarTema, tema } from "./lib/estado.svelte.js";
-  import Inicio from "./views/Inicio.svelte";
+  import Governo from "./views/Governo.svelte";
+  import Comparar from "./views/Comparar.svelte";
   import Ministerio from "./views/Ministerio.svelte";
 
-  let pagina = $derived(rota.partes[0] === "m" && rota.partes[1] ? "ministerio" : "inicio");
+  let pagina = $derived(rota.partes[0] === "m" && rota.partes[1] ? "ministerio" : rota.partes[0] === "comparar" ? "comparar" : "governo");
 </script>
 
 <a class="pular" href="#conteudo" onclick={(e) => { e.preventDefault(); document.getElementById("conteudo")?.focus(); }}>Pular para o conteúdo</a>
@@ -15,7 +16,9 @@
       <span>Estrutura dos Ministérios</span>
     </a>
     <nav class="acoes" aria-label="Geral">
-      <a href="https://dpdanilo.github.io/vira-2026/">Vira 2026</a>
+      <a href="#/" aria-current={pagina === "governo" ? "page" : undefined}>Governo</a>
+      <a href="#/comparar" aria-current={pagina === "comparar" ? "page" : undefined}>Comparar</a>
+      <a class="externo" href="https://dpdanilo.github.io/vira-2026/">Vira 2026</a>
       <button type="button" class="tema" onclick={alternarTema} aria-label={tema.atual === "dark" ? "Usar tema claro" : "Usar tema escuro"}>
         {#if tema.atual === "dark"}
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
@@ -32,8 +35,10 @@
     {#key rota.partes[1]}
       <Ministerio id={rota.partes[1]} />
     {/key}
+  {:else if pagina === "comparar"}
+    <Comparar />
   {:else}
-    <Inicio />
+    <Governo />
   {/if}
 </main>
 
@@ -51,12 +56,13 @@
   .marca svg { width: 26px; height: 26px; flex: none; }
   .acoes { display: flex; align-items: center; gap: 6px; }
   .acoes a { white-space: nowrap; color: inherit; font-weight: 600; font-size: 0.88rem; text-decoration: none; padding: 8px 10px; border-radius: 999px; }
-  .acoes a:hover { background: rgba(255, 255, 255, 0.15); color: inherit; }
+  .acoes a:hover, .acoes a[aria-current="page"] { background: rgba(255, 255, 255, 0.15); color: inherit; }
+  @media (max-width: 560px) { .acoes .externo { display: none; } .acoes a { padding: 8px 8px; } }
   .tema { width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.15); color: inherit; cursor: pointer; display: grid; place-items: center; }
   .tema svg { width: 20px; height: 20px; }
   .tema:hover { background: rgba(255, 255, 255, 0.28); }
   .topo :focus-visible { outline-color: #fff; }
   main:focus { outline: none; }
   .rodape { text-align: center; color: var(--mudo); font-size: 0.8rem; padding: 0 16px 32px; }
-  @media (max-width: 420px) { .marca span { font-size: 0.86rem; } }
+  @media (max-width: 560px) { .marca span { display: none; } }
 </style>

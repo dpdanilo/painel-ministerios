@@ -14,8 +14,24 @@ from .versionamento import mesclar
 BASE = "https://estruturaorganizacional.dados.gov.br/doc"
 PASTA = BRUTO / "siorg"
 
-# Categoria SIORG do órgão de 1º nível → bloco do art. 2º dos decretos de estrutura.
-BLOCO_POR_CATEGORIA = {"6": "assistencia", "8": "singular", "7": "colegiado"}
+# Categoria SIORG da unidade de 1º nível → bloco do art. 2º dos decretos de estrutura.
+# Códigos e nomes: /categoria-unidade do SIORG. Os níveis abaixo herdam o bloco do 1º nível.
+BLOCO_POR_CATEGORIA = {
+    "6": "assistencia",      # Assistência Direta e Imediata
+    "15": "assistencia",     # Assessoramento
+    "70": "assistencia",     # Setorial (Conjur, Ouvidoria, Corregedoria)
+    "8": "singular",         # Específico Singular
+    "54": "singular",        # Direção Superior (órgãos da AGU)
+    "687": "singular",       # Órgão Central de Direção (Secretarias-Gerais do MD e do MRE)
+    "4": "singular",         # Essenciais da Presidência (ABIN)
+    "79": "singular",        # Estudo, Assistência, Apoio (HFA)
+    "13": "descentralizada",  # Repartição no Exterior (embaixadas, consulados)
+    "31": "descentralizada",  # Descentralizado (superintendências, escritórios regionais)
+    "51": "pesquisa",        # Unidade de Pesquisa (MCTI)
+    "58": "forcas",          # Forças Armadas (Comandos)
+    "7": "colegiado", "49": "colegiado", "42": "colegiado",
+    "39": "vinculada",       # Vinculado (ex.: PGF na AGU)
+}
 ATIVIDADE = {"Finalística": "fim", "Suporte": "meio"}
 
 CAMPOS_UNIDADE = [

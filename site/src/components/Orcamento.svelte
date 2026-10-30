@@ -10,14 +10,16 @@
   let orc = $derived(m.orcamento);
 
   let filtro = $derived({ uo: rota.params.uo || "", prog: rota.params.prog || "" });
+  let semOE = $derived(rota.params.oe === "0");
+  let oe = $derived(new Set(semOE ? orc?.operacoes_especiais ?? [] : []));
   let destaque = $derived(rota.params.acao || "");
-  let base = $derived(linhas(orc, filtro));
+  let base = $derived(linhas(orc, filtro).filter((l) => !oe.has(l.programa)));
   let tot = $derived(somar(base));
-  let programas = $derived(agrupar(linhas(orc, { uo: filtro.uo }), "programa"));
+  let programas = $derived(agrupar(linhas(orc, { uo: filtro.uo }).filter((l) => !oe.has(l.programa)), "programa"));
   let acoes = $derived(agrupar(base, "acao"));
   let maxProg = $derived(Math.max(1, ...programas.map((p) => Math.max(p.dotacao_atual, p.empenhado))));
   // A série mensal publicada é por programa (soma todas as UOs).
-  let serie = $derived(acumuladoMensal(orc, { prog: filtro.prog }));
+  let serie = $derived(acumuladoMensal(orc, { prog: filtro.prog, excluir: oe }));
   let programaDaAcao = $derived(Object.fromEntries(orc ? orc.linhas.map((l) => [l[2], l[1]]) : []));
 
   $effect(() => {
@@ -34,7 +36,13 @@
 </script>
 
 {#if !orc}
-  <section class="cartao"><p>Orçamento ainda não coletado para este ministério.</p></section>
+  <section class="cartao">
+    {#if m.categoria === "presidencia"}
+      <p>O orçamento deste órgão não é separado: fica consolidado na unidade orçamentária 20101, “Presidência da República”, junto com os demais órgãos da Presidência.</p>
+    {:else}
+      <p>Orçamento ainda não coletado para este órgão.</p>
+    {/if}
+  </section>
 {:else}
   <div class="filtros">
     <label>Unidade orçamentária
@@ -49,6 +57,10 @@
         {#each Object.entries(orc.programas) as [c, n] (c)}<option value={c}>{c} – {capitalizar(n)}</option>{/each}
       </select>
     </label>
+    {#if orc.operacoes_especiais?.length}
+      <label class="caixa"><input type="checkbox" checked={semOE} onchange={(e) => trocarParams({ oe: e.currentTarget.checked ? "0" : null, prog: null })} />
+        <span>Sem operações especiais <span class="mudo">(dívida, transferências, sentenças)</span></span></label>
+    {/if}
     {#if filtro.uo || filtro.prog}
       <button type="button" class="botao" onclick={() => trocarParams({ uo: null, prog: null, acao: null })}>Limpar filtros</button>
     {/if}
@@ -127,6 +139,8 @@
 
 <style>
   .nota { font-size: 0.82rem; margin: 10px 0 16px; max-width: 880px; }
+  .caixa { display: flex !important; flex: 0 1 auto !important; align-items: center; gap: 8px; min-height: 38px; font-size: 0.88rem !important; }
+  .caixa input { width: 18px; height: 18px; accent-color: var(--marca); }
   .cartao { margin-top: 16px; }
   .titulo-linha { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
   .titulo-linha h2 { margin: 0; }

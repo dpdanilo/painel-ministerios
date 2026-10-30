@@ -42,7 +42,7 @@ Endpoints SIORG usados:
 | `sigla`, `nome` | SIORG |
 | `tipo` | SIORG `codigoTipoUnidade`: `orgao`, `unidade-administrativa`, `unidade-colegiada`, `entidade` |
 | `categoria` | SIORG `codigoCategoriaUnidade` (6 Assistência Direta e Imediata, 8 Específico Singular, 7 Colegiado, 39 Vinculado…) |
-| `bloco` | **derivado**: `assistencia` / `singular` / `colegiado` / `vinculada`. Vem da categoria da unidade de 1º nível; as de níveis abaixo herdam; colegiados e entidades são classificados pelo tipo |
+| `bloco` | **derivado**: `assistencia` / `singular` / `descentralizada` / `pesquisa` / `forcas` / `colegiado` / `vinculada`. Vem da categoria da unidade de 1º nível (tabela em `etl/siorg.py`); as de níveis abaixo herdam; colegiados e entidades são classificados pelo tipo |
 | `atividade` | SIORG `areaAtuacao`: Finalística → `fim`, Suporte → `meio` |
 | `profundidade` | **derivado**: 0 = ministério, 1 = secretarias e assessorias, 2 = departamentos… |
 | `competencia` | SIORG `competencia` (texto do decreto, art. do Anexo I) |
@@ -89,16 +89,28 @@ Descrição de cada arquivo no [README](../README.md#atualizar-a-curadoria). Cam
 
 ## JSON publicado
 
-### `index.json` (carregado na abertura, ~1 KB)
-`gerado_em`, `exercicio`, `fontes{}`, `ministerios[]`, com `id, sigla, nome, ministro{nome, partido}, n_unidades, n_secretarias, n_cargos, orcamento{exercicio, dotacao_inicial, dotacao_atual, empenhado, liquidado, pago, empenhado_emendas}`.
+### `index.json` (carregado na abertura, ~20 KB, ~4 KB com gzip)
+`gerado_em`, `exercicio`, `fontes{}`, `eventos[]`, `ministerios[]`, com `id, sigla, nome, categoria, ministro{nome, partido},
+n_unidades, n_secretarias` (órgãos singulares do 1º nível) `, n_cargos, pct_fim, orcamento{…}` e `orcamento_sem_oe{…}`
+(mesmos campos, sem os programas de operações especiais).
 
-### `ministerios/<id>.json` (carregado ao abrir o ministério, ~180 KB, ~35 KB com gzip)
+### `agregados/comparacao.json` (carregado só na tela de comparação, ~75 KB)
+Por ministério: `unidades_por_bloco{}`, `cargos_por_nivel{"CCE 1.17": n…}`, `mensal` e `mensal_sem_oe`
+(`[mes, empenhado, liquidado, pago]` acumulados), `principais_programas[]` (5 maiores sem operações especiais),
+`politicas[]`, `ocupantes[]` (titulares).
+
+### `ministerios/<id>.json` (carregado ao abrir o ministério; de 45 KB a 1 MB, até ~150 KB com gzip)
 | chave | conteúdo |
 |---|---|
-| `unidades[]` | `c` código, `p` pai, `s` sigla, `n` nome, `b` bloco, `a` atividade, `t` tipo, `d` profundidade, `comp[]` competências, `ato{}` |
+| `unidades[]` | `c` código, `p` pai, `s` sigla, `n` nome, `b` bloco, `a` atividade, `t` tipo, `d` profundidade, `ato{}` |
+| `categoria` | `ministerio`, `presidencia` ou `orgao` |
+| `orcamento.operacoes_especiais[]` | códigos de programa cujo nome começa com "OPERACOES ESPECIAIS" |
 | `cargos{cod: [[tipo, categoria, nivel, denominacao, qtd, mobilidade]]}` | só versões vigentes |
 | `ocupantes[]` | `pessoa, nome, cargo, unidade, papel, de, ate, partido, fonte, verificado_em` |
 | `orcamento` | `colunas` + `linhas` (matriz), `mensal` (mês × programa), dicionários `uos`, `programas`, `acoes` |
 | `politicas[]`, `eventos[]`, `normas{}` | da curadoria (sem os vínculos pendentes) |
 | `competencias[]` | competências do ministério (SIORG) |
 | `fontes{estrutura, orcamento, ocupantes, politicas}` | o que cada bloco do site mostra como fonte e data |
+
+### `ministerios/<id>-competencias.json` (carregado ao abrir o detalhe de uma unidade)
+`{cod_siorg: [competências]}`. Fica separado porque é a parte mais pesada nos ministérios grandes.

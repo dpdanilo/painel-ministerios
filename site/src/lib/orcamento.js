@@ -31,13 +31,15 @@ export function agrupar(lista, campo) {
   return [...g].map(([codigo, ls]) => ({ codigo, ...somar(ls) })).sort((a, b) => b.dotacao_atual - a.dotacao_atual || b.pago - a.pago);
 }
 
-/** Série mensal acumulada (jan..último mês) de empenhado, liquidado e pago. */
+/** Série mensal acumulada (jan..último mês) de empenhado, liquidado e pago.
+ *  filtro: { prog, excluir: Set de programas a ignorar } */
 export function acumuladoMensal(orc, filtro = {}) {
   if (!orc) return [];
   const programasPermitidos = filtro.prog ? new Set([filtro.prog]) : null;
   const porMes = new Map();
   for (const [mes, prog, emp, liq, pago] of orc.mensal) {
     if (programasPermitidos && !programasPermitidos.has(prog)) continue;
+    if (filtro.excluir?.has(prog)) continue;
     const v = porMes.get(mes) || [0, 0, 0];
     porMes.set(mes, [v[0] + emp, v[1] + liq, v[2] + pago]);
   }

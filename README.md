@@ -5,7 +5,8 @@ competências, orçamento e políticas públicas de cada ministério, a partir d
 
 **Site:** https://dpdanilo.github.io/painel-ministerios/
 
-Hoje o painel cobre o Ministério das Cidades (fase 1). As próximas fases estão em
+Cobre os 31 ministérios e os 7 órgãos com status de ministério (Casa Civil, Secretaria-Geral, SRI, Secom,
+GSI, AGU e CGU), com visão de governo e comparação. As próximas fases estão em
 [docs/DECISOES.md](docs/DECISOES.md#roteiro).
 
 ## Como funciona
@@ -42,7 +43,9 @@ npm run dev                     # http://localhost:5173/painel-ministerios/
 npm test && npm run build       # testes do front-end e build de produção
 ```
 
-Outros comandos: `python -m etl coletar siorg`, `python -m etl normalizar orcamento --exercicio 2025`.
+Outros comandos: `python -m etl coletar siorg`, `python -m etl normalizar orcamento --exercicio 2025`,
+`python -m etl correspondencias` (sugere a ligação UO ↔ SIORG para unidades orçamentárias novas; também roda
+sozinho a cada atualização do orçamento).
 
 ## Secrets do GitHub
 
@@ -80,7 +83,9 @@ Regras:
 - Depois de editar: `python -m etl validar`. No GitHub, o push já roda a validação e republica o site.
 
 Para colocar um novo ministério no painel: acrescente-o em `ministerios.yaml` com `no_painel: true`,
-`cod_siorg` e `orgao_orcamentario`, e as correspondências de UO. A próxima coleta traz o resto.
+`categoria`, `cod_siorg` e `orgao_orcamentario`. A próxima coleta traz o resto, e as correspondências de UO
+são sugeridas automaticamente (`metodo: automatico_nome`). Revise as que ficarem com `cod_siorg: null`
+e troque o método para `manual` quando corrigir uma linha.
 
 ## Documentação
 

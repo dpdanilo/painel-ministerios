@@ -72,5 +72,5 @@ def no_escopo(pasta=None) -> list[dict]:
     for m in ministerios(pasta):
         v = versao_vigente(m)
         if m.get("no_painel") and v:
-            saida.append({"id": m["id"], **v})
+            saida.append({"id": m["id"], "categoria": m.get("categoria", "ministerio"), **v})
     return saida

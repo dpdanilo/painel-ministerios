@@ -43,7 +43,7 @@
 {:else}
   <div class="faixa">
     <div class="conteudo cab">
-      <nav class="migalhas" aria-label="Você está em"><a href="#/">Início</a> <span aria-hidden="true">›</span> {m.sigla}</nav>
+      <nav class="migalhas" aria-label="Você está em"><a href="#/">Governo</a> <span aria-hidden="true">›</span> {m.sigla}</nav>
       <h1>{m.nome}</h1>
       {#if ministro}
         <p class="sec">Ministro: <strong>{ministro.nome}</strong>{ministro.partido ? ` · ${ministro.partido}` : ""}</p>

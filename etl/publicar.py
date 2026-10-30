@@ -10,6 +10,7 @@ import json
 import re
 import shutil
 from collections import defaultdict
+from functools import cache
 
 from . import curadoria
 from .comum import NORMALIZADO, PUBLICADO, agora_utc, fontes, ler_csv
@@ -20,6 +21,12 @@ def _gravar(caminho, obj) -> int:
     texto = json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
     caminho.write_text(texto, encoding="utf-8")
     return len(texto.encode())
+
+
+@cache
+def _csv(nome: str) -> tuple[dict, ...]:
+    """Cada CSV normalizado é lido uma vez por publicação (são 38 ministérios)."""
+    return tuple(ler_csv(NORMALIZADO / nome))
 
 
 def _f(v) -> float:
@@ -40,8 +47,8 @@ def _vigente(r) -> bool:
 
 
 def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -> dict:
-    unidades = [u for u in ler_csv(NORMALIZADO / "unidade.csv") if u["ministerio_id"] == m["id"] and _vigente(u)]
-    cargos = [c for c in ler_csv(NORMALIZADO / "cargo.csv") if c["ministerio_id"] == m["id"] and _vigente(c)]
+    unidades = [u for u in _csv("unidade.csv") if u["ministerio_id"] == m["id"] and _vigente(u)]
+    cargos = [c for c in _csv("cargo.csv") if c["ministerio_id"] == m["id"] and _vigente(c)]
 
     cargos_por_unidade = defaultdict(list)
     for c in cargos:
@@ -52,10 +59,13 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
     lista_unidades = [{
         "c": u["cod_siorg"], "p": u["cod_pai"], "s": u["sigla"], "n": u["nome"], "b": u["bloco"],
         "a": u["atividade"], "t": u["tipo"], "d": int(u["profundidade"]),
-        "comp": separar_competencias(u["competencia"]) if u is not raiz else [],
         "ato": {"tipo": u["ato_tipo"], "numero": u["ato_numero"], "vigencia": u["ato_vigencia"], "url": u["ato_url"]}
         if u["ato_tipo"] else None,
     } for u in unidades]
+
+    # Competências de cada unidade vão num arquivo à parte, carregado ao abrir o detalhe de uma unidade.
+    competencias_unidades = {u["cod_siorg"]: c for u in unidades if u is not raiz
+                             if (c := separar_competencias(u["competencia"]))}
 
     pessoas = {p["id"]: p for p in curadoria.pessoas()}
     cods = {u["cod_siorg"] for u in unidades}
@@ -84,10 +94,11 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
     orc_fonte = fontes_reg.get(f"transparencia-orcamento-{exercicio}", {})
     return {
         "id": m["id"], "sigla": m["sigla"], "nome": m["nome"], "cod_siorg": m["cod_siorg"],
-        "orgao_orcamentario": m.get("orgao_orcamentario"),
+        "categoria": m.get("categoria"), "orgao_orcamentario": m.get("orgao_orcamentario"),
         "norma_criacao": m.get("norma_criacao"), "norma_organizacao": m.get("norma_organizacao"),
         "norma_estrutura": m.get("norma_estrutura"), "valido_de": m.get("valido_de"),
         "competencias": separar_competencias(raiz["competencia"]),
+        "competencias_unidades": competencias_unidades,   # removido do JSON principal em publicar()
         "unidades": lista_unidades,
         "cargos": cargos_por_unidade,
         "ocupantes": ocupantes,
@@ -111,18 +122,18 @@ def montar_orcamento(m: dict, exercicio: int) -> dict | None:
     ex = str(exercicio)
     # Linhas só com restos a pagar de anos anteriores (sem dotação nem execução no ano) ficam de fora.
     valores = ("dotacao_inicial", "dotacao_atual", "empenhado", "liquidado", "pago")
-    linhas = [r for r in ler_csv(NORMALIZADO / "orcamento.csv")
+    linhas = [r for r in _csv("orcamento.csv")
               if r["exercicio"] == ex and r["cod_orgao_superior"] == orgao and any(float(r[c]) for c in valores)]
     if not linhas:
         return None
-    uos = {u["cod_uo"]: u["nome"] for u in ler_csv(NORMALIZADO / "uo.csv") if u["exercicio"] == ex and u["cod_orgao_superior"] == orgao}
-    programas = {p["cod_programa"]: p["nome"] for p in ler_csv(NORMALIZADO / "programa.csv") if p["exercicio"] == ex}
-    acoes = {a["cod_acao"]: a["nome"] for a in ler_csv(NORMALIZADO / "acao.csv") if a["exercicio"] == ex}
+    uos = {u["cod_uo"]: u["nome"] for u in _csv("uo.csv") if u["exercicio"] == ex and u["cod_orgao_superior"] == orgao}
+    programas = {p["cod_programa"]: p["nome"] for p in _csv("programa.csv") if p["exercicio"] == ex}
+    acoes = {a["cod_acao"]: a["nome"] for a in _csv("acao.csv") if a["exercicio"] == ex}
     usados_p = {r["cod_programa"] for r in linhas}
     usados_a = {r["cod_acao"] for r in linhas}
 
     mensal = defaultdict(lambda: [0.0, 0.0, 0.0])
-    for r in ler_csv(NORMALIZADO / "orcamento_mensal.csv"):
+    for r in _csv("orcamento_mensal.csv"):
         if r["exercicio"] == ex and r["cod_uo"] in uos:
             v = mensal[(int(r["mes"]), r["cod_programa"])]
             v[0] += float(r["empenhado"]); v[1] += float(r["liquidado"]); v[2] += float(r["pago"])
@@ -141,38 +152,113 @@ def montar_orcamento(m: dict, exercicio: int) -> dict | None:
         "uos": {c: {"nome": n, "siorg": corresp.get(c)} for c, n in uos.items()},
         "programas": {c: programas.get(c, c) for c in sorted(usados_p)},
         "acoes": {c: acoes.get(c, c) for c in sorted(usados_a)},
+        # Dívida, transferências constitucionais, sentenças etc.: distorcem comparações entre ministérios.
+        "operacoes_especiais": sorted(c for c in usados_p if e_operacao_especial(programas.get(c, ""))),
     }
+
+
+def e_operacao_especial(nome_programa: str) -> bool:
+    return nome_programa.upper().startswith("OPERACOES ESPECIAIS")
+
+
+def _totais(orc: dict | None, sem_oe: bool = False) -> dict | None:
+    if not orc:
+        return None
+    oe = set(orc["operacoes_especiais"]) if sem_oe else set()
+    tot = defaultdict(float)
+    for linha in orc["linhas"]:
+        if linha[1] in oe:
+            continue
+        for i, c in enumerate(orc["colunas"][3:], start=3):
+            tot[c] += linha[i]
+    return {k: round(v, 2) for k, v in tot.items()}
+
+
+def _mensal_acumulado(orc: dict | None, sem_oe: bool = False) -> list:
+    """[[mes, empenhado, liquidado, pago]] acumulados no ano."""
+    if not orc:
+        return []
+    oe = set(orc["operacoes_especiais"]) if sem_oe else set()
+    por_mes = defaultdict(lambda: [0.0, 0.0, 0.0])
+    for mes, prog, emp, liq, pago in orc["mensal"]:
+        if prog not in oe:
+            v = por_mes[mes]; v[0] += emp; v[1] += liq; v[2] += pago
+    acc, saida = [0.0, 0.0, 0.0], []
+    for mes in sorted(por_mes):
+        acc = [a + b for a, b in zip(acc, por_mes[mes])]
+        saida.append([mes] + [round(x, 2) for x in acc])
+    return saida
+
+
+def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
+    """Resumo para o index.json e detalhe para agregados/comparacao.json."""
+    orc = dados["orcamento"]
+    unidades = dados["unidades"]
+    titular = next((o for o in dados["ocupantes"] if o["unidade"] == m["cod_siorg"] and o["papel"] == "titular" and not o["ate"]), None)
+    por_bloco = defaultdict(int)
+    for u in unidades:
+        if u["d"] > 0:
+            por_bloco[u["b"]] += 1
+    cargos_nivel = defaultdict(int)
+    for lista in dados["cargos"].values():
+        for tipo, cat, nivel, _, qtd, _ in lista:
+            cargos_nivel[f"{tipo} {cat}.{nivel}" if cat and nivel else tipo] += qtd
+    resumo = {
+        "id": m["id"], "sigla": m["sigla"], "nome": m["nome"], "categoria": m.get("categoria"),
+        "ministro": titular and {"nome": titular["nome"], "partido": titular["partido"]},
+        "n_unidades": len(unidades),
+        "n_cargos": sum(cargos_nivel.values()),
+        "n_secretarias": sum(1 for u in unidades if u["d"] == 1 and u["b"] == "singular"),
+        "pct_fim": round(sum(1 for u in unidades if u["a"] == "fim") / max(1, len(unidades)), 4),
+        "orcamento": orc and {"exercicio": orc["exercicio"], **_totais(orc)},
+        "orcamento_sem_oe": _totais(orc, sem_oe=True),
+    }
+    programas = []
+    if orc:
+        por_prog = defaultdict(lambda: [0.0, 0.0])
+        for linha in orc["linhas"]:
+            por_prog[linha[1]][0] += linha[4]; por_prog[linha[1]][1] += linha[7]
+        top = sorted(((c, v) for c, v in por_prog.items() if c not in orc["operacoes_especiais"]), key=lambda kv: -kv[1][0])[:5]
+        programas = [{"codigo": c, "nome": orc["programas"][c], "dotacao_atual": round(v[0], 2), "pago": round(v[1], 2)} for c, v in top]
+    detalhe = {
+        "id": m["id"],
+        "unidades_por_bloco": dict(por_bloco),
+        "cargos_por_nivel": dict(sorted(cargos_nivel.items())),
+        "mensal": _mensal_acumulado(orc),
+        "mensal_sem_oe": _mensal_acumulado(orc, sem_oe=True),
+        "principais_programas": programas,
+        "politicas": [p["nome"] for p in dados["politicas"]],
+        "ocupantes": [{"nome": o["nome"], "cargo": o["cargo"], "partido": o["partido"]}
+                      for o in dados["ocupantes"] if o["papel"] == "titular" and not o["ate"]][:12],
+    }
+    return resumo, detalhe
 
 
 def publicar(exercicio: int) -> dict[str, int]:
     """Regera site/public/data do zero. Devolve o tamanho (bytes) de cada arquivo."""
+    _csv.cache_clear()
     if PUBLICADO.exists():
         shutil.rmtree(PUBLICADO)
     normas = {n["id"]: n for n in curadoria.normas()}
     fontes_reg = fontes()
-    tamanhos, resumo = {}, []
+    tamanhos, resumos, detalhes = {}, [], []
     for m in curadoria.no_escopo():
         dados = montar_ministerio(m, exercicio, normas, fontes_reg)
+        comp = dados.pop("competencias_unidades")
         tamanhos[f"ministerios/{m['id']}.json"] = _gravar(PUBLICADO / "ministerios" / f"{m['id']}.json", dados)
-        orc = dados["orcamento"]
-        tot = defaultdict(float)
-        for linha in (orc or {}).get("linhas", []):
-            for i, c in enumerate(orc["colunas"][3:], start=3):
-                tot[c] += linha[i]
-        titular = next((o for o in dados["ocupantes"] if o["unidade"] == m["cod_siorg"] and o["papel"] == "titular"), None)
-        resumo.append({
-            "id": m["id"], "sigla": m["sigla"], "nome": m["nome"],
-            "ministro": titular and {"nome": titular["nome"], "partido": titular["partido"]},
-            "n_unidades": len(dados["unidades"]),
-            "n_cargos": sum(c[4] for lista in dados["cargos"].values() for c in lista),
-            "n_secretarias": sum(1 for u in dados["unidades"] if u["d"] == 1 and u["b"] == "singular"),
-            "orcamento": orc and {"exercicio": orc["exercicio"], **{k: round(v, 2) for k, v in tot.items()}},
-        })
+        tamanhos[f"ministerios/{m['id']}-competencias.json"] = _gravar(
+            PUBLICADO / "ministerios" / f"{m['id']}-competencias.json", comp)
+        r, d = resumir(m, dados)
+        resumos.append(r)
+        detalhes.append(d)
     index = {
         "gerado_em": agora_utc(),
         "exercicio": exercicio,
-        "ministerios": resumo,
+        "ministerios": sorted(resumos, key=lambda r: r["nome"]),
+        "eventos": curadoria.eventos(),
         "fontes": {k: {c: v[c] for c in ("nome", "url", "data_referencia", "coletado_em")} for k, v in fontes_reg.items()},
     }
     tamanhos["index.json"] = _gravar(PUBLICADO / "index.json", index)
+    tamanhos["agregados/comparacao.json"] = _gravar(PUBLICADO / "agregados" / "comparacao.json",
+                                                    {"exercicio": exercicio, "ministerios": detalhes})
     return tamanhos

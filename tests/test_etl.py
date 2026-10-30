@@ -4,7 +4,8 @@ import zipfile
 import pytest
 
 from etl import orcamento, siorg, validar
-from etl.publicar import separar_competencias
+from etl.correspondencia import chave_nome
+from etl.publicar import e_operacao_especial, separar_competencias
 from etl.versionamento import mesclar
 
 URI = "https://estruturaorganizacional.dados.gov.br/id/"
@@ -199,3 +200,29 @@ def test_validador_unidades_pai_inexistente_e_ciclo():
 def test_dados_versionados_passam_na_validacao():
     rel = validar.validar_tudo()
     assert rel.erros == [], rel.texto()
+
+
+# ------------------------------------------------------------------ fase 2
+
+def test_chave_nome_para_correspondencia():
+    assert chave_nome("Instituto do Patrimônio Histórico e Artístico Nacional") == chave_nome("INSTITUTO PATRIMONIO HISTORICO ARTISTICO NACIONAL")
+    assert chave_nome("Ministério das Cidades - Unidades com vínculo direto") == chave_nome("Ministério das Cidades")
+
+
+def test_operacao_especial():
+    assert e_operacao_especial("OPERACOES ESPECIAIS: SERVICO DA DIVIDA INTERNA (JUROS EAMORT")
+    assert not e_operacao_especial("MORADIA DIGNA")
+
+
+def test_validador_aceita_anual_defasado_em_um_mes():
+    base = {"exercicio": "2026", "cod_orgao_superior": "1", "cod_uo": "11", "dotacao_inicial": "0", "dotacao_atual": "0",
+            "liquidado": "0", "pago": "0"}
+    linhas = [{**base, "empenhado": "150", "empenhado_orcdesp": "100"}]   # anual sem o último mês (50)
+    mensal = [{"exercicio": "2026", "mes": "1", "cod_uo": "11", "empenhado": "100"},
+              {"exercicio": "2026", "mes": "2", "cod_uo": "11", "empenhado": "50"}]
+    rel = validar.Relatorio()
+    validar.validar_orcamento(rel, linhas, mensal=mensal)
+    assert not any("arquivo anual" in a for a in rel.avisos)
+    rel = validar.Relatorio()
+    validar.validar_orcamento(rel, [{**linhas[0], "empenhado_orcdesp": "60"}], mensal=mensal)
+    assert any("arquivo anual" in a for a in rel.avisos)
