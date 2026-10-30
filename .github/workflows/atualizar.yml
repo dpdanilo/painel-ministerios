@@ -78,7 +78,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/normalizado
+          git add data/normalizado data/curadoria/correspondencia_siorg_orcamento.yaml
           git commit -m "Dados: atualização automática (${{ steps.fonte.outputs.fonte }}, $(date -I))"
           git push
 
