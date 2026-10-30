@@ -2,6 +2,7 @@
   import { carregarMinisterio } from "../lib/dados.js";
   import { rota, href } from "../lib/estado.svelte.js";
   import { indexar, buscar } from "../lib/estrutura.js";
+  import { partidoSigla, partidoDetalhe, data as fmtData } from "../lib/formato.js";
   import Estrutura from "../components/Estrutura.svelte";
   import Pessoas from "../components/Pessoas.svelte";
   import Orcamento from "../components/Orcamento.svelte";
@@ -26,7 +27,7 @@
 
   let idx = $derived(m && indexar(m));
   let aba = $derived(ABAS.some((a) => a.id === rota.partes[2]) ? rota.partes[2] : "estrutura");
-  let ministro = $derived(m?.ocupantes.find((o) => o.unidade === m.cod_siorg && o.papel === "titular" && !o.ate));
+  let ministro = $derived(m?.ocupantes.filter((o) => o.funcao === "MEST" && !o.ate).sort((a, b) => (b.de || "").localeCompare(a.de || ""))[0]);
 
   let termo = $state("");
   let resultados = $derived(m ? buscar(m, termo) : []);
@@ -46,7 +47,9 @@
       <nav class="migalhas" aria-label="Você está em"><a href="#/">Governo</a> <span aria-hidden="true">›</span> {m.sigla}</nav>
       <h1>{m.nome}</h1>
       {#if ministro}
-        <p class="sec">Ministro: <strong>{ministro.nome}</strong>{ministro.partido ? ` · ${ministro.partido}` : ""}</p>
+        <p class="sec">Ministro(a): <strong>{ministro.nome}</strong>
+          <span title={partidoDetalhe(ministro.partido)}>· {partidoSigla(ministro.partido) ?? "sem candidatura registrada"}</span>
+          {#if ministro.de}<span class="mudo">· desde {fmtData(ministro.de)}</span>{/if}</p>
       {/if}
 
       <div class="busca" role="search">

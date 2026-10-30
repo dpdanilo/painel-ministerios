@@ -15,6 +15,8 @@ Códigos oficiais (SIORG, UO, programa, ação) são sempre texto, para não per
 |---|---|---|---|
 | `siorg` | SIORG – API de Estrutura Organizacional (MGI) | `estruturaorganizacional.dados.gov.br/doc`, sem chave | mensal |
 | `transparencia-orcamento-<ano>` | Portal da Transparência (CGU): "Orçamento da Despesa" (anual) + "Despesas – Execução" (mensal) | downloads CSV em `dadosabertos-download.cgu.gov.br`, sem chave | semanal |
+| `siape` | Portal da Transparência (CGU): "Servidores – SIAPE", arquivo Cadastro | download mensal, sem chave (~80 MB/mês) | mensal (~2 meses de atraso) |
+| `tse` | TSE: candidaturas 2018, 2020, 2022, 2024 e 2026 (`consulta_cand`) | download, sem chave | mensal |
 | curadoria | gov.br dos ministérios, legislação (Planalto/LexML), DOU | leitura humana | sob demanda |
 
 Endpoints SIORG usados:
@@ -77,6 +79,29 @@ Endpoints SIORG usados:
 A execução é filtrada pela **UO**, não pelo órgão da unidade gestora. Assim entram despesas do
 ministério executadas por outros órgãos (descentralização).
 
+### `ocupacao.csv`: mandatos de direção (desde jan/2023)
+Uma linha por pessoa × função × unidade, juntando meses consecutivos do cadastro do SIAPE.
+
+| campo | origem |
+|---|---|
+| `pessoa_id` | hash de nome + 6 dígitos visíveis do CPF (o CPF não fica no repositório) |
+| `nome` | SIAPE `NOME` |
+| `ministerio_id` | SIAPE `COD_ORG_EXERCICIO` → ministério (por nome ou `orgaos_siape.yaml`); unidades com nome de ministério prevalecem; órgãos da Presidência separados pelo nome da unidade |
+| `funcao`, `nivel` | `MEST` (99) para Ministro de Estado; `CCE 1.xx`/`FCE 1.xx` a partir de SIAPE `SIGLA_FUNCAO` (CCX/FEX) e `NIVEL_FUNCAO` |
+| `cargo` | SIAPE `ATIVIDADE` (ex.: "Secretario(a)") |
+| `cod_uorg`, `uorg` | unidade de exercício no SIAPE (nome cortado em 40 caracteres) |
+| `cod_siorg` | **derivado**: unidade do SIORG com o mesmo nome no mesmo ministério (vazio se ambíguo ou não encontrado) |
+| `inicio` | SIAPE `DATA_INGRESSO_CARGOFUNCAO` do 1º mês do mandato |
+| `primeiro_mes`, `ultimo_mes` | meses (AAAAMM) em que o mandato aparece no SIAPE |
+| `fim_aprox` | 1º mês em que a pessoa já não aparece naquela função/unidade (vazio = segue no cargo) |
+
+### `pessoa.csv`
+`pessoa_id, nome`.
+
+### `candidatura.csv`: candidaturas dos dirigentes no TSE
+`pessoa_id, ano, partido, nome_partido, cargo, uf, municipio, situacao_candidatura, resultado`. Cruzamento por nome +
+6 dígitos centrais do CPF (TSE `NR_CPF_CANDIDATO` × SIAPE `CPF` mascarado).
+
 ### `orcamento_mensal.csv`
 `exercicio, mes, cod_uo, cod_programa, cod_acao, empenhado, liquidado, pago`: valores **do mês** (não acumulados).
 
@@ -106,7 +131,7 @@ Por ministério: `unidades_por_bloco{}`, `cargos_por_nivel{"CCE 1.17": n…}`, `
 | `categoria` | `ministerio`, `presidencia` ou `orgao` |
 | `orcamento.operacoes_especiais[]` | códigos de programa cujo nome começa com "OPERACOES ESPECIAIS" |
 | `cargos{cod: [[tipo, categoria, nivel, denominacao, qtd, mobilidade]]}` | só versões vigentes |
-| `ocupantes[]` | `pessoa, nome, cargo, unidade, papel, de, ate, partido, fonte, verificado_em` |
+| `ocupantes[]` | mandatos de Ministro e de 1.15 para cima: `pessoa, nome, funcao, nivel, cargo, uorg, unidade` (SIORG, se identificada), `papel, de, ate` (`AAAA-MM` aproximado, nulo = atual), `partido{sigla, ano, cargo, uf, resultado, fonte}` |
 | `orcamento` | `colunas` + `linhas` (matriz), `mensal` (mês × programa), dicionários `uos`, `programas`, `acoes` |
 | `politicas[]`, `eventos[]`, `normas{}` | da curadoria (sem os vínculos pendentes) |
 | `competencias[]` | competências do ministério (SIORG) |

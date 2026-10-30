@@ -11,7 +11,7 @@ from . import curadoria
 from .comum import NORMALIZADO, fontes, ler_csv
 
 # Idade máxima (dias) da data de referência de cada fonte antes de gerar alerta.
-IDADE_MAXIMA = {"transparencia-orcamento": 21}
+IDADE_MAXIMA = {"transparencia-orcamento": 21}   # o SIAPE tem ~2 meses de atraso por natureza: sem alerta
 
 
 class Relatorio:
@@ -103,39 +103,32 @@ def validar_curadoria(rel: Relatorio, pasta=None, unidades: dict | None = None, 
         rel.aviso(f"{len(revisar)} UOs sem unidade SIORG correspondente pelo nome (revisar à mão): "
                   + ", ".join(revisar[:10]) + ("…" if len(revisar) > 10 else ""))
 
-    pessoas = {p["id"]: p for p in curadoria.pessoas(pasta)}
-    for p in pessoas.values():
-        for f in p.get("filiacoes") or []:
-            if not f.get("fonte"):
-                rel.erro(f"pessoa {p['id']}: filiação sem fonte")
-            _checar_vigencia(rel, f"pessoa {p['id']} filiação {f.get('partido')}", f.get("valido_de"), f.get("valido_ate"))
+    for p in curadoria.pessoas(pasta):
         fil = p.get("filiacoes") or []
+        for f in fil:
+            if not f.get("fonte"):
+                rel.erro(f"pessoa {p['nome']}: filiação sem fonte")
+            _checar_vigencia(rel, f"pessoa {p['nome']} filiação {f.get('partido')}", f.get("valido_de"), f.get("valido_ate"))
         for i, a in enumerate(fil):
             for b in fil[i + 1:]:
                 if _sobrepoe(a.get("valido_de"), a.get("valido_ate"), b.get("valido_de"), b.get("valido_ate")):
-                    rel.erro(f"pessoa {p['id']}: filiações com vigências sobrepostas")
+                    rel.erro(f"pessoa {p['nome']}: filiações com vigências sobrepostas")
 
     por_posto = defaultdict(list)
-    sem_data = 0
     for o in curadoria.ocupacoes(pasta):
-        onde = f"ocupação {o['pessoa']} ({o.get('cargo')})"
+        onde = f"ocupação manual {o.get('nome')} ({o.get('cargo')})"
         if not o.get("fonte"):
             rel.erro(f"{onde}: sem fonte")
-        if o["pessoa"] not in pessoas:
-            rel.erro(f"{onde}: pessoa não existe em pessoas.yaml")
-        if unidades is not None and o["unidade"] not in unidades:
-            rel.erro(f"{onde}: unidade {o['unidade']} não existe no SIORG")
+        if unidades is not None and o.get("unidade") not in unidades:
+            rel.erro(f"{onde}: unidade {o.get('unidade')} não existe no SIORG")
         _checar_vigencia(rel, onde, o.get("valido_de"), o.get("valido_ate"))
-        sem_data += not o.get("valido_de")
-        if o.get("papel") == "titular":
-            por_posto[o["unidade"]].append(o)
+        if o.get("papel", "titular") == "titular":
+            por_posto[o.get("unidade")].append(o)
     for unidade, lista in por_posto.items():
         for i, a in enumerate(lista):
             for b in lista[i + 1:]:
                 if _sobrepoe(a.get("valido_de"), a.get("valido_ate"), b.get("valido_de"), b.get("valido_ate")):
-                    rel.erro(f"unidade {unidade}: titulares com períodos sobrepostos ({a['pessoa']} × {b['pessoa']})")
-    if sem_data:
-        rel.aviso(f"{sem_data} ocupações sem data de início (preencher com o ato de nomeação no DOU)")
+                    rel.erro(f"unidade {unidade}: titulares com períodos sobrepostos ({a.get('nome')} × {b.get('nome')})")
 
     for p in curadoria.politicas(pasta):
         if p["ministerio"] not in ids_min:
@@ -223,6 +216,20 @@ def validar_orcamento(rel: Relatorio, linhas: list[dict], pasta=None, mensal: li
                      f"referência {ref['valor'] / 1e9:.2f} bi ({ref['fonte']})")
 
 
+def validar_ocupacoes(rel: Relatorio, linhas: list[dict]) -> None:
+    atuais = defaultdict(list)
+    for o in linhas:
+        if o["funcao"] == "MEST" and not o["fim_aprox"]:
+            atuais[o["ministerio_id"]].append(o["nome"])
+    for mid, nomes in atuais.items():
+        if len(nomes) > 1:
+            rel.aviso(f"{mid}: {len(nomes)} pessoas como Ministro(a) de Estado no último mês do SIAPE ({', '.join(nomes)}); "
+                      "o site mostra a de posse mais recente")
+    sem = [o for o in linhas if not o["inicio"] and int(o["nivel"]) >= 17]
+    if sem:
+        rel.aviso(f"{len(sem)} ocupações de nível 1.17+ sem data de ingresso no SIAPE")
+
+
 def validar_idade(rel: Relatorio) -> None:
     for fid, f in fontes().items():
         for prefixo, limite in IDADE_MAXIMA.items():
@@ -245,5 +252,6 @@ def validar_tudo() -> Relatorio:
         programas={(p["exercicio"], p["cod_programa"]) for p in ler_csv(NORMALIZADO / "programa.csv")} or None,
         uos={u["cod_uo"] for u in ler_csv(NORMALIZADO / "uo.csv")} or None,
     )
+    validar_ocupacoes(rel, ler_csv(NORMALIZADO / "ocupacao.csv"))
     validar_idade(rel)
     return rel

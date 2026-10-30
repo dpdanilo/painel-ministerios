@@ -1,6 +1,6 @@
 <script>
   import { BLOCOS, caminho, cargoDirigente, contarDescendentes } from "../lib/estrutura.js";
-  import { rotuloCargo, data as fmtData, num } from "../lib/formato.js";
+  import { rotuloCargo, data as fmtData, num, partidoSigla, partidoDetalhe } from "../lib/formato.js";
   import { href, trocarParams } from "../lib/estado.svelte.js";
   import Fonte from "./Fonte.svelte";
   import { carregar } from "../lib/dados.js";
@@ -45,13 +45,13 @@
         <li>
           <strong>{p.nome}</strong>
           <span class="sec">{p.cargo}</span>
-          <span class="mudo">Partido: {p.partido || "não informado"} · Início: {p.de ? fmtData(p.de) : "não verificado"}</span>
+          <span class="mudo" title={partidoDetalhe(p.partido)}>{partidoSigla(p.partido) ? `Partido: ${partidoSigla(p.partido)} (candidatura ${p.partido.ano ?? ""})` : "Sem candidatura registrada"} · Desde {p.de ? fmtData(p.de) : "data não informada"}</span>
         </li>
       {/each}
     </ul>
-    <Fonte fonte={{ nome: "gov.br – Quem é Quem", url: pessoas[0].fonte, data: pessoas[0].verificado_em }} rotuloData="Verificado em" curado />
+    <Fonte fonte={{ nome: "SIAPE (Portal da Transparência) e TSE", url: m.fontes.ocupantes?.url, data: m.fontes.ocupantes?.data }} rotuloData="Dados de" />
   {:else}
-    <p class="mudo">Titular ainda não curado{dirigente ? ` · cargo: ${dirigente.denominacao} (${dirigente.rotulo})` : ""}.</p>
+    <p class="mudo">Ocupante não identificado no SIAPE para esta unidade{dirigente ? ` · cargo: ${dirigente.denominacao} (${dirigente.rotulo})` : ""}. Veja a aba “Quem é quem”.</p>
   {/if}
 
   {#if cargos.length}

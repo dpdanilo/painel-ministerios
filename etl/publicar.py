@@ -67,19 +67,7 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
     competencias_unidades = {u["cod_siorg"]: c for u in unidades if u is not raiz
                              if (c := separar_competencias(u["competencia"]))}
 
-    pessoas = {p["id"]: p for p in curadoria.pessoas()}
-    cods = {u["cod_siorg"] for u in unidades}
-    ocupantes = []
-    for o in curadoria.ocupacoes():
-        if o["unidade"] not in cods:
-            continue
-        p = pessoas.get(o["pessoa"], {})
-        fil = [f for f in p.get("filiacoes") or [] if not f.get("valido_ate")]
-        ocupantes.append({
-            "pessoa": o["pessoa"], "nome": p.get("nome", o["pessoa"]), "cargo": o.get("cargo"),
-            "unidade": o["unidade"], "papel": o.get("papel"), "de": o.get("valido_de"), "ate": o.get("valido_ate"),
-            "partido": fil[0]["partido"] if fil else None, "fonte": o.get("fonte"), "verificado_em": o.get("verificado_em"),
-        })
+    ocupantes = montar_ocupantes(m, {u["cod_siorg"] for u in unidades})
 
     orcamento = montar_orcamento(m, exercicio)
     politicas = [p for p in curadoria.politicas() if p["ministerio"] == m["id"]]
@@ -88,8 +76,6 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
     eventos = [e for e in curadoria.eventos() if m["id"] in (e.get("origem") or []) + (e.get("destino") or [])]
     citadas = {m.get(k) for k in ("norma_criacao", "norma_organizacao", "norma_estrutura")}
     citadas |= {e.get("norma") for e in eventos} | {p.get("norma") for p in politicas}
-    verificados = [o["verificado_em"] for o in ocupantes if o.get("verificado_em")]
-
     siorg = fontes_reg.get("siorg", {})
     orc_fonte = fontes_reg.get(f"transparencia-orcamento-{exercicio}", {})
     return {
@@ -110,11 +96,92 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
             "estrutura": {"nome": siorg.get("nome"), "url": siorg.get("url"), "data": siorg.get("coletado_em"),
                           "referencia": siorg.get("data_referencia")},
             "orcamento": {"nome": orc_fonte.get("nome"), "url": orc_fonte.get("url"), "data": orc_fonte.get("data_referencia")},
-            "ocupantes": {"nome": "gov.br – Quem é Quem (curadoria)", "url": ocupantes[0]["fonte"] if ocupantes else None,
-                          "data": max(verificados) if verificados else None},
+            "ocupantes": {"nome": fontes_reg.get("siape", {}).get("nome"), "url": fontes_reg.get("siape", {}).get("url"),
+                          "data": fontes_reg.get("siape", {}).get("data_referencia"), "referencia_mes": True},
+            "partidos": {"nome": fontes_reg.get("tse", {}).get("nome"), "url": fontes_reg.get("tse", {}).get("url"), "data": None},
             "politicas": {"nome": "Curadoria (data/curadoria/politicas_publicas.yaml)", "url": None, "data": None},
         },
     }
+
+
+NIVEL_PUBLICADO = 15   # no site: Diretor (1.15) para cima; 1.13/1.14 ficam no CSV normalizado
+
+
+def do_governo_atual(o: dict) -> bool:
+    """O 1º arquivo do SIAPE (jan/2023) ainda lista dirigentes do governo anterior, exonerados em 1º/01/2023."""
+    return not (o["inicio"] and o["inicio"] < "2023-01-01" and o["fim_aprox"] and o["fim_aprox"] <= "2023-03")
+
+
+@cache
+def _partidos() -> dict:
+    """pessoa_id → candidatura mais recente no TSE (partido, ano, cargo, resultado)."""
+    saida = {}
+    for c in sorted(_csv("candidatura.csv"), key=lambda c: c["ano"]):
+        saida[c["pessoa_id"]] = {"sigla": c["partido"], "ano": int(c["ano"]), "cargo": c["cargo"], "uf": c["uf"],
+                                 "resultado": c["resultado"].capitalize(), "fonte": "TSE"}
+    return saida
+
+
+@cache
+def _filiacoes_manuais() -> dict:
+    """nome normalizado → filiação vigente informada à mão em pessoas.yaml (prevalece sobre o TSE)."""
+    from .servidores import chave
+    saida = {}
+    for p in curadoria.pessoas():
+        vig = [f for f in p.get("filiacoes") or [] if not f.get("valido_ate")]
+        if vig:
+            f = vig[-1]
+            saida[chave(p["nome"])] = {"sigla": f["partido"], "ano": None, "cargo": None, "uf": None,
+                                       "resultado": None, "fonte": f.get("fonte")}
+    return saida
+
+
+def montar_ocupantes(m: dict, cods: set) -> list[dict]:
+    from .servidores import chave
+    partidos, manuais = _partidos(), _filiacoes_manuais()
+    saida = []
+    for o in _csv("ocupacao.csv"):
+        if o["ministerio_id"] != m["id"] or int(o["nivel"]) < NIVEL_PUBLICADO or not do_governo_atual(o):
+            continue
+        cargo = o["cargo"]
+        papel = "titular" if o["funcao"] == "MEST" else ("adjunto" if "ADJUNT" in cargo.upper() else "titular")
+        saida.append({
+            "pessoa": o["pessoa_id"], "nome": o["nome"], "funcao": o["funcao"], "nivel": int(o["nivel"]),
+            "cargo": "Ministro(a) de Estado" if o["funcao"] == "MEST" else cargo, "uorg": o["uorg"],
+            "unidade": o["cod_siorg"] if o["cod_siorg"] in cods else None, "papel": papel,
+            "de": o["inicio"] or None, "ate": o["fim_aprox"] or None,
+            "partido": manuais.get(chave(o["nome"])) or partidos.get(o["pessoa_id"]),
+        })
+    # Acréscimos manuais (ex.: nomeação recente no DOU que o SIAPE ainda não trouxe).
+    for o in curadoria.ocupacoes():
+        if o["unidade"] in cods and not any(chave(x["nome"]) == chave(o.get("nome", "")) and not x["ate"] for x in saida):
+            saida.append({"pessoa": None, "nome": o.get("nome"), "funcao": o.get("funcao"), "nivel": o.get("nivel", 0),
+                          "cargo": o.get("cargo"), "uorg": None, "unidade": o["unidade"], "papel": o.get("papel", "titular"),
+                          "de": o.get("valido_de"), "ate": o.get("valido_ate"), "partido": manuais.get(chave(o.get("nome", ""))),
+                          "fonte": o.get("fonte")})
+    return sorted(saida, key=lambda o: (-o["nivel"], o["ate"] is not None, o["de"] or ""))
+
+
+def meses_entre(de: str | None, ate: str | None, ref: str) -> float | None:
+    """Duração em meses entre 'AAAA-MM-DD' e 'AAAA-MM' (ou a data de referência, se ainda no cargo)."""
+    if not de:
+        return None
+    a1, m1 = int(de[:4]), int(de[5:7])
+    fim = ate or ref
+    a2, m2 = int(fim[:4]), int(fim[5:7])
+    return max(0, (a2 - a1) * 12 + (m2 - m1))
+
+
+def rotatividade(ocupantes: list[dict], ref: str) -> dict:
+    """Trocas e tempo médio no cargo desde jan/2023: ministros e secretários (CCE/FCE 1.17–1.18)."""
+    def resumo(lista):
+        dur = [d for o in lista if (d := meses_entre(o["de"], o["ate"], ref)) is not None]
+        encerrados = [o for o in lista if o["ate"]]
+        return {"mandatos": len(lista), "encerrados": len(encerrados),
+                "meses_medio": round(sum(dur) / len(dur), 1) if dur else None}
+    ministros = [o for o in ocupantes if o["funcao"] == "MEST"]
+    secretarios = [o for o in ocupantes if o["nivel"] in (17, 18) and o["papel"] == "titular"]
+    return {"ministros": resumo(ministros), "secretarios": resumo(secretarios)}
 
 
 def montar_orcamento(m: dict, exercicio: int) -> dict | None:
@@ -194,7 +261,10 @@ def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
     """Resumo para o index.json e detalhe para agregados/comparacao.json."""
     orc = dados["orcamento"]
     unidades = dados["unidades"]
-    titular = next((o for o in dados["ocupantes"] if o["unidade"] == m["cod_siorg"] and o["papel"] == "titular" and not o["ate"]), None)
+    ministros = sorted([o for o in dados["ocupantes"] if o["funcao"] == "MEST"], key=lambda o: o["de"] or "")
+    atuais = [o for o in ministros if not o["ate"]]
+    titular = atuais[-1] if atuais else None   # mais de um no mesmo mês: o de posse mais recente
+    ref = (fontes().get("siape", {}).get("data_referencia") or "")[:7] or None
     por_bloco = defaultdict(int)
     for u in unidades:
         if u["d"] > 0:
@@ -205,7 +275,9 @@ def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
             cargos_nivel[f"{tipo} {cat}.{nivel}" if cat and nivel else tipo] += qtd
     resumo = {
         "id": m["id"], "sigla": m["sigla"], "nome": m["nome"], "categoria": m.get("categoria"),
-        "ministro": titular and {"nome": titular["nome"], "partido": titular["partido"]},
+        "ministro": titular and {"nome": titular["nome"], "partido": titular["partido"], "desde": titular["de"]},
+        "ministros": [{"nome": o["nome"], "de": o["de"], "ate": o["ate"], "partido": (o["partido"] or {}).get("sigla")} for o in ministros],
+        "rotatividade": rotatividade(dados["ocupantes"], ref) if ref else None,
         "n_unidades": len(unidades),
         "n_cargos": sum(cargos_nivel.values()),
         "n_secretarias": sum(1 for u in unidades if u["d"] == 1 and u["b"] == "singular"),
@@ -228,15 +300,15 @@ def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
         "mensal_sem_oe": _mensal_acumulado(orc, sem_oe=True),
         "principais_programas": programas,
         "politicas": [p["nome"] for p in dados["politicas"]],
-        "ocupantes": [{"nome": o["nome"], "cargo": o["cargo"], "partido": o["partido"]}
-                      for o in dados["ocupantes"] if o["papel"] == "titular" and not o["ate"]][:12],
+        "ocupantes": [{"nome": o["nome"], "cargo": o["cargo"], "partido": (o["partido"] or {}).get("sigla")}
+                      for o in dados["ocupantes"] if o["papel"] == "titular" and not o["ate"]][:8],
     }
     return resumo, detalhe
 
 
 def publicar(exercicio: int) -> dict[str, int]:
     """Regera site/public/data do zero. Devolve o tamanho (bytes) de cada arquivo."""
-    _csv.cache_clear()
+    _csv.cache_clear(); _partidos.cache_clear(); _filiacoes_manuais.cache_clear()
     if PUBLICADO.exists():
         shutil.rmtree(PUBLICADO)
     normas = {n["id"]: n for n in curadoria.normas()}

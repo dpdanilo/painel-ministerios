@@ -1,7 +1,7 @@
 <script>
   import { carregarIndice, carregar } from "../lib/dados.js";
   import { rota, href, trocarParams } from "../lib/estado.svelte.js";
-  import { brlCompacto, num, pct, capitalizar } from "../lib/formato.js";
+  import { brlCompacto, num, pct, capitalizar, partidoSigla, duracao } from "../lib/formato.js";
   import { CATEGORIAS, execucao, atribuirSlots, niveisDirecao, cargosDirecao } from "../lib/governo.js";
   import { BLOCOS } from "../lib/estrutura.js";
   import LinhasPercentual from "../components/LinhasPercentual.svelte";
@@ -27,8 +27,11 @@
   const direcao = (m) => Object.entries(m.d.cargos_por_nivel).filter(([k]) => /^(CCE|FCE) 1\./.test(k)).reduce((s, [, q]) => s + q, 0);
   const LINHAS = [
     { nome: "Tipo", v: (m) => CATEGORIAS[m.categoria]?.nome },
-    { nome: "Titular", v: (m) => m.ministro?.nome ?? "em curadoria" },
-    { nome: "Partido do titular", v: (m) => m.ministro?.partido ?? "em curadoria" },
+    { nome: "Titular", v: (m) => m.ministro?.nome ?? "—" },
+    { nome: "Partido do titular (última candidatura)", v: (m) => (m.ministro ? partidoSigla(m.ministro.partido) ?? "sem candidatura" : "—") },
+    { nome: "Ministros desde 2023", v: (m) => m.rotatividade?.ministros.mandatos ?? null, n: true },
+    { nome: "Tempo médio de ministro", v: (m) => m.rotatividade?.ministros.meses_medio ?? null, n: true, f: duracao },
+    { nome: "Tempo médio de secretário (1.17–1.18)", v: (m) => m.rotatividade?.secretarios.meses_medio ?? null, n: true, f: duracao },
     { nome: "Órgãos finalísticos (1º nível)", v: (m) => m.n_secretarias, n: true },
     { nome: "Unidades", v: (m) => m.n_unidades, n: true, f: num },
     { nome: "Cargos e funções", v: (m) => m.n_cargos, n: true, f: num },
@@ -184,8 +187,8 @@
               {:else}<p class="mudo">Orçamento consolidado na Presidência.</p>{/if}
               <h4>Dirigentes</h4>
               {#if m.d.ocupantes.length}
-                <ul>{#each m.d.ocupantes.slice(0, 6) as o, i (i)}<li>{o.nome} <span class="mudo">· {o.cargo}</span></li>{/each}</ul>
-              {:else}<p class="mudo">Em curadoria (próxima fase).</p>{/if}
+                <ul>{#each m.d.ocupantes.slice(0, 6) as o, i (i)}<li>{o.nome} <span class="mudo">· {o.cargo}{o.partido ? ` · ${o.partido}` : ""}</span></li>{/each}</ul>
+              {:else}<p class="mudo">Sem dados no SIAPE.</p>{/if}
               {#if m.d.politicas.length}
                 <h4>Políticas mapeadas</h4>
                 <p>{m.d.politicas.join(" · ")}</p>

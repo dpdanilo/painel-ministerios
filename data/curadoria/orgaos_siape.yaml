@@ -1,0 +1,19 @@
+# Órgão de exercício no SIAPE (Portal da Transparência, Servidores) → ministério do painel.
+# Os demais órgãos são ligados automaticamente quando o nome no SIAPE é igual ao do SIORG.
+# Estes têm nome abreviado (ou antigo) no SIAPE; a ligação foi conferida pelo Ministro de Estado em
+# exercício no órgão (arquivo de ago/2026).
+#
+# `ministerio: presidencia` = código compartilhado pelos órgãos da Presidência: cada unidade (UORG) é
+# atribuída a Casa Civil, SG, SRI, Secom ou GSI pelo nome da unidade no SIORG (etl/servidores.py).
+
+orgaos:
+  - {cod_org: "13100", ministerio: mda, fonte: "SIAPE ago/2026: MIN DO DESENV AGR E AGRIC FAMILIAR (Ministra Fernanda Machiaveli)"}
+  - {cod_org: "17400", ministerio: mdic, fonte: "SIAPE ago/2026: MIN DESENVOLV IND COMERCIO E SERVICOS (Ministro Márcio Elias Rosa)"}
+  - {cod_org: "17500", ministerio: mgi, fonte: "SIAPE ago/2026: MIN GESTAO E INOV EM SERV PUBLICOS (Ministra Esther Dweck)"}
+  - {cod_org: "17700", ministerio: memp, fonte: "SIAPE ago/2026: MIN EMPREEND MICROEMP EMP PEQUENO PORTE"}
+  - {cod_org: "40100", ministerio: midr, fonte: "SIAPE ago/2026: MIN DA INTEG E DO DESENV REGIONAL (Ministro Waldez Góes)"}
+  - {cod_org: "40108", ministerio: mcti, fonte: "SIAPE ago/2026: nome antigo 'Ministério da Ciência, Tecnologia, Inovações e Comunicações' (Ministra Luciana Santos, MCTI)"}
+  - {cod_org: "40211", ministerio: mma, fonte: "SIAPE ago/2026: MINISTERIO DO MEIO AMBIENTE (Ministro João Paulo Capobianco)"}
+  - {cod_org: "55100", ministerio: mds, fonte: "SIAPE ago/2026: MIN DESENV ASSIS SOCI FAMIL COMBATE FOME (Ministro Wellington Dias)"}
+  - {cod_org: "81100", ministerio: mdhc, fonte: "SIAPE ago/2026: MIN DOS DIR HUM E DA CIDADANIA (Ministra Janine Mello)"}
+  - {cod_org: "20101", ministerio: presidencia, fonte: "SIAPE: código único da Presidência da República; dividido por unidade"}

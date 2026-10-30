@@ -86,7 +86,9 @@ export function buscar(m, termo, limite = 30) {
   const bate = (...textos) => textos.some((t) => normalizar(t).includes(q));
   const r = [];
   for (const u of m.unidades) if (bate(u.n, u.s)) r.push({ tipo: "Unidade", titulo: `${u.s} – ${u.n}`, rota: ["estrutura", { u: u.c }] });
-  for (const o of m.ocupantes) if (bate(o.nome, o.cargo)) r.push({ tipo: "Pessoa", titulo: `${o.nome} – ${o.cargo}`, rota: ["estrutura", { u: o.unidade }] });
+  for (const o of m.ocupantes) {
+    if (!o.ate && bate(o.nome, o.cargo)) r.push({ tipo: "Pessoa", titulo: `${o.nome} – ${o.cargo}`, rota: o.unidade ? ["estrutura", { u: o.unidade }] : ["pessoas", {}] });
+  }
   for (const p of m.politicas) if (bate(p.nome)) r.push({ tipo: "Política", titulo: p.nome, rota: ["politicas", { p: p.id }] });
   const orc = m.orcamento;
   if (orc) {

@@ -20,7 +20,8 @@ Transparência ┼─ etl/ (Python) ─ data/normalizado ┤
 
 - O navegador **nunca** chama as APIs do governo: os dados são coletados no GitHub Actions e publicados como arquivos estáticos.
 - `data/normalizado/` fica no git. Cada atualização vira um commit com o diff do que mudou.
-- O GitHub Actions atualiza sozinho: orçamento toda segunda e estrutura (SIORG) todo dia 3. Só faz commit e deploy se algo mudou.
+- O GitHub Actions atualiza sozinho: orçamento toda segunda, estrutura (SIORG) todo dia 3 e ocupantes
+  (SIAPE) + partidos (TSE) todo dia 12. Só faz commit e deploy se algo mudou.
 - Falhas de coleta e pontos de curadoria abrem uma *issue* automaticamente.
 
 ## Rodar localmente
@@ -32,7 +33,7 @@ python -m venv .venv
 .venv/Scripts/activate          # Windows  (Linux/Mac: source .venv/bin/activate)
 pip install -r requirements.txt
 
-python -m etl atualizar         # baixa SIORG + orçamento do ano (~80 MB, vai para data/bruto/)
+python -m etl atualizar         # baixa SIORG, orçamento, SIAPE e TSE (na 1ª vez, ~4 GB: 44 meses do SIAPE)
 python -m etl validar           # confere curadoria e dados
 python -m etl publicar          # gera site/public/data/
 python -m pytest -q             # testes do ETL
@@ -69,7 +70,9 @@ Os dados que não existem em fonte estruturada ficam em `data/curadoria/`, em YA
 |---|---|
 | `ministerios.yaml` | identidade de cada ministério e suas versões (nome, sigla, códigos, vigência, normas) |
 | `correspondencia_siorg_orcamento.yaml` | qual unidade orçamentária (UO) corresponde a qual unidade do SIORG |
-| `ocupacoes.yaml` / `pessoas.yaml` | quem ocupa cada cargo, com datas; filiação partidária com vigência |
+| `ocupacoes.yaml` | acréscimos manuais de ocupantes (a fonte principal é o SIAPE, automática) |
+| `pessoas.yaml` | filiação partidária informada à mão (prevalece sobre o TSE) |
+| `orgaos_siape.yaml` | órgão do SIAPE ↔ ministério, quando o nome não bate automaticamente |
 | `politicas_publicas.yaml` | nome conhecido da política ↔ ações/programas do orçamento, com justificativa |
 | `eventos_institucionais.yaml` | criações, extinções, fusões e recriações de ministérios |
 | `normas.yaml` | leis, decretos e MPs citados |
@@ -78,8 +81,8 @@ Os dados que não existem em fonte estruturada ficam em `data/curadoria/`, em YA
 Regras:
 - **Toda linha precisa de `fonte`.** O validador recusa linha sem fonte.
 - Datas em `AAAA-MM-DD`. `null` quando não se sabe: **não preencha por estimativa**.
-- Para registrar uma troca de ministro, feche a ocupação atual com `valido_ate` e acrescente a nova
-  com `valido_de` (as datas do ato no DOU). O validador acusa titulares com períodos sobrepostos.
+- Trocas de ministro e secretário entram sozinhas pelo SIAPE, com ~2 meses de atraso. Para mostrar antes
+  uma nomeação já publicada no DOU, acrescente-a em `ocupacoes.yaml` com a fonte. Ela some quando o SIAPE a trouxer.
 - Depois de editar: `python -m etl validar`. No GitHub, o push já roda a validação e republica o site.
 
 Para colocar um novo ministério no painel: acrescente-o em `ministerios.yaml` com `no_painel: true`,

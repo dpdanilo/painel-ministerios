@@ -119,9 +119,62 @@ Registro das escolhas feitas, com o motivo. Datas em ordem cronológica.
 - 62 UOs sem correspondência no SIORG (lista no aviso do validador).
 - A contagem de cargos vem do SIORG e ainda não foi conferida com os decretos de estrutura de cada órgão.
 
+## 2026-10-29 · Fase 3 (ocupantes, partidos e histórico)
+
+### Fontes
+- **Ocupantes pelo cadastro mensal do SIAPE, e não pelo gov.br nem pelo DOU.** O arquivo "Servidores – SIAPE" do
+  Portal da Transparência lista, todo mês, cada função comissionada (CCE/FCE com nível), a unidade de exercício e a
+  **data de ingresso na função**, além dos Ministros de Estado. É estruturado, aberto e sem chave, e cobre os 38 órgãos
+  de uma vez. Juntando os meses desde jan/2023, sai o histórico de trocas. As alternativas: o gov.br não tem padrão
+  entre órgãos, e o DOU/INLABS exige cadastro e leitura de texto livre. Custo: ~2 meses de atraso (em 29/10/2026, o
+  último mês publicado era ago/2026). Nomeações mais recentes podem ser acrescentadas em `ocupacoes.yaml`.
+- **Partido pelas candidaturas do TSE.** Não há base pública de filiação com CPF. O TSE publica o CPF de quem foi
+  candidato, e o SIAPE publica 6 dígitos do CPF de cada servidor: nome + esses dígitos dão um cruzamento seguro. O
+  painel mostra "partido na candidatura mais recente (TSE, ano)". Quem nunca foi candidato aparece como
+  "sem candidatura", nunca como "sem partido". Filiações conhecidas por outra fonte podem ser registradas em `pessoas.yaml`.
+- A lista do MCID curada na fase 1 (gov.br) foi conferida com o SIAPE de ago/2026 (mesmas pessoas) e substituída por ele.
+
+### Privacidade
+- O CPF parcial é usado só durante a coleta e fica no cache local (`data/bruto`, fora do git). No repositório e no
+  site a pessoa é um hash (`pessoa_id`). Só são publicados nome, cargo, unidade e datas de quem ocupa cargo de direção
+  (1.15 para cima e Ministros), que o próprio Portal da Transparência já publica.
+
+### Regras de montagem
+- Um mandato = mesma pessoa, mesma função e mesma unidade em meses consecutivos. Para Ministro(a) a unidade é
+  ignorada, porque o código do gabinete mudou numa reorganização em nov/2023 sem troca de titular. A data de ingresso
+  do SIAPE às vezes muda sem saída real (renomeação); fica valendo a do 1º mês.
+- **Limpeza do cadastro**, conferida com a cronologia pública dos ministros:
+  - ausência de 1 mês não encerra mandato (falha pontual);
+  - registro isolado de 1 mês com ingresso mais de 6 meses antes é resíduo e é descartado (ex.: o ministro da
+    Agricultura do governo anterior reaparecendo em fev/2024);
+  - a posse de um(a) novo(a) Ministro(a) encerra o mandato do anterior, já que o cadastro às vezes o mantém por meses.
+  Resultado: 74 mandatos de ministro e 36 trocas entre jan/2023 e ago/2026.
+- A saída é **aproximada**: o 1º mês em que a pessoa não aparece mais.
+- O arquivo de jan/2023 ainda traz parte do governo anterior (exonerações de 1º/01 registradas com atraso). Mandatos
+  iniciados antes de 2023 e encerrados até mar/2023 não aparecem no site.
+- Órgãos da Presidência dividem um código no SIAPE (20101). Cada unidade é atribuída pelo sufixo ("/CC", "/SG"…) ou
+  pelo nome igual ao de uma unidade de um só desses órgãos no SIORG. Unidades que não dá para atribuir ficam de fora.
+- Unidade do SIAPE → unidade do SIORG pelo nome, dentro do ministério, aceitando abreviações ("COORD-GERAL DE
+  GEST DE INFORM" = "Coordenação-Geral de Gestão de Informações"): cada palavra do SIAPE é o começo de uma palavra
+  do SIORG, na ordem, e só preposições podem ficar de fora. Nomes iguais em mais de uma unidade (ex.: "Gabinete") não
+  são ligados. Unidades escritas como caminho de siglas ("MJSP/SENAPPEN/DICAP") são ligadas pela última sigla.
+  Cobertura: 78% dos mandatos de secretário e 71% de diretor para cima. O nome da unidade no SIAPE aparece sempre.
+- A mesma regra reconhece unidades com nome de ministério abreviado. Exemplo: em 2023 o MEMP recém-criado aparecia
+  como uma unidade dentro do código do MDIC.
+
+### Visualização
+- Linha do tempo "quem comandou cada ministério" (HTML/CSS): um segmento por ministro, em dois tons alternados para
+  marcar as trocas. Partido no rótulo, e não na cor, porque são mais de 8 partidos e a paleta categórica não comporta.
+- "Ministérios por partido" em barras e tabela, com o grupo "sem candidatura" separado e em cinza.
+
+### Limitações conhecidas (fase 3)
+- Atraso de ~2 meses do SIAPE. Quem saiu em setembro ou outubro de 2026 ainda aparece como atual.
+- Partido = o da última candidatura. Trocas de partido posteriores não aparecem sem curadoria.
+- Interinos de poucos dias aparecem com duração "menos de 1 mês".
+
 ## Roteiro
 1. ~~MVP: Ministério das Cidades~~
 2. ~~Todos os ministérios atuais, visão de governo e comparação~~
-3. Ocupantes de todos os ministérios, partidos e histórico (curadoria + DOU/INLABS)
+3. ~~Ocupantes de todos os ministérios, partidos e histórico~~ (SIAPE + TSE)
 4. Série histórica desde 2003: eventos institucionais e orçamento de anos anteriores
 5. Automação completa: DOU diário, issues de curadoria por nomeação/exoneração

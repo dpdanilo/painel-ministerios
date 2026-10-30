@@ -1,6 +1,6 @@
 """Linha de comando do ETL.
 
-    python -m etl coletar siorg|orcamento [--exercicio 2026]
+    python -m etl coletar siorg|orcamento|ocupantes [--exercicio 2026]
     python -m etl normalizar siorg|orcamento [--exercicio 2026]
     python -m etl atualizar siorg|orcamento|tudo     (coletar + normalizar)
     python -m etl validar [--estrito]
@@ -16,28 +16,33 @@ import argparse
 import sys
 from datetime import date
 
-from . import correspondencia, orcamento, publicar, siorg, validar
+from . import correspondencia, orcamento, publicar, servidores, siorg, tse, validar
 
 
 def main(argv=None) -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(prog="python -m etl")
     ap.add_argument("comando", choices=["coletar", "normalizar", "atualizar", "validar", "publicar", "correspondencias"])
-    ap.add_argument("fonte", nargs="?", choices=["siorg", "orcamento", "tudo"], default="tudo")
+    ap.add_argument("fonte", nargs="?", choices=["siorg", "orcamento", "ocupantes", "tudo"], default="tudo")
     ap.add_argument("--exercicio", type=int, default=date.today().year)
     ap.add_argument("--estrito", action="store_true", help="avisos também falham a validação")
     ap.add_argument("--sinalizar-mudanca", action="store_true")
     a = ap.parse_args(argv)
-    fontes = ["siorg", "orcamento"] if a.fonte == "tudo" else [a.fonte]
+    fontes = ["siorg", "orcamento", "ocupantes"] if a.fonte == "tudo" else [a.fonte]
+    coletores = {"siorg": siorg.coletar, "orcamento": lambda: orcamento.coletar(a.exercicio),
+                 "ocupantes": lambda: (servidores.coletar(), tse.coletar())}
+    normalizadores = {"siorg": siorg.normalizar, "orcamento": lambda: orcamento.normalizar(a.exercicio),
+                      # ocupantes depende do SIORG (unidades) e o TSE depende do SIAPE (pessoas)
+                      "ocupantes": lambda: servidores.normalizar() | tse.normalizar()}
 
     if a.comando in ("coletar", "atualizar"):
         for f in fontes:
             print(f"[coletar] {f}")
-            siorg.coletar() if f == "siorg" else orcamento.coletar(a.exercicio)
+            coletores[f]()
     mudou = False
     if a.comando in ("normalizar", "atualizar"):
         for f in fontes:
-            m = siorg.normalizar() if f == "siorg" else orcamento.normalizar(a.exercicio)
+            m = normalizadores[f]()
             print(f"[normalizar] {f}: {'MUDOU' if m else 'sem mudança'}")
             mudou |= m
     if a.comando == "correspondencias" or (a.comando == "atualizar" and "orcamento" in fontes):

@@ -1,8 +1,9 @@
 <script>
   import { carregarIndice } from "../lib/dados.js";
   import { href, rota, trocarParams } from "../lib/estado.svelte.js";
-  import { brlCompacto, num, pct, data as fmtData, normalizar } from "../lib/formato.js";
-  import { CATEGORIAS, METRICAS, somarGoverno, execucao, ordenar } from "../lib/governo.js";
+  import { brlCompacto, num, pct, data as fmtData, normalizar, partidoSigla, partidoDetalhe, duracao, mesAno } from "../lib/formato.js";
+  import { CATEGORIAS, METRICAS, somarGoverno, execucao, ordenar, porPartido, rotatividadeGoverno, SEM_CANDIDATURA } from "../lib/governo.js";
+  import LinhaMinistros from "../components/LinhaMinistros.svelte";
   import MapaExecutivo from "../components/MapaExecutivo.svelte";
   import BotaoCsv from "../components/BotaoCsv.svelte";
 
@@ -31,6 +32,11 @@
     && (!filtro || normalizar(`${m.nome} ${m.sigla} ${m.ministro?.nome ?? ""}`).includes(normalizar(filtro)))));
   let lista = $derived(ordenar(doFiltro, COLUNAS.find((c) => c.id === ordem.col).chave, ordem.desc));
   let tot = $derived(somarGoverno(todos.filter((m) => !categoria || m.categoria === categoria)));
+  let partidos = $derived(porPartido(todos.filter((m) => !categoria || m.categoria === categoria)));
+  let maxPartido = $derived(Math.max(1, ...partidos.map((p) => p.n)));
+  let maxOrcPartido = $derived(Math.max(1, ...partidos.map((p) => p.orcamento)));
+  let rot = $derived(rotatividadeGoverno(todos.filter((m) => !categoria || m.categoria === categoria)));
+  let mesSiape = $derived(idx?.fontes.siape?.data_referencia?.slice(0, 7));
   let contagem = $derived(Object.fromEntries(Object.keys(CATEGORIAS).map((c) => [c, todos.filter((m) => m.categoria === c).length])));
 
   function ordenarPor(col) {
@@ -43,13 +49,13 @@
   }
   const colunasCsv = [
     { chave: "sigla", titulo: "Sigla" }, { chave: "nome", titulo: "Órgão" }, { chave: "cat", titulo: "Categoria" },
-    { chave: "ministro", titulo: "Titular" }, { chave: "n_secretarias", titulo: "Órgãos finalísticos (1º nível)" },
+    { chave: "ministro", titulo: "Titular" }, { chave: "partido", titulo: "Partido do titular (última candidatura, TSE)" }, { chave: "n_secretarias", titulo: "Órgãos finalísticos (1º nível)" },
     { chave: "n_unidades", titulo: "Unidades" }, { chave: "n_cargos", titulo: "Cargos e funções" },
     { chave: "dot", titulo: "Dotação atual (R$)" }, { chave: "pago", titulo: "Pago (R$)" },
     { chave: "dot_sem", titulo: "Dotação atual sem operações especiais (R$)" }, { chave: "pago_sem", titulo: "Pago sem operações especiais (R$)" },
   ];
   const linhasCsv = () => lista.map((m) => ({
-    ...m, cat: CATEGORIAS[m.categoria]?.nome, ministro: m.ministro?.nome,
+    ...m, cat: CATEGORIAS[m.categoria]?.nome, ministro: m.ministro?.nome, partido: partidoSigla(m.ministro?.partido),
     dot: m.orcamento?.dotacao_atual, pago: m.orcamento?.pago, dot_sem: m.orcamento_sem_oe?.dotacao_atual, pago_sem: m.orcamento_sem_oe?.pago,
   }));
 </script>
@@ -131,7 +137,7 @@
                   disabled={!selecionados.has(m.id) && selecionados.size >= 6} aria-label={`Comparar ${m.sigla}`} /></td>
                 <td>
                   <a href={href(["m", m.id, "estrutura"])}><strong>{m.sigla}</strong></a> <span class="sec">{m.nome}</span>
-                  {#if m.ministro}<div class="mudo pequeno">{m.ministro.nome}</div>{/if}
+                  {#if m.ministro}<div class="mudo pequeno">{m.ministro.nome} · <span title={partidoDetalhe(m.ministro.partido)}>{partidoSigla(m.ministro.partido) ?? "sem candidatura"}</span></div>{/if}
                 </td>
                 <td class="num">{m.n_secretarias}</td>
                 <td class="num">{num(m.n_unidades)}</td>
@@ -146,16 +152,51 @@
       </div>
     </section>
 
-    <div class="duas">
-      <section class="cartao">
-        <h2>Ministérios por partido</h2>
-        <p class="sec">Em curadoria (próxima fase): a filiação de cada ministro será registrada com fonte e período, e este quadro passará a mostrar quantos ministérios, cargos e quanto orçamento cada partido comanda.</p>
-      </section>
+    <section class="cartao" aria-labelledby="t-partidos">
+      <h2 id="t-partidos">Ministérios por partido</h2>
+      <p class="sec pequeno">Partido de cada titular na sua candidatura mais recente registrada no TSE (2018 a 2026). “Sem candidatura” reúne quem nunca disputou eleição nesse período (em geral, quadros técnicos); não quer dizer que não tenha partido.</p>
+      <div class="tabela-rolagem">
+        <table class="partidos">
+          <thead><tr><th>Partido</th><th>Órgãos</th><th class="barra-col"><span class="sr-only">Gráfico</span></th><th class="num">Orçamento*</th><th class="num">Cargos</th></tr></thead>
+          <tbody>
+            {#each partidos as p (p.sigla)}
+              <tr class:sem={p.sigla === SEM_CANDIDATURA}>
+                <th scope="row">{p.sigla}</th>
+                <td class="num">{p.n}</td>
+                <td class="barra-col">
+                  <span class="barra" style="width: {(100 * p.n) / maxPartido}%"></span>
+                  <span class="orgaos mudo">{p.orgaos.join(", ")}</span>
+                </td>
+                <td class="num">{brlCompacto(p.orcamento)}</td>
+                <td class="num">{num(p.cargos)}</td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+      <p class="mudo pequeno">* Orçamento sem operações especiais dos órgãos que o partido comanda. Órgãos da Presidência entram na contagem, mas sem orçamento próprio.</p>
+    </section>
+
+    <section class="cartao" aria-labelledby="t-rot">
+      <h2 id="t-rot">Quem comandou cada ministério desde 2023</h2>
+      <div class="tiles">
+        <div class="tile"><div class="rot">Trocas de ministro</div><div class="val num">{rot.trocas}</div><div class="det">{rot.mandatos} mandatos desde jan/2023</div></div>
+        <div class="tile"><div class="rot">Tempo médio de ministro</div><div class="val">{duracao(rot.meses_medio)}</div><div class="det">inclui quem ainda está no cargo</div></div>
+        <div class="tile"><div class="rot">Trocas de secretário</div><div class="val num">{num(rot.trocas_secretarios)}</div><div class="det">cargos CCE/FCE 1.17 e 1.18</div></div>
+        <div class="tile"><div class="rot">Tempo médio de secretário</div><div class="val">{duracao(rot.meses_medio_secretario)}</div></div>
+      </div>
+      {#if mesSiape}
+        <div class="espaco"><LinhaMinistros ministerios={doFiltro} fim={mesSiape} /></div>
+        <p class="mudo pequeno">Fonte: cadastro mensal de servidores (SIAPE, Portal da Transparência), dados até {mesAno(mesSiape)}. O início é a data de ingresso no cargo; a saída é aproximada (1º mês em que a pessoa já não aparece). Partidos: TSE.</p>
+      {/if}
+    </section>
+
+    <div>
       <section class="cartao">
         <h2>Fontes e atualização</h2>
         <ul class="fontes">
           {#each Object.entries(idx.fontes) as [id, f] (id)}
-            <li><a href={f.url} target="_blank" rel="noopener">{f.nome}</a><span class="mudo"> · dados de {fmtData(f.data_referencia)}</span></li>
+            <li><a href={f.url} target="_blank" rel="noopener">{f.nome}</a>{#if f.data_referencia}<span class="mudo"> · dados de {fmtData(f.data_referencia)}</span>{/if}</li>
           {/each}
         </ul>
         <p class="mudo pequeno">Página gerada em {fmtData(idx.gerado_em)}. Dados que dependem de leitura humana aparecem marcados como <span class="chip">curado</span>.</p>
@@ -174,11 +215,13 @@
   .acoes-lista { display: flex; flex-wrap: wrap; gap: 8px; }
   .desligado { opacity: 0.5; pointer-events: none; }
   td .pequeno { margin: 2px 0 0; }
-  .duas { display: grid; gap: 16px; }
-  @media (min-width: 900px) { .duas { grid-template-columns: 1fr 1fr; } }
-  .duas .cartao + .cartao { margin-top: 16px; }
-  @media (min-width: 900px) { .duas .cartao + .cartao { margin-top: 16px; } }
   .fontes { margin: 0; padding-left: 20px; }
   .fontes li { margin-bottom: 6px; }
   input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--marca); }
+  .partidos th[scope="row"] { font-weight: 700; text-transform: none; letter-spacing: 0; font-size: 0.9rem; color: var(--texto); white-space: nowrap; }
+  .partidos .barra-col { width: 60%; min-width: 160px; }
+  .partidos .barra { display: block; height: 12px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+  .partidos tr.sem .barra { background: var(--eixo); }
+  .partidos .orgaos { display: block; font-size: 0.75rem; margin-top: 3px; }
+  .espaco { margin-top: 16px; }
 </style>

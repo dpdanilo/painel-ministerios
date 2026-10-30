@@ -4,12 +4,13 @@ on:
   schedule:
     - cron: "0 9 * * 1"   # toda segunda, 06h de Brasília: orçamento e execução
     - cron: "0 8 3 * *"   # dia 3 de cada mês: estrutura (SIORG)
+    - cron: "0 8 12 * *"  # dia 12 de cada mês: ocupantes (SIAPE, publicado com ~2 meses de atraso) e partidos (TSE)
   workflow_dispatch:
     inputs:
       fonte:
         description: Fonte a atualizar
         type: choice
-        options: [tudo, siorg, orcamento]
+        options: [tudo, siorg, orcamento, ocupantes]
         default: tudo
 
 permissions:
@@ -42,15 +43,17 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then f="${{ inputs.fonte }}"
           elif [ "${{ github.event.schedule }}" = "0 8 3 * *" ]; then f=siorg
+          elif [ "${{ github.event.schedule }}" = "0 8 12 * *" ]; then f=ocupantes
           else f=orcamento; fi
           echo "fonte=$f" >> "$GITHUB_OUTPUT"
 
-      # Meses de execução já baixados não mudam: o cache evita baixá-los de novo.
+      # Um cache só para todas as fontes: a execução semanal do orçamento o mantém vivo (o GitHub apaga
+      # caches sem uso há 7 dias). Evita rebaixar meses antigos de execução e os ~44 meses do SIAPE.
       - uses: actions/cache@v6
         with:
           path: data/bruto
-          key: bruto-${{ steps.fonte.outputs.fonte }}-${{ github.run_id }}
-          restore-keys: bruto-${{ steps.fonte.outputs.fonte }}-
+          key: bruto-${{ github.run_id }}
+          restore-keys: bruto-
 
       - name: Coletar e normalizar
         id: coleta

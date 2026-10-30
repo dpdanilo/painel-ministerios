@@ -47,3 +47,29 @@ export function capitalizar(s) {
   const minusculo = s.toLowerCase();
   return minusculo.charAt(0).toUpperCase() + minusculo.slice(1);
 }
+
+/** Partido vindo do TSE (candidatura mais recente) ou da curadoria. */
+export function partidoSigla(p) {
+  return p?.sigla ?? null;
+}
+
+export function partidoDetalhe(p) {
+  if (!p) return "Sem candidatura registrada no TSE (2018–2026)";
+  if (p.fonte === "TSE") return `Partido na candidatura a ${p.cargo} em ${p.ano}${p.uf ? ` (${p.uf})` : ""} · TSE`;
+  return "Filiação informada na curadoria";
+}
+
+/** "2026-08" ou "2026-08-15" → "ago/2026" */
+export function mesAno(iso) {
+  if (!iso) return null;
+  return `${mesCurto(Number(iso.slice(5, 7)))}/${iso.slice(0, 4)}`;
+}
+
+/** Meses → "1 ano e 3 meses" */
+export function duracao(meses) {
+  if (meses == null) return "–";
+  const a = Math.floor(meses / 12), m = Math.round(meses % 12);
+  const pa = a ? `${a} ano${a > 1 ? "s" : ""}` : "";
+  const pm = m ? `${m} ${m > 1 ? "meses" : "mês"}` : "";
+  return [pa, pm].filter(Boolean).join(" e ") || "menos de 1 mês";
+}

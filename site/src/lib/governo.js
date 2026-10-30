@@ -79,3 +79,36 @@ export function cargosDirecao(detalhe, nivel) {
   const nn = String(nivel).padStart(2, "0");
   return (c[`CCE 1.${nn}`] || 0) + (c[`FCE 1.${nn}`] || 0);
 }
+
+export const SEM_CANDIDATURA = "Sem candidatura";
+
+/** Titulares atuais agrupados pelo partido da candidatura mais recente (TSE). */
+export function porPartido(ministerios) {
+  const g = new Map();
+  for (const m of ministerios) {
+    if (!m.ministro) continue;
+    const sigla = m.ministro.partido?.sigla ?? SEM_CANDIDATURA;
+    const v = g.get(sigla) || { sigla, n: 0, orcamento: 0, cargos: 0, orgaos: [] };
+    v.n += 1;
+    v.orcamento += m.orcamento_sem_oe?.dotacao_atual || 0;
+    v.cargos += m.n_cargos;
+    v.orgaos.push(m.sigla);
+    g.set(sigla, v);
+  }
+  return [...g.values()].sort((a, b) => (a.sigla === SEM_CANDIDATURA) - (b.sigla === SEM_CANDIDATURA) || b.n - a.n || b.orcamento - a.orcamento);
+}
+
+/** Totais de rotatividade no governo (desde jan/2023). */
+export function rotatividadeGoverno(ministerios) {
+  let trocas = 0, mandatos = 0, somaMeses = 0, nMeses = 0, trocasSec = 0, somaSec = 0, nSec = 0;
+  for (const m of ministerios) {
+    const r = m.rotatividade;
+    if (!r) continue;
+    trocas += r.ministros.encerrados;
+    mandatos += r.ministros.mandatos;
+    if (r.ministros.meses_medio != null) { somaMeses += r.ministros.meses_medio * r.ministros.mandatos; nMeses += r.ministros.mandatos; }
+    trocasSec += r.secretarios.encerrados;
+    if (r.secretarios.meses_medio != null) { somaSec += r.secretarios.meses_medio * r.secretarios.mandatos; nSec += r.secretarios.mandatos; }
+  }
+  return { trocas, mandatos, meses_medio: nMeses ? somaMeses / nMeses : null, trocas_secretarios: trocasSec, meses_medio_secretario: nSec ? somaSec / nSec : null };
+}

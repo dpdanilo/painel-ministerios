@@ -88,3 +88,32 @@ test("comparação: níveis de direção", () => {
   assert.deepEqual(niveisDirecao(d), [18, 17, 13]);
   assert.equal(cargosDirecao(d[0], 13), 4);
 });
+
+import { partidoDetalhe, mesAno, duracao } from "./formato.js";
+
+test("partido e datas", () => {
+  assert.equal(partidoDetalhe({ sigla: "PT", ano: 2022, cargo: "Senador", uf: "PI", fonte: "TSE" }), "Partido na candidatura a Senador em 2022 (PI) · TSE");
+  assert.match(partidoDetalhe(null), /Sem candidatura/);
+  assert.equal(mesAno("2026-08"), "ago/2026");
+  assert.equal(duracao(15), "1 ano e 3 meses");
+  assert.equal(duracao(1), "1 mês");
+  assert.equal(duracao(0), "menos de 1 mês");
+});
+
+import { porPartido, rotatividadeGoverno, SEM_CANDIDATURA } from "./governo.js";
+
+test("governo: por partido e rotatividade", () => {
+  const ms = [
+    { sigla: "A", n_cargos: 10, orcamento_sem_oe: { dotacao_atual: 5 }, ministro: { partido: { sigla: "PT" } },
+      rotatividade: { ministros: { mandatos: 2, encerrados: 1, meses_medio: 20 }, secretarios: { mandatos: 4, encerrados: 2, meses_medio: 10 } } },
+    { sigla: "B", n_cargos: 5, orcamento_sem_oe: null, ministro: { partido: null },
+      rotatividade: { ministros: { mandatos: 1, encerrados: 0, meses_medio: 40 }, secretarios: { mandatos: 0, encerrados: 0, meses_medio: null } } },
+    { sigla: "C", n_cargos: 1, ministro: { partido: { sigla: "PT" } }, rotatividade: null },
+  ];
+  const p = porPartido(ms);
+  assert.deepEqual(p.map((x) => [x.sigla, x.n]), [["PT", 2], [SEM_CANDIDATURA, 1]]);
+  const r = rotatividadeGoverno(ms);
+  assert.equal(r.trocas, 1);
+  assert.equal(r.mandatos, 3);
+  assert.equal(r.meses_medio, (20 * 2 + 40) / 3);
+});

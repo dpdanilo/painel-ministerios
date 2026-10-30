@@ -143,7 +143,7 @@ ministerios:
       - {{nome: M, sigla: MX, cod_siorg: "100", valido_de: 2023-01-01, valido_ate: null, norma_criacao: lei-1-2023{'' if sem_fonte else ', fonte: x'}}}
 """, encoding="utf-8")
     (tmp_path / "normas.yaml").write_text("normas:\n  - {id: lei-1-2023, url: x}\n" + normas, encoding="utf-8")
-    (tmp_path / "pessoas.yaml").write_text("pessoas:\n  - {id: a, nome: A}\n  - {id: b, nome: B}\n", encoding="utf-8")
+    (tmp_path / "pessoas.yaml").write_text("pessoas:\n  - {nome: A, filiacoes: [{partido: X, valido_de: 2020-01-01, valido_ate: null}]}\n", encoding="utf-8")
     (tmp_path / "ocupacoes.yaml").write_text("ocupacoes:\n" + ocupacoes, encoding="utf-8")
     (tmp_path / "politicas_publicas.yaml").write_text("politicas:\n" + politicas, encoding="utf-8")
     return tmp_path
@@ -151,8 +151,8 @@ ministerios:
 
 def test_validador_acusa_titulares_sobrepostos(tmp_path):
     p = _curadoria(tmp_path, ocupacoes="""
-  - {pessoa: a, unidade: "100", papel: titular, valido_de: 2023-01-01, valido_ate: 2024-06-01, fonte: x}
-  - {pessoa: b, unidade: "100", papel: titular, valido_de: 2024-01-01, valido_ate: null, fonte: x}
+  - {nome: A, unidade: "100", papel: titular, valido_de: 2023-01-01, valido_ate: 2024-06-01, fonte: x}
+  - {nome: B, unidade: "100", papel: titular, valido_de: 2024-01-01, valido_ate: null, fonte: x}
 """)
     rel = validar.Relatorio()
     validar.validar_curadoria(rel, p, unidades={"100"})
@@ -161,12 +161,12 @@ def test_validador_acusa_titulares_sobrepostos(tmp_path):
 
 def test_validador_aceita_titulares_em_sequencia(tmp_path):
     p = _curadoria(tmp_path, ocupacoes="""
-  - {pessoa: a, unidade: "100", papel: titular, valido_de: 2023-01-01, valido_ate: 2024-01-01, fonte: x}
-  - {pessoa: b, unidade: "100", papel: titular, valido_de: 2024-01-01, valido_ate: null, fonte: x}
+  - {nome: A, unidade: "100", papel: titular, valido_de: 2023-01-01, valido_ate: 2024-01-01, fonte: x}
+  - {nome: B, unidade: "100", papel: titular, valido_de: 2024-01-01, valido_ate: null, fonte: x}
 """)
     rel = validar.Relatorio()
     validar.validar_curadoria(rel, p, unidades={"100"})
-    assert rel.erros == []
+    assert rel.erros == ["pessoa A: filiação sem fonte"]
 
 
 def test_validador_acusa_sem_fonte_codigo_e_acao_inexistentes(tmp_path):
@@ -177,7 +177,7 @@ def test_validador_acusa_sem_fonte_codigo_e_acao_inexistentes(tmp_path):
     validar.validar_curadoria(rel, p, unidades={"100"}, acoes={("2026", "00AF")})
     texto = "\n".join(rel.erros)
     assert "sem fonte" in texto
-    assert "pessoa não existe" in texto
+    assert "filiação sem fonte" in texto
     assert "unidade 777" in texto
     assert "ação XXXX" in texto
 
@@ -226,3 +226,66 @@ def test_validador_aceita_anual_defasado_em_um_mes():
     rel = validar.Relatorio()
     validar.validar_orcamento(rel, [{**linhas[0], "empenhado_orcdesp": "60"}], mensal=mensal)
     assert any("arquivo anual" in a for a in rel.avisos)
+
+
+# ------------------------------------------------------------------ fase 3
+
+from etl import servidores
+from etl.publicar import do_governo_atual, meses_entre
+
+
+def test_funcao_e_titulo_siape():
+    assert servidores.funcao_de({"cargo": "Sem informaç", "sigla": "CCX", "nivel": "0117"}) == ("CCE 1.17", 17)
+    assert servidores.funcao_de({"cargo": "Sem informaç", "sigla": "FEX", "nivel": "0115"}) == ("FCE 1.15", 15)
+    assert servidores.funcao_de({"cargo": "MINISTRO DE ESTADO", "sigla": "-1", "nivel": "-1"}) == ("MEST", 99)
+    assert servidores.titulo("SECRETARIO(A) EXECUTIVO(A) DA PASTA") == "Secretario(a) Executivo(a) da Pasta"
+    assert servidores.eh_dirigente({"DESCRICAO_CARGO": "X", "SITUACAO_VINCULO": "ATIVO", "SIGLA_FUNCAO": "CCX", "NIVEL_FUNCAO": "0113"})
+    assert not servidores.eh_dirigente({"DESCRICAO_CARGO": "X", "SITUACAO_VINCULO": "ATIVO", "SIGLA_FUNCAO": "CCX", "NIVEL_FUNCAO": "0110"})
+    assert not servidores.eh_dirigente({"DESCRICAO_CARGO": "X", "SITUACAO_VINCULO": "ATIVO", "SIGLA_FUNCAO": "CCX", "NIVEL_FUNCAO": "0213"})
+
+
+def test_pessoa_id_estavel_e_sem_cpf():
+    a = servidores.pessoa_id("José da Silva", "123456")
+    assert a == servidores.pessoa_id("JOSE DA SILVA", "123456") and "123456" not in a
+
+
+def test_governo_anterior_e_duracao():
+    assert not do_governo_atual({"inicio": "2022-03-31", "fim_aprox": "2023-02"})
+    assert do_governo_atual({"inicio": "2019-05-01", "fim_aprox": ""})      # servidor de carreira que segue no cargo
+    assert do_governo_atual({"inicio": "2023-01-01", "fim_aprox": "2024-05"})
+    assert meses_entre("2023-01-01", "2024-05", "2026-08") == 16
+    assert meses_entre("2026-04-02", None, "2026-08") == 4
+
+
+def test_uorg_abreviada_bate_com_siorg():
+    c = servidores.chave
+    assert servidores.bate_abreviado(c("COORD-GERAL DE GEST DE INFORM FUNCIONAIS"), c("Coordenação-Geral de Gestão de Informações Funcionais"))
+    assert servidores.bate_abreviado(c("SUBSECRETARIA DE PLANEJAMENTO, ORCAMENTO"), c("Subsecretaria de Planejamento, Orçamento e Administração"))
+    assert not servidores.bate_abreviado(c("SECRETARIA EXECUTIVA"), c("Secretaria Executiva Adjunta"))
+    assert not servidores.bate_abreviado(c("DEPARTAMENTO DE OBRAS"), c("Departamento de Projetos"))
+    assert servidores.bate_abreviado(c("MIN DO EMPRE MICRO EMP DE PEQUENO PORTE"),
+                                     c("Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte"))
+    assert not servidores.bate_abreviado(c("MIN DESENVOLV IND COMERCIO E SERVICOS"),
+                                         c("Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte"))
+
+
+def test_mandatos_tolera_falha_e_descarta_residuo():
+    meses = ["202301", "202302", "202303", "202304", "202305", "202306", "202307", "202308", "202309", "202310"]
+    linha = lambda inicio: {"inicio": inicio, "atividade": "SECRETARIO(A)", "cargo": "", "cod_uorg": "1", "uorg": "U",
+                            "_mid": "mx", "_funcao": "CCE 1.17", "_nivel": 17}
+    pessoas = {"p1": {"nome": "Fulana"}, "p2": {"nome": "Beltrano"}}
+    presenca = {
+        ("p1", "CCE 1.17", "1"): {0: linha("2023-01-02"), 1: linha("2023-01-02"), 3: linha("2023-01-02"), 4: linha("2023-01-02")},
+        ("p2", "CCE 1.17", "1"): {8: linha("2022-03-31")},            # reaparece 1 mês com ingresso antigo: resíduo
+    }
+    r = servidores.mandatos(presenca, meses, pessoas)
+    assert len(r) == 1
+    assert (r[0]["primeiro_mes"], r[0]["ultimo_mes"], r[0]["fim_aprox"]) == ("202301", "202305", "2023-06")
+
+
+def test_posse_do_sucessor_encerra_antecessor():
+    o = [{"funcao": "MEST", "ministerio_id": "mx", "inicio": "2023-01-01", "primeiro_mes": "202301", "fim_aprox": "2024-04"},
+         {"funcao": "MEST", "ministerio_id": "mx", "inicio": "2023-10-01", "primeiro_mes": "202310", "fim_aprox": ""},
+         {"funcao": "CCE 1.17", "ministerio_id": "mx", "inicio": "2023-01-01", "primeiro_mes": "202301", "fim_aprox": ""}]
+    servidores.encerrar_antecessores(o)
+    assert o[0]["fim_aprox"] == "2023-10" and o[1]["fim_aprox"] == "" and o[2]["fim_aprox"] == ""

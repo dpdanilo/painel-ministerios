@@ -28,6 +28,8 @@
   --etapa-1: #b7d3f6;
   --etapa-2: #5598e7;
   --etapa-3: #1c5cab;
+  --gantt-a: #86b6ef; --gantt-a-txt: #0b0b0b;
+  --gantt-b: #1c5cab; --gantt-b-txt: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,6 +58,8 @@
     --etapa-1: #184f95;
     --etapa-2: #3987e5;
     --etapa-3: #9ec5f4;
+    --gantt-a: #2a78d6; --gantt-a-txt: #ffffff;
+    --gantt-b: #9ec5f4; --gantt-b-txt: #0b0b0b;
   }
 }
 
@@ -84,6 +88,8 @@
   --etapa-1: #184f95;
   --etapa-2: #3987e5;
   --etapa-3: #9ec5f4;
+  --gantt-a: #2a78d6; --gantt-a-txt: #ffffff;
+  --gantt-b: #9ec5f4; --gantt-b-txt: #0b0b0b;
 }
 
 * { box-sizing: border-box; }
