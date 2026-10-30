@@ -24,7 +24,7 @@ from datetime import date
 from pathlib import Path
 
 from . import curadoria
-from .comum import BRUTO, NORMALIZADO, baixar, gravar_csv, ler_csv, registrar_fonte, sha256_obj
+from .comum import BRUTO, NORMALIZADO, baixar, fontes, gravar_csv, ler_csv, registrar_fonte, sha256_obj
 
 BASE = "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/servidores"
 PASTA = BRUTO / "siape"
@@ -91,20 +91,32 @@ def filtrar_zip(caminho_zip: Path) -> list[dict]:
     return saida
 
 
+MESES_SEM_PUBLICACAO = 3   # o Portal publica o SIAPE com ~2 meses de atraso
+
+
 def coletar(desde=INICIO_SERIE) -> list[str]:
-    """Baixa os meses que faltam (o Portal publica com ~2 meses de atraso). Devolve os meses novos."""
+    """Baixa os meses que faltam. Devolve os meses novos.
+
+    Só os meses mais recentes podem ainda não estar publicados. Falha num mês mais antigo é erro de verdade
+    (servidor fora do ar, limite de requisições…): a coleta é interrompida para não gravar um histórico incompleto.
+    """
     PASTA.mkdir(parents=True, exist_ok=True)
     novos = []
-    for a, m in meses_desde(desde):
+    todos = list(meses_desde(desde))
+    recentes = {f"{a}{m:02d}" for a, m in todos[-MESES_SEM_PUBLICACAO:]}
+    for a, m in todos:
         ref = f"{a}{m:02d}"
         destino = PASTA / f"dirigentes_{ref}.csv"
         if destino.exists():
             continue
         zipf = PASTA / f"{ref}.zip"
         try:
-            baixar(f"{BASE}/{ref}_Servidores_SIAPE.zip", zipf, tentativas=2, timeout=900)
+            baixar(f"{BASE}/{ref}_Servidores_SIAPE.zip", zipf, tentativas=5 if ref not in recentes else 2,
+                   timeout=900, pausa=3.0)
         except RuntimeError:
-            continue   # mês ainda não publicado (403/404)
+            if ref in recentes:
+                continue   # mês ainda não publicado (403/404)
+            raise RuntimeError(f"SIAPE {ref}: download falhou e o mês já deveria estar publicado; coleta interrompida")
         linhas = filtrar_zip(zipf)
         gravar_csv(destino, linhas, CAMPOS_BRUTO)
         zipf.unlink()
@@ -282,6 +294,15 @@ def normalizar() -> bool:
     if not arquivos:
         return False
     meses = [a.stem.split("_")[1] for a in arquivos]
+    # Trava contra regressão: nunca substituir dados por um conjunto que termina antes do já publicado.
+    anterior = (fontes().get("siape", {}).get("data_referencia") or "")[:7].replace("-", "")
+    if anterior and meses[-1] < anterior:
+        raise RuntimeError(f"SIAPE: último mês disponível ({meses[-1]}) é anterior ao já registrado ({anterior}); "
+                           "cache incompleto? normalização recusada")
+    esperados = [f"{a}{m:02d}" for a, m in meses_desde(INICIO_SERIE, date(int(meses[-1][:4]), int(meses[-1][4:]), 1))]
+    faltam = sorted(set(esperados) - set(meses))
+    if faltam:
+        raise RuntimeError(f"SIAPE: faltam meses no meio da série ({', '.join(faltam[:6])}…); normalização recusada")
     por_mes = {m: ler_csv(a) for m, a in zip(meses, arquivos)}
     orgaos = mapa_orgaos([r for ls in por_mes.values() for r in ls])
 

@@ -289,3 +289,20 @@ def test_posse_do_sucessor_encerra_antecessor():
          {"funcao": "CCE 1.17", "ministerio_id": "mx", "inicio": "2023-01-01", "primeiro_mes": "202301", "fim_aprox": ""}]
     servidores.encerrar_antecessores(o)
     assert o[0]["fim_aprox"] == "2023-10" and o[1]["fim_aprox"] == "" and o[2]["fim_aprox"] == ""
+
+
+def test_coleta_siape_nao_engole_falha_de_mes_antigo(monkeypatch, tmp_path):
+    monkeypatch.setattr(servidores, "PASTA", tmp_path)
+    def falha(url, destino, **kw):
+        raise RuntimeError("403")
+    monkeypatch.setattr(servidores, "baixar", falha)
+    with pytest.raises(RuntimeError, match="já deveria estar publicado"):
+        servidores.coletar(desde=(2024, 1))
+
+
+def test_normalizacao_siape_recusa_regressao(monkeypatch, tmp_path):
+    monkeypatch.setattr(servidores, "PASTA", tmp_path)
+    monkeypatch.setattr(servidores, "fontes", lambda: {"siape": {"data_referencia": "2026-08-01"}})
+    (tmp_path / "dirigentes_202301.csv").write_text(",".join(servidores.CAMPOS_BRUTO) + "\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="anterior ao já registrado"):
+        servidores.normalizar()
