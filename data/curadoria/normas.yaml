@@ -65,3 +65,158 @@ normas:
     data: 2021-09-16
     ementa: Cria os Cargos Comissionados Executivos (CCE) e as Funções Comissionadas Executivas (FCE).
     url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/L14204.htm
+
+  # --- Reformas ministeriais 2003–2023 (conferidas no Planalto em 29/10/2026)
+  - id: mpv-111-2003
+    tipo: Medida Provisória
+    numero: "111"
+    data: 2003-03-21
+    ementa: "Cria a Secretaria Especial de Políticas de Promoção da Igualdade Racial."
+    url: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/111.htm
+
+  - id: mpv-163-2004
+    tipo: Medida Provisória
+    numero: "163"
+    data: 2004-01-23
+    ementa: "Altera a Lei 10.683/2003: cria o Ministério do Desenvolvimento Social e Combate à Fome e a Secretaria de Coordenação Política."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/mpv/163.htm
+
+  - id: lei-11204-2005
+    tipo: Lei
+    numero: "11.204"
+    data: 2005-12-05
+    ementa: "Altera a Lei 10.683/2003: Secretaria de Relações Institucionais; extingue a Secretaria de Comunicação de Governo e Gestão Estratégica."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11204.htm
+
+  - id: mpv-369-2007
+    tipo: Medida Provisória
+    numero: "369"
+    data: 2007-05-07
+    ementa: "Cria a Secretaria Especial de Portos da Presidência da República."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/mpv/369.htm
+
+  - id: lei-11497-2007
+    tipo: Lei
+    numero: "11.497"
+    data: 2007-06-28
+    ementa: "Cria a Secretaria de Comunicação Social da Presidência da República (conversão da MP 360/2007)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/lei/l11497.htm
+
+  - id: lei-11754-2008
+    tipo: Lei
+    numero: "11.754"
+    data: 2008-07-23
+    ementa: "Cria a Secretaria de Assuntos Estratégicos da Presidência da República."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11754.htm
+
+  - id: lei-11958-2009
+    tipo: Lei
+    numero: "11.958"
+    data: 2009-06-26
+    ementa: "Transforma a Secretaria Especial de Aquicultura e Pesca em Ministério da Pesca e Aquicultura."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11958.htm
+
+  - id: mpv-527-2011
+    tipo: Medida Provisória
+    numero: "527"
+    data: 2011-03-18
+    ementa: "Cria a Secretaria de Aviação Civil da Presidência da República."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/mpv/527.htm
+
+  - id: mpv-541-2011
+    tipo: Medida Provisória
+    numero: "541"
+    data: 2011-08-02
+    ementa: "Altera a Lei 10.683/2003 (passa a usar o nome Ministério da Ciência, Tecnologia e Inovação)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/mpv/541.htm
+
+  - id: lei-12792-2013
+    tipo: Lei
+    numero: "12.792"
+    data: 2013-03-28
+    ementa: "Cria a Secretaria da Micro e Pequena Empresa da Presidência da República."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12792.htm
+
+  - id: mpv-696-2015
+    tipo: Medida Provisória
+    numero: "696"
+    data: 2015-10-02
+    ementa: "Reforma ministerial de 2015 (altera a Lei 10.683/2003)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: mpv-726-2016
+    tipo: Medida Provisória
+    numero: "726"
+    data: 2016-05-12
+    ementa: "Reforma ministerial de 2016 (altera e revoga dispositivos da Lei 10.683/2003)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mpv-728-2016
+    tipo: Medida Provisória
+    numero: "728"
+    data: 2016-05-23
+    ementa: "Restabelece os Ministérios da Educação e da Cultura."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv728.htm
+
+  - id: mpv-768-2017
+    tipo: Medida Provisória
+    numero: "768"
+    data: 2017-02-02
+    ementa: "Cria a Secretaria-Geral da Presidência da República e o Ministério dos Direitos Humanos."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/mpv/mpv768.htm
+
+  - id: mpv-782-2017
+    tipo: Medida Provisória
+    numero: "782"
+    data: 2017-05-31
+    ementa: "Organização da Presidência e dos Ministérios (convertida na Lei 13.502/2017)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/mpv/mpv782.htm
+
+  - id: lei-13502-2017
+    tipo: Lei
+    numero: "13.502"
+    data: 2017-11-01
+    ementa: "Organização básica da Presidência da República e dos Ministérios."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13502.htm
+
+  - id: mpv-821-2018
+    tipo: Medida Provisória
+    numero: "821"
+    data: 2018-02-26
+    ementa: "Cria o Ministério Extraordinário da Segurança Pública."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/mpv/mpv821.htm
+
+  - id: lei-13690-2018
+    tipo: Lei
+    numero: "13.690"
+    data: 2018-07-10
+    ementa: "Cria o Ministério da Segurança Pública (conversão da MP 821/2018)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13690.htm
+
+  - id: mpv-980-2020
+    tipo: Medida Provisória
+    numero: "980"
+    data: 2020-06-10
+    ementa: "Desmembra o Ministério da Ciência, Tecnologia, Inovações e Comunicações."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/mpv/mpv980.htm
+
+  - id: mpv-1058-2021
+    tipo: Medida Provisória
+    numero: "1.058"
+    data: 2021-07-27
+    ementa: "Cria o Ministério do Trabalho e Previdência."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/mpv/mpv1058.htm
+
+  - id: mpv-1187-2023
+    tipo: Medida Provisória
+    numero: "1.187"
+    data: 2023-09-13
+    ementa: "Cria o Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte (desmembrado do MDIC)."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1187.htm
+
+  - id: lei-14816-2024
+    tipo: Lei
+    numero: "14.816"
+    data: 2024-01-16
+    ementa: "Conversão da MP 1.187/2023."
+    url: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14816.htm

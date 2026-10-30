@@ -5,12 +5,13 @@ on:
     - cron: "0 9 * * 1"   # toda segunda, 06h de Brasília: orçamento e execução
     - cron: "0 8 3 * *"   # dia 3 de cada mês: estrutura (SIORG)
     - cron: "0 8 12 * *"  # dia 12 de cada mês: ocupantes (SIAPE, publicado com ~2 meses de atraso) e partidos (TSE)
+    - cron: "0 8 20 * *"  # dia 20 de cada mês: orçamento de anos anteriores (ajustes de fechamento) e IPCA
   workflow_dispatch:
     inputs:
       fonte:
         description: Fonte a atualizar
         type: choice
-        options: [tudo, siorg, orcamento, ocupantes]
+        options: [tudo, siorg, orcamento, ocupantes, historico]
         default: tudo
 
 permissions:
@@ -44,6 +45,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then f="${{ inputs.fonte }}"
           elif [ "${{ github.event.schedule }}" = "0 8 3 * *" ]; then f=siorg
           elif [ "${{ github.event.schedule }}" = "0 8 12 * *" ]; then f=ocupantes
+          elif [ "${{ github.event.schedule }}" = "0 8 20 * *" ]; then f=historico
           else f=orcamento; fi
           echo "fonte=$f" >> "$GITHUB_OUTPUT"
 

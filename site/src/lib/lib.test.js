@@ -9,6 +9,7 @@ const nb = (s) => s.replace(/ /g, " ");
 
 test("formatação", () => {
   assert.equal(nb(brlCompacto(15_004_000_000)), "R$ 15,0 bi");
+  assert.equal(nb(brlCompacto(2_437_700_000_000)), "R$ 2,4 tri");
   assert.equal(nb(brlCompacto(323_400_000)), "R$ 323,4 mi");
   assert.equal(nb(brlCompacto(-1500)), "−R$ 1,5 mil");
   assert.equal(pct(1, 4), "25,0%");
@@ -116,4 +117,18 @@ test("governo: por partido e rotatividade", () => {
   assert.equal(r.trocas, 1);
   assert.equal(r.mandatos, 3);
   assert.equal(r.meses_medio, (20 * 2 + 40) / 3);
+});
+
+import { porNorma, corrigir, serieAnual } from "./historia.js";
+
+test("história: agrupamento por norma e correção pelo IPCA", () => {
+  const ev = [{ id: "a", norma: "mp1", data: "2016-05-12" }, { id: "b", norma: "mp1", data: "2016-05-12" }, { id: "c", norma: "mp2", data: "2019-01-01" }];
+  const g = porNorma(ev, { mp1: { numero: "726" } });
+  assert.deepEqual(g.map((x) => [x.norma, x.eventos.length]), [["mp2", 1], ["mp1", 2]]);
+  assert.equal(g[1].info.numero, "726");
+  const ipca = { fatores: { 2014: 2, 2026: 1 } };
+  assert.equal(corrigir(10, 2014, ipca), 20);
+  assert.equal(corrigir(10, 2020, ipca), 10);
+  const linhas = [[2014, 1, 2, 3, 4, 5, 6], [2026, 1, 2, 3, 4, 5, 6]];
+  assert.deepEqual(serieAnual(linhas, "pago_sem_oe", { real: true, ipca }), [["2014", 12], ["2026", 6]]);
 });

@@ -17,6 +17,8 @@ Códigos oficiais (SIORG, UO, programa, ação) são sempre texto, para não per
 | `transparencia-orcamento-<ano>` | Portal da Transparência (CGU): "Orçamento da Despesa" (anual) + "Despesas – Execução" (mensal) | downloads CSV em `dadosabertos-download.cgu.gov.br`, sem chave | semanal |
 | `siape` | Portal da Transparência (CGU): "Servidores – SIAPE", arquivo Cadastro | download mensal, sem chave (~80 MB/mês) | mensal (~2 meses de atraso) |
 | `tse` | TSE: candidaturas 2018, 2020, 2022, 2024 e 2026 (`consulta_cand`) | download, sem chave | mensal |
+| `transparencia-orcamento-historico` | Portal da Transparência: "Orçamento da Despesa" de 2014 até o ano passado | download, sem chave | mensal (ajustes de fechamento) |
+| `ipca` | IBGE: IPCA número-índice (SIDRA, tabela 1737) | API pública | mensal |
 | curadoria | gov.br dos ministérios, legislação (Planalto/LexML), DOU | leitura humana | sob demanda |
 
 Endpoints SIORG usados:
@@ -102,6 +104,14 @@ Uma linha por pessoa × função × unidade, juntando meses consecutivos do cada
 `pessoa_id, ano, partido, nome_partido, cargo, uf, municipio, situacao_candidatura, resultado`. Cruzamento por nome +
 6 dígitos centrais do CPF (TSE `NR_CPF_CANDIDATO` × SIAPE `CPF` mascarado).
 
+### `orcamento_historico.csv`: anos encerrados, desde 2014
+`exercicio, cod_orgao_superior, cod_programa, nome_programa, operacao_especial, dotacao_inicial, dotacao_atual, empenhado, pago`.
+`pago` = "ORÇAMENTO REALIZADO" do arquivo anual. `operacao_especial` = programa 0901–0913 (pelo código, porque em 2023 o
+Portal publicou os nomes de programa como "Sem informação"). Liquidado não existe nesse arquivo.
+
+### `ipca.csv`
+`mes, indice`: número-índice mensal do IPCA (base dez/1993 = 100).
+
 ### `orcamento_mensal.csv`
 `exercicio, mes, cod_uo, cod_programa, cod_acao, empenhado, liquidado, pago`: valores **do mês** (não acumulados).
 
@@ -119,7 +129,11 @@ Descrição de cada arquivo no [README](../README.md#atualizar-a-curadoria). Cam
 n_unidades, n_secretarias` (órgãos singulares do 1º nível) `, n_cargos, pct_fim, orcamento{…}` e `orcamento_sem_oe{…}`
 (mesmos campos, sem os programas de operações especiais).
 
-### `agregados/comparacao.json` (carregado só na tela de comparação, ~75 KB)
+Também no `index.json`: `serie_ministerios` (`[data, total, ministérios, Presidência, outros]` em cada data de mudança),
+`eventos[]` com `nomes{origem, destino}` (nome de cada órgão antes/depois do evento), `normas{}`,
+`ipca{referencia, fatores{ano: multiplicador}}` e `orcamento_anual_total` (`[ano, dotação sem OE, pago sem OE, dotação, pago]`).
+
+### `agregados/comparacao.json` (carregado só na tela de comparação, ~120 KB)
 Por ministério: `unidades_por_bloco{}`, `cargos_por_nivel{"CCE 1.17": n…}`, `mensal` e `mensal_sem_oe`
 (`[mes, empenhado, liquidado, pago]` acumulados), `principais_programas[]` (5 maiores sem operações especiais),
 `politicas[]`, `ocupantes[]` (titulares).
@@ -135,6 +149,8 @@ Por ministério: `unidades_por_bloco{}`, `cargos_por_nivel{"CCE 1.17": n…}`, `
 | `orcamento` | `colunas` + `linhas` (matriz), `mensal` (mês × programa), dicionários `uos`, `programas`, `acoes` |
 | `politicas[]`, `eventos[]`, `normas{}` | da curadoria (sem os vínculos pendentes) |
 | `competencias[]` | competências do ministério (SIORG) |
+| `historia[]` | nomes do órgão desde 2003: `nome, de, ate, categoria, norma` |
+| `orcamento_anual[]` | `[ano, dot_ini, dot_atual, empenhado, pago, dot_atual_sem_oe, pago_sem_oe]` do órgão orçamentário, de 2014 ao ano corrente |
 | `fontes{estrutura, orcamento, ocupantes, politicas}` | o que cada bloco do site mostra como fonte e data |
 
 ### `ministerios/<id>-competencias.json` (carregado ao abrir o detalhe de uma unidade)

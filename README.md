@@ -21,7 +21,8 @@ Transparência ┼─ etl/ (Python) ─ data/normalizado ┤
 - O navegador **nunca** chama as APIs do governo: os dados são coletados no GitHub Actions e publicados como arquivos estáticos.
 - `data/normalizado/` fica no git. Cada atualização vira um commit com o diff do que mudou.
 - O GitHub Actions atualiza sozinho: orçamento toda segunda, estrutura (SIORG) todo dia 3 e ocupantes
-  (SIAPE) + partidos (TSE) todo dia 12. Só faz commit e deploy se algo mudou.
+  (SIAPE) + partidos (TSE) todo dia 12, orçamento de anos anteriores + IPCA todo dia 20. Só faz commit e
+  deploy se algo mudou.
 - Falhas de coleta e pontos de curadoria abrem uma *issue* automaticamente.
 
 ## Rodar localmente
@@ -74,7 +75,7 @@ Os dados que não existem em fonte estruturada ficam em `data/curadoria/`, em YA
 | `pessoas.yaml` | filiação partidária informada à mão (prevalece sobre o TSE) |
 | `orgaos_siape.yaml` | órgão do SIAPE ↔ ministério, quando o nome não bate automaticamente |
 | `politicas_publicas.yaml` | nome conhecido da política ↔ ações/programas do orçamento, com justificativa |
-| `eventos_institucionais.yaml` | criações, extinções, fusões e recriações de ministérios |
+| `eventos_institucionais.yaml` | criações, extinções, fusões, desmembramentos e recriações desde 2003, cada um com a norma |
 | `normas.yaml` | leis, decretos e MPs citados |
 | `totais_referencia.yaml` | totais publicados por terceiros, para conferir o orçamento coletado |
 

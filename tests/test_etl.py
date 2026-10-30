@@ -212,6 +212,8 @@ def test_chave_nome_para_correspondencia():
 def test_operacao_especial():
     assert e_operacao_especial("OPERACOES ESPECIAIS: SERVICO DA DIVIDA INTERNA (JUROS EAMORT")
     assert not e_operacao_especial("MORADIA DIGNA")
+    assert e_operacao_especial("Sem informação", "0907")      # 2023: nomes vieram vazios no Portal
+    assert not e_operacao_especial("Sem informação", "0999")  # reserva de contingência não é operação especial
 
 
 def test_validador_aceita_anual_defasado_em_um_mes():
@@ -306,3 +308,28 @@ def test_normalizacao_siape_recusa_regressao(monkeypatch, tmp_path):
     (tmp_path / "dirigentes_202301.csv").write_text(",".join(servidores.CAMPOS_BRUTO) + "\n", encoding="utf-8")
     with pytest.raises(RuntimeError, match="anterior ao já registrado"):
         servidores.normalizar()
+
+
+# ------------------------------------------------------------------ fase 4
+
+from etl.historico import fatores_ipca
+from etl.publicar import em_vigor, nome_em
+
+
+def test_contagem_de_ministerios_bate_com_numeros_conhecidos():
+    # Sem o presidente do Banco Central (status de ministro 2004–2021), que não entra no painel.
+    assert len(em_vigor("2015-06-01")) == 38      # "39 ministérios" de Dilma
+    assert len(em_vigor("2019-06-01")) == 21      # "22 ministérios" de Bolsonaro
+    assert len(em_vigor("2023-06-01")) == 37      # Lula 3 antes do MEMP
+    assert len(em_vigor("2023-10-01")) == 38      # depois do MEMP (MP 1.187/2023)
+
+
+def test_nomes_antes_e_depois_de_um_evento():
+    assert nome_em("mds", "2019-01-01", depois=False) == "Ministério do Desenvolvimento Social"
+    assert nome_em("cidadania", "2019-01-01", depois=True) == "Ministério da Cidadania"
+    assert nome_em("mt", "2019-01-01", depois=True) == "Ministério da Infraestrutura"
+
+
+def test_fator_ipca_usa_media_do_ano():
+    ipca = [{"mes": "2020-01", "indice": "100"}, {"mes": "2020-02", "indice": "100"}, {"mes": "2021-01", "indice": "110"}]
+    assert fatores_ipca(ipca) == {2020: 1.1, 2021: 1.0}

@@ -5,6 +5,8 @@
   import { CATEGORIAS, execucao, atribuirSlots, niveisDirecao, cargosDirecao } from "../lib/governo.js";
   import { BLOCOS } from "../lib/estrutura.js";
   import LinhasPercentual from "../components/LinhasPercentual.svelte";
+  import GraficoSerie from "../components/GraficoSerie.svelte";
+  import { corrigir } from "../lib/historia.js";
   import BotaoCsv from "../components/BotaoCsv.svelte";
 
   const MAX = 6;
@@ -48,6 +50,10 @@
 
   let series = $derived(sel.filter((m) => m.orcamento_sem_oe?.dotacao_atual).map((m) => ({
     nome: m.sigla, cor: m.cor, pontos: m.d.mensal_sem_oe.map(([mes, , , pago]) => [mes, pago / m.orcamento_sem_oe.dotacao_atual]),
+  })));
+  // Orçamento anual sem operações especiais, corrigido pelo IPCA: [ano, dot_sem_oe, pago_sem_oe, dot_atual, pago]
+  let seriesAnuais = $derived(sel.filter((m) => m.d.orcamento_anual?.length).map((m) => ({
+    nome: m.sigla, cor: m.cor, pontos: m.d.orcamento_anual.map((l) => [String(l[0]), corrigir(l[1], l[0], idx.ipca)]),
   })));
   let maxDot = $derived(Math.max(1, ...sel.map((m) => m.orcamento_sem_oe?.dotacao_atual || 0)));
   let niveis = $derived(niveisDirecao(sel.map((m) => m.d)));
@@ -134,6 +140,15 @@
           <h2 id="t-ritmo">Ritmo de execução no ano</h2>
           <p class="sec pequeno">Quanto da dotação (sem operações especiais) já foi pago, mês a mês. Porcentagem, para comparar órgãos de tamanhos diferentes.</p>
           <LinhasPercentual {series} rotulo="Pago / dotação" />
+        </section>
+      {/if}
+
+      {#if seriesAnuais.length}
+        <section class="cartao" aria-labelledby="t-anos">
+          <h2 id="t-anos">Orçamento desde 2014</h2>
+          <p class="sec pequeno">Dotação atual sem operações especiais, corrigida pela inflação (IPCA). Série de cada órgão orçamentário: em 2019–2022 alguns órgãos estavam dentro de outros ministérios e mantiveram orçamento próprio.</p>
+          <GraficoSerie series={seriesAnuais} fmt={(v) => (v == null ? "–" : brlCompacto(v))} tabelaTitulo="Ano"
+            rotulo={"Dotação anual corrigida: " + seriesAnuais.map((s) => `${s.nome} ${brlCompacto(s.pontos.at(-1)?.[1])}`).join(", ")} />
         </section>
       {/if}
 

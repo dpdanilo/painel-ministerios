@@ -4,6 +4,7 @@
   import { brlCompacto, num, pct, data as fmtData, normalizar, partidoSigla, partidoDetalhe, duracao, mesAno } from "../lib/formato.js";
   import { CATEGORIAS, METRICAS, somarGoverno, execucao, ordenar, porPartido, rotatividadeGoverno, SEM_CANDIDATURA } from "../lib/governo.js";
   import LinhaMinistros from "../components/LinhaMinistros.svelte";
+  import HistoriaGoverno from "../components/HistoriaGoverno.svelte";
   import MapaExecutivo from "../components/MapaExecutivo.svelte";
   import BotaoCsv from "../components/BotaoCsv.svelte";
 
@@ -190,6 +191,8 @@
         <p class="mudo pequeno">Fonte: cadastro mensal de servidores (SIAPE, Portal da Transparência), dados até {mesAno(mesSiape)}. O início é a data de ingresso no cargo; a saída é aproximada (1º mês em que a pessoa já não aparece). Partidos: TSE.</p>
       {/if}
     </section>
+
+    <HistoriaGoverno {idx} />
 
     <div>
       <section class="cartao">

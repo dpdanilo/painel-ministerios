@@ -1,5 +1,7 @@
 fonte_id,nome,url,data_referencia,coletado_em,hash
+ipca,"IBGE – IPCA, número-índice (SIDRA, tabela 1737)",https://sidra.ibge.gov.br/tabela/1737,2026-09-01,2026-10-29,82d850723e9b20aab01e4ba43f724ff9057d434135f3cdf61bd1d05832013f83
 siape,"Portal da Transparência – Servidores (SIAPE), cadastro mensal (CGU)",https://portaldatransparencia.gov.br/download-de-dados/servidores,2026-08-01,2026-10-29,9f5b3218a71c0ef4f5f1bd131fceb56b353cde8727ca95ab55a6c29866f27ce7
 siorg,SIORG – Estrutura Organizacional (MGI),https://estruturaorganizacional.dados.gov.br/doc,2026-10-29,2026-10-29,0ab2dff5b09538c68b38eea7d2532ca3153201d3a3c2613076b6731a840a8916
 transparencia-orcamento-2026,Portal da Transparência – Orçamento da Despesa e Execução 2026 (CGU),https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa/2026,2026-10-29,2026-10-29,c0deb08ad697830a193130c22eeb0ea5148974ccea042366aacab8b6a9a54662
+transparencia-orcamento-historico,Portal da Transparência – Orçamento da Despesa 2014–2025 (CGU),https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa,2025-12-31,2026-10-29,06db1a17d7e796d6b26e46fe6c5003f9eea7a6a272738d1eee3316c8d1b32bdd
 tse,"TSE – Candidaturas (dados abertos), 2018 a 2026",https://dadosabertos.tse.jus.br/dataset/?q=candidatos,2026-10-29,2026-10-29,83562f7def2268c4b2c997b2ea6eee85641bac1a78844097ce032e09b13eb333

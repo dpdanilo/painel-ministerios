@@ -1,15 +1,439 @@
 # Criações, extinções, fusões, desmembramentos e recriações de ministérios.
-# tipo: criacao | extincao | fusao | desmembramento | recriacao | renomeacao
+# tipo: criacao | extincao | fusao | desmembramento | recriacao | renomeacao | transformacao
 # `origem` e `destino` usam os `id` de ministerios.yaml (listas, para fusões N:N).
 
 eventos:
+  - id: cgu-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [cgu]
+    norma: mpv-103-2003
+    descricao: "A Corregedoria-Geral da União é transformada em Controladoria-Geral da União."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
   - id: mcid-criacao-2003
     tipo: criacao
     data: 2003-01-01
     origem: []
     destino: [mcid]
     norma: mpv-103-2003
+    descricao: "A Secretaria Especial de Desenvolvimento Urbano é transformada em Ministério das Cidades."
     fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mdhc-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mdhc]
+    norma: mpv-103-2003
+    descricao: "Secretaria Especial dos Direitos Humanos, com prerrogativas de Ministro."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mds-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mds]
+    norma: mpv-103-2003
+    descricao: "A Secretaria de Estado de Assistência Social é transformada em Ministério da Assistência e Promoção Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mesa-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mesa]
+    norma: mpv-103-2003
+    descricao: "Criado o cargo de Ministro Extraordinário de Segurança Alimentar e Combate à Fome."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mesp-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mesp]
+    norma: mpv-103-2003
+    descricao: "O Ministério do Esporte e Turismo é transformado em Ministério do Esporte."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mmulheres-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mmulheres]
+    norma: mpv-103-2003
+    descricao: "Secretaria Especial de Políticas para as Mulheres, com prerrogativas de Ministro."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mpa-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mpa]
+    norma: mpv-103-2003
+    descricao: "Criada a Secretaria Especial de Aquicultura e Pesca, com prerrogativas de Ministro."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mps-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mps]
+    norma: mpv-103-2003
+    descricao: "O Ministério da Previdência e Assistência Social é transformado em Ministério da Previdência Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mtur-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [mtur]
+    norma: mpv-103-2003
+    descricao: "Criado o Ministério do Turismo; o Ministério do Esporte e Turismo passa a ser só do Esporte."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: secom-criacao-2003
+    tipo: criacao
+    data: 2003-01-01
+    origem: []
+    destino: [secom]
+    norma: mpv-103-2003
+    descricao: "A Secretaria de Estado de Comunicação de Governo é transformada em Secretaria de Comunicação de Governo e Gestão Estratégica."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/103.htm
+
+  - id: mir-criacao-2003
+    tipo: criacao
+    data: 2003-03-21
+    origem: []
+    destino: [mir]
+    norma: mpv-111-2003
+    descricao: "Criada a Secretaria Especial de Políticas de Promoção da Igualdade Racial, com prerrogativas de Ministro."
+    fonte: https://www.planalto.gov.br/ccivil_03/mpv/antigas_2003/111.htm
+
+  - id: mds-fusao-2004
+    tipo: fusao
+    data: 2004-01-23
+    origem: [mds, mesa]
+    destino: [mds]
+    norma: mpv-163-2004
+    descricao: "Assistência Social vira Ministério do Desenvolvimento Social e Combate à Fome; extinto o Ministério Extraordinário de Segurança Alimentar."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/mpv/163.htm
+
+  - id: sri-criacao-2004
+    tipo: criacao
+    data: 2004-01-23
+    origem: []
+    destino: [sri]
+    norma: mpv-163-2004
+    descricao: "Criada a Secretaria de Coordenação Política e Assuntos Institucionais."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/mpv/163.htm
+
+  - id: secom-extincao-2005
+    tipo: extincao
+    data: 2005-12-05
+    origem: [secom]
+    destino: []
+    norma: lei-11204-2005
+    descricao: "Extinta a Secretaria de Comunicação de Governo e Gestão Estratégica (comunicação vai para a Secretaria-Geral)."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11204.htm
+
+  - id: sri-renomeacao-2005
+    tipo: renomeacao
+    data: 2005-12-05
+    origem: [sri]
+    destino: [sri]
+    norma: lei-11204-2005
+    descricao: "A Coordenação Política passa a se chamar Secretaria de Relações Institucionais."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11204.htm
+
+  - id: mpor-criacao-2007
+    tipo: criacao
+    data: 2007-05-07
+    origem: []
+    destino: [mpor]
+    norma: mpv-369-2007
+    descricao: "Criada a Secretaria Especial de Portos, com prerrogativas de Ministro."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/mpv/369.htm
+
+  - id: secom-recriacao-2007
+    tipo: recriacao
+    data: 2007-06-28
+    origem: []
+    destino: [secom]
+    norma: lei-11497-2007
+    descricao: "Criada a Secretaria de Comunicação Social da Presidência da República."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/lei/l11497.htm
+
+  - id: sae-criacao-2008
+    tipo: criacao
+    data: 2008-07-23
+    origem: []
+    destino: [sae]
+    norma: lei-11754-2008
+    descricao: "Criada a Secretaria de Assuntos Estratégicos."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11754.htm
+
+  - id: mpa-transformacao-2009
+    tipo: transformacao
+    data: 2009-06-26
+    origem: [mpa]
+    destino: [mpa]
+    norma: lei-11958-2009
+    descricao: "A Secretaria Especial de Aquicultura e Pesca vira Ministério da Pesca e Aquicultura."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11958.htm
+
+  - id: sac-criacao-2011
+    tipo: criacao
+    data: 2011-03-18
+    origem: []
+    destino: [sac]
+    norma: mpv-527-2011
+    descricao: "Criada a Secretaria de Aviação Civil."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/mpv/527.htm
+
+  - id: mcti-renomeacao-2011
+    tipo: renomeacao
+    data: 2011-08-02
+    origem: [mcti]
+    destino: [mcti]
+    norma: mpv-541-2011
+    descricao: "Ciência e Tecnologia passa a Ciência, Tecnologia e Inovação."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/mpv/541.htm
+
+  - id: memp-criacao-2013
+    tipo: criacao
+    data: 2013-03-28
+    origem: []
+    destino: [memp]
+    norma: lei-12792-2013
+    descricao: "Criada a Secretaria da Micro e Pequena Empresa."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/lei/l12792.htm
+
+  - id: gsi-extincao-2015
+    tipo: extincao
+    data: 2015-10-02
+    origem: [gsi]
+    destino: []
+    norma: mpv-696-2015
+    descricao: "Extinto o cargo de Ministro Chefe do GSI; criada a Casa Militar, sem status de ministério."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: memp-extincao-2015
+    tipo: extincao
+    data: 2015-10-02
+    origem: [memp]
+    destino: []
+    norma: mpv-696-2015
+    descricao: "Extinto o cargo de Ministro Chefe da Secretaria da Micro e Pequena Empresa (vira Secretaria Especial da Secretaria de Governo)."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: mmirdh-fusao-2015
+    tipo: fusao
+    data: 2015-10-02
+    origem: [mdhc, mmulheres, mir]
+    destino: [mmirdh]
+    norma: mpv-696-2015
+    descricao: "Direitos Humanos, Mulheres e Igualdade Racial fundidos em um ministério."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: mpa-extincao-2015
+    tipo: fusao
+    data: 2015-10-02
+    origem: [mpa, mapa]
+    destino: [mapa]
+    norma: mpv-696-2015
+    descricao: "Extinto o Ministério da Pesca e Aquicultura; competências vão para a Agricultura."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: mte-fusao-2015
+    tipo: fusao
+    data: 2015-10-02
+    origem: [mte, mps]
+    destino: [mte]
+    norma: mpv-696-2015
+    descricao: "Trabalho e Previdência fundidos no Ministério do Trabalho e Previdência Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: sae-extincao-2015
+    tipo: extincao
+    data: 2015-10-02
+    origem: [sae]
+    destino: []
+    norma: mpv-696-2015
+    descricao: "Extinto o cargo de Ministro Chefe da Secretaria de Assuntos Estratégicos."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: segov-fusao-2015
+    tipo: fusao
+    data: 2015-10-02
+    origem: [sg, sri]
+    destino: [sri]
+    norma: mpv-696-2015
+    descricao: "Secretaria-Geral transformada em Secretaria de Governo, que absorve as Relações Institucionais."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/mpv/mpv696.htm
+
+  - id: cgu-transformacao-2016
+    tipo: transformacao
+    data: 2016-05-12
+    origem: [cgu]
+    destino: [cgu]
+    norma: mpv-726-2016
+    descricao: "Extinta a CGU; criado o Ministério da Transparência, Fiscalização e Controle."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: gsi-recriacao-2016
+    tipo: recriacao
+    data: 2016-05-12
+    origem: []
+    destino: [gsi]
+    norma: mpv-726-2016
+    descricao: "Extinta a Casa Militar; recriado o Gabinete de Segurança Institucional."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mcti-fusao-2016
+    tipo: fusao
+    data: 2016-05-12
+    origem: [mcti, mcom]
+    destino: [mcti]
+    norma: mpv-726-2016
+    descricao: "Ciência, Tecnologia e Inovação absorve as Comunicações (MCTIC)."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mds-fusao-2016
+    tipo: fusao
+    data: 2016-05-12
+    origem: [mds, mda]
+    destino: [mds]
+    norma: mpv-726-2016
+    descricao: "Desenvolvimento Social absorve o Desenvolvimento Agrário (MDSA)."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mec-fusao-2016
+    tipo: fusao
+    data: 2016-05-12
+    origem: [mec, minc]
+    destino: [mec]
+    norma: mpv-726-2016
+    descricao: "Extinto o Ministério da Cultura; Educação vira Educação e Cultura."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mjsp-fusao-2016
+    tipo: fusao
+    data: 2016-05-12
+    origem: [mjsp, mmirdh]
+    destino: [mjsp]
+    norma: mpv-726-2016
+    descricao: "Justiça vira Justiça e Cidadania e absorve Mulheres, Igualdade Racial e Direitos Humanos."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mt-fusao-2016
+    tipo: fusao
+    data: 2016-05-12
+    origem: [mt, mpor, sac]
+    destino: [mt]
+    norma: mpv-726-2016
+    descricao: "Transportes, Portos e Aviação Civil reunidos em um ministério."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: mte-desmembramento-2016
+    tipo: desmembramento
+    data: 2016-05-12
+    origem: [mte]
+    destino: [mte, mf]
+    norma: mpv-726-2016
+    descricao: "Trabalho e Previdência Social vira Ministério do Trabalho; Previdência vai para a Fazenda."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: renomeacoes-2016
+    tipo: renomeacao
+    data: 2016-05-12
+    origem: [mdic, mpo]
+    destino: [mdic, mpo]
+    norma: mpv-726-2016
+    descricao: "Indústria, Comércio Exterior e Serviços; Planejamento, Desenvolvimento e Gestão."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: secom-extincao-2016
+    tipo: extincao
+    data: 2016-05-12
+    origem: [secom]
+    destino: []
+    norma: mpv-726-2016
+    descricao: "Extinta a Secretaria de Comunicação Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv726.htm
+
+  - id: minc-recriacao-2016
+    tipo: recriacao
+    data: 2016-05-23
+    origem: [mec]
+    destino: [mec, minc]
+    norma: mpv-728-2016
+    descricao: "Recriados o Ministério da Cultura e o Ministério da Educação, separados."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/mpv/mpv728.htm
+
+  - id: mdh-criacao-2017
+    tipo: desmembramento
+    data: 2017-02-02
+    origem: [mjsp]
+    destino: [mjsp, mdhc]
+    norma: mpv-768-2017
+    descricao: "Criado o Ministério dos Direitos Humanos; Justiça e Cidadania vira Justiça e Segurança Pública."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/mpv/mpv768.htm
+
+  - id: sg-recriacao-2017
+    tipo: recriacao
+    data: 2017-02-02
+    origem: []
+    destino: [sg]
+    norma: mpv-768-2017
+    descricao: "Recriada a Secretaria-Geral da Presidência da República."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/mpv/mpv768.htm
+
+  - id: mds-renomeacao-2017
+    tipo: renomeacao
+    data: 2017-05-31
+    origem: [mds]
+    destino: [mds]
+    norma: mpv-782-2017
+    descricao: "Desenvolvimento Social e Agrário passa a Desenvolvimento Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/mpv/mpv782.htm
+
+  - id: msp-criacao-2018
+    tipo: desmembramento
+    data: 2018-02-26
+    origem: [mjsp]
+    destino: [mjsp, msp]
+    norma: mpv-821-2018
+    descricao: "Criado o Ministério Extraordinário da Segurança Pública; Justiça e Segurança Pública vira Ministério da Justiça."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/mpv/mpv821.htm
+
+  - id: msp-transformacao-2018
+    tipo: transformacao
+    data: 2018-07-10
+    origem: [msp]
+    destino: [msp]
+    norma: lei-13690-2018
+    descricao: "Criado o Ministério da Segurança Pública (deixa de ser extraordinário)."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13690.htm
+
+  - id: cidadania-fusao-2019
+    tipo: fusao
+    data: 2019-01-01
+    origem: [mds, minc, mesp]
+    destino: [cidadania]
+    norma: mpv-870-2019
+    descricao: "Desenvolvimento Social, Cultura e Esporte transformados no Ministério da Cidadania."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  - id: economia-fusao-2019
+    tipo: fusao
+    data: 2019-01-01
+    origem: [mf, mpo, mdic, mte]
+    destino: [economia]
+    norma: mpv-870-2019
+    descricao: "Fazenda, Planejamento, Indústria e Trabalho transformados no Ministério da Economia."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
 
   - id: mdr-fusao-2019
     tipo: fusao
@@ -17,14 +441,140 @@ eventos:
     origem: [mcid, mi]
     destino: [midr]
     norma: mpv-870-2019
-    descricao: Cidades e Integração Nacional fundidos no Ministério do Desenvolvimento Regional.
+    descricao: "Cidades e Integração Nacional transformados no Ministério do Desenvolvimento Regional."
     fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
 
+  - id: mjsp-fusao-2019
+    tipo: fusao
+    data: 2019-01-01
+    origem: [mjsp, msp]
+    destino: [mjsp]
+    norma: mpv-870-2019
+    descricao: "Justiça e Segurança Pública reunidos de novo."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  - id: renomeacoes-2019
+    tipo: renomeacao
+    data: 2019-01-01
+    origem: [mt, mdhc, cgu]
+    destino: [mt, mdhc, cgu]
+    norma: mpv-870-2019
+    descricao: "Infraestrutura; Mulher, Família e Direitos Humanos; Controladoria-Geral da União."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/mpv/mpv870.htm
+
+  - id: mcom-recriacao-2020
+    tipo: desmembramento
+    data: 2020-06-10
+    origem: [mcti]
+    destino: [mcti, mcom]
+    norma: mpv-980-2020
+    descricao: "Extinto o MCTIC; criados os Ministérios da Ciência, Tecnologia e Inovações e das Comunicações."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/mpv/mpv980.htm
+
+  - id: mtp-criacao-2021
+    tipo: desmembramento
+    data: 2021-07-27
+    origem: [economia]
+    destino: [economia, mtp]
+    norma: mpv-1058-2021
+    descricao: "Criado o Ministério do Trabalho e Previdência, separado da Economia."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/mpv/mpv1058.htm
+
+  - id: cidadania-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [cidadania]
+    destino: [mds, mesp]
+    norma: mpv-1154-2023
+    descricao: "Da Cidadania saem Desenvolvimento e Assistência Social e Esporte."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: criacoes-2023
+    tipo: criacao
+    data: 2023-01-01
+    origem: []
+    destino: [mir, mpi, secom]
+    norma: mpv-1154-2023
+    descricao: "Criados os Ministérios da Igualdade Racial e dos Povos Indígenas e a Secretaria de Comunicação Social."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: economia-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [economia]
+    destino: [mf, mgi, mpo, mdic]
+    norma: mpv-1154-2023
+    descricao: "Da Economia saem Fazenda, Gestão, Planejamento e Desenvolvimento/Indústria."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: mapa-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [mapa]
+    destino: [mapa, mda, mpa]
+    norma: mpv-1154-2023
+    descricao: "Da Agricultura saem Desenvolvimento Agrário e Pesca."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
   - id: mcid-recriacao-2023
-    tipo: recriacao
+    tipo: desmembramento
     data: 2023-01-01
     origem: [midr]
     destino: [mcid, midr]
     norma: mpv-1154-2023
-    descricao: Ministério das Cidades recriado a partir do MDR, que passa a se chamar Ministério da Integração e do Desenvolvimento Regional.
+    descricao: "Do Desenvolvimento Regional saem Cidades e Integração e Desenvolvimento Regional."
     fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: minfra-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [mt]
+    destino: [mpor, mt]
+    norma: mpv-1154-2023
+    descricao: "Da Infraestrutura saem Portos e Aeroportos e Transportes."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: mmfdh-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [mdhc]
+    destino: [mmulheres, mdhc]
+    norma: mpv-1154-2023
+    descricao: "Do Ministério da Mulher, Família e Direitos Humanos saem Mulheres e Direitos Humanos e Cidadania."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: mtp-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [mtp]
+    destino: [mps, mte]
+    norma: mpv-1154-2023
+    descricao: "Do Trabalho e Previdência saem Previdência Social e Trabalho e Emprego."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: mtur-desmembramento-2023
+    tipo: desmembramento
+    data: 2023-01-01
+    origem: [mtur]
+    destino: [minc, mtur]
+    norma: mpv-1154-2023
+    descricao: "Do Turismo saem Cultura e Turismo."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: transformacoes-2023
+    tipo: renomeacao
+    data: 2023-01-01
+    origem: [sri, mma]
+    destino: [sri, mma]
+    norma: mpv-1154-2023
+    descricao: "Secretaria de Governo vira Secretaria de Relações Institucionais; Meio Ambiente e Mudança do Clima."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1154.htm
+
+  - id: memp-criacao-2023
+    tipo: desmembramento
+    data: 2023-09-13
+    origem: [mdic]
+    destino: [mdic, memp]
+    norma: mpv-1187-2023
+    descricao: "Criado o Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte."
+    fonte: https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/mpv/mpv1187.htm

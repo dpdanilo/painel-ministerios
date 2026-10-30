@@ -172,9 +172,50 @@ Registro das escolhas feitas, com o motivo. Datas em ordem cronológica.
 - Partido = o da última candidatura. Trocas de partido posteriores não aparecem sem curadoria.
 - Interinos de poucos dias aparecem com duração "menos de 1 mês".
 
+## 2026-10-30 · Fase 4 (série histórica)
+
+### História institucional (2003–2026)
+- **Fonte: o texto das normas no Planalto**, conferido uma a uma: MP 103/2003, MP 111/2003, MP 163/2004, Lei 11.204/2005,
+  MP 369/2007, Lei 11.497/2007, Lei 11.754/2008, Lei 11.958/2009, MP 527/2011, MP 541/2011, Lei 12.792/2013, MP 696/2015,
+  MP 726/2016, MP 728/2016, MP 768/2017, MP 782/2017, MP 821/2018, Lei 13.690/2018, MP 870/2019, MP 980/2020, MP 1.058/2021,
+  MP 1.154/2023 e MP 1.187/2023. O histórico de redações do art. 25 da Lei 10.683/2003 (texto compilado) serviu de roteiro.
+  A Wikipedia foi consultada e descartada (não traz datas nem normas).
+- **Escopo:** ministérios e órgãos cujo titular tem status ou prerrogativas de Ministro de Estado, incluindo secretarias
+  da Presidência (SEPPIR, SPM, SEDH, SEP, SAC, SAE, SMPE…), AGU e CGU. **Fora:** presidente do Banco Central (status de
+  2004 a 2021) e Secretaria Especial do CDES (2003–2005, fim não documentado com clareza).
+- **Identidade:** cada órgão tem uma linhagem (`id`) e versões com nome e vigência. Fusões e desmembramentos ligam
+  linhagens. Exemplo: `mds` (Assistência e Promoção Social → MDS → MDSA → MDS) entra na Cidadania em 2019 e reaparece em 2023.
+  Uma secretaria que virou ministério segue na mesma linhagem, com `categoria` por versão (ex.: SEPPIR → MIR).
+- 47 linhagens, 64 eventos e 23 normas de reforma. As contagens batem com as conhecidas, sem o Banco Central:
+  38 em 2015 ("39 ministérios"), 21 em 2019 ("22"), 37 em 2023 e 38 depois do MEMP. Um teste fixa esses números.
+- Nomes de transição registrados com a data da norma, e não com a de sanção da lei de conversão: o que vale para a
+  história é quando a MP passou a produzir efeito. A Secom de 2007 usa a data da Lei 11.497 (a MP 360 não foi conferida).
+
+### Orçamento histórico
+- **2014 em diante:** é o primeiro ano com o arquivo "Orçamento da Despesa" no Portal da Transparência. Para 2003–2013 seria
+  preciso usar SIOP ou Siga Brasil (exportação manual), o que fica fora por ora.
+- **Série por órgão orçamentário (código), não por ministério.** Os códigos sobrevivem às reformas: entre 2019 e 2022, por
+  exemplo, Fazenda, Planejamento, Indústria e Trabalho mantiveram códigos próprios dentro do Ministério da Economia, e o
+  código das Cidades (56000) encolheu para ~R$ 2 bi porque o dinheiro passou ao MDR (53000). O Portal rotula cada código
+  com o nome atual em todos os anos. O site diz isso junto do gráfico. Os códigos 57000 e 64000 (2014–2016) não foram
+  atribuídos a nenhum órgão atual, porque não confirmamos a qual secretaria correspondiam.
+- Anos encerrados usam empenhado e realizado (pago) do arquivo anual. O ano corrente usa a soma mensal (fase 1).
+- **Correção pelo IPCA:** multiplicador = índice do último mês ÷ média do índice no ano do gasto (o gasto se distribui
+  ao longo do ano). O padrão no site é "corrigido pela inflação", com opção de valores da época.
+- **Operações especiais pelo código do programa (0901–0913).** Em 2023 o Portal publicou os nomes de programa como
+  "Sem informação", e a regra pelo nome inflava o total sem OE para R$ 5,2 tri. A reserva de contingência (0999) não é operação especial.
+- Conferência: em nenhum dos 361 pares órgão-ano o pago supera a dotação atualizada. A LOA 2025 do MCidades (R$ 18,9 bi)
+  bate com a referência do documento inicial (R$ 18,95 bi).
+
+### Visualização
+- Contagem de órgãos ao longo do tempo em degraus (muda em datas, não em anos), com linhas no início de cada governo.
+- Reformas agrupadas por norma, expansíveis, com "origem → destino" pelo nome que cada órgão tinha naquela data.
+- Orçamento anual em barras (dotação atual × pago), uma só matiz e mesmo eixo. Na comparação, linhas por órgão na
+  dotação corrigida.
+
 ## Roteiro
 1. ~~MVP: Ministério das Cidades~~
 2. ~~Todos os ministérios atuais, visão de governo e comparação~~
 3. ~~Ocupantes de todos os ministérios, partidos e histórico~~ (SIAPE + TSE)
-4. Série histórica desde 2003: eventos institucionais e orçamento de anos anteriores
+4. ~~Série histórica: eventos institucionais desde 2003 e orçamento desde 2014~~
 5. Automação completa: DOU diário, issues de curadoria por nomeação/exoneração

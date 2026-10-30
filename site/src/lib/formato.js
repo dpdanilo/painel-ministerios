@@ -7,6 +7,7 @@ export function brlCompacto(v) {
   if (v == null || Number.isNaN(v)) return "–";
   const a = Math.abs(v);
   const s = v < 0 ? "−" : "";
+  if (a >= 1e12) return `${s}R$ ${umaCasa.format(a / 1e12)} tri`;
   if (a >= 1e9) return `${s}R$ ${umaCasa.format(a / 1e9)} bi`;
   if (a >= 1e6) return `${s}R$ ${umaCasa.format(a / 1e6)} mi`;
   if (a >= 1e3) return `${s}R$ ${umaCasa.format(a / 1e3)} mil`;

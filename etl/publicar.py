@@ -68,6 +68,7 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
                              if (c := separar_competencias(u["competencia"]))}
 
     ocupantes = montar_ocupantes(m, {u["cod_siorg"] for u in unidades})
+    historia = montar_historia(m["id"])
 
     orcamento = montar_orcamento(m, exercicio)
     politicas = [p for p in curadoria.politicas() if p["ministerio"] == m["id"]]
@@ -76,6 +77,7 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
     eventos = [e for e in curadoria.eventos() if m["id"] in (e.get("origem") or []) + (e.get("destino") or [])]
     citadas = {m.get(k) for k in ("norma_criacao", "norma_organizacao", "norma_estrutura")}
     citadas |= {e.get("norma") for e in eventos} | {p.get("norma") for p in politicas}
+    citadas |= {v.get("norma") for v in historia}
     siorg = fontes_reg.get("siorg", {})
     orc_fonte = fontes_reg.get(f"transparencia-orcamento-{exercicio}", {})
     return {
@@ -90,7 +92,9 @@ def montar_ministerio(m: dict, exercicio: int, normas: dict, fontes_reg: dict) -
         "ocupantes": ocupantes,
         "orcamento": orcamento,
         "politicas": politicas,
-        "eventos": eventos,
+        "eventos": [{**e, "nomes": nomes_evento(e)} for e in eventos],
+        "historia": historia,
+        "orcamento_anual": orcamento_anual(m, exercicio),
         "normas": {k: normas[k] for k in sorted(c for c in citadas if c and c in normas)},
         "fontes": {
             "estrutura": {"nome": siorg.get("nome"), "url": siorg.get("url"), "data": siorg.get("coletado_em"),
@@ -184,6 +188,95 @@ def rotatividade(ocupantes: list[dict], ref: str) -> dict:
     return {"ministros": resumo(ministros), "secretarios": resumo(secretarios)}
 
 
+@cache
+def _identidades() -> dict:
+    return {m["id"]: m for m in curadoria.ministerios()}
+
+
+def montar_historia(mid: str) -> list[dict]:
+    """Nomes que o órgão teve desde 2003, com vigência, categoria e norma."""
+    m = _identidades().get(mid)
+    if not m:
+        return []
+    return [{"nome": v["nome"], "de": v.get("valido_de"), "ate": v.get("valido_ate"),
+             "categoria": v.get("categoria") or m.get("categoria"), "norma": v.get("norma_criacao")}
+            for v in m["versoes"]]
+
+
+def nome_em(mid: str, data: str, depois: bool) -> str:
+    """Nome do órgão logo depois (destino) ou logo antes (origem) de uma data."""
+    m = _identidades().get(mid)
+    if not m:
+        return mid
+    for v in m["versoes"]:
+        de, ate = v.get("valido_de") or "0000", v.get("valido_ate") or "9999"
+        if (de <= data < ate) if depois else (de < data <= ate):
+            return v["nome"]
+    return m["versoes"][-1]["nome"]
+
+
+def nomes_evento(e: dict) -> dict:
+    return {"origem": {i: nome_em(i, e["data"], False) for i in e.get("origem") or []},
+            "destino": {i: nome_em(i, e["data"], True) for i in e.get("destino") or []}}
+
+
+def em_vigor(data: str) -> list[tuple[str, str]]:
+    """(id, categoria) de cada órgão com status de ministério numa data."""
+    saida = []
+    for m in _identidades().values():
+        for v in m["versoes"]:
+            if (v.get("valido_de") or "0000") <= data < (v.get("valido_ate") or "9999"):
+                saida.append((m["id"], v.get("categoria") or m.get("categoria") or "ministerio"))
+                break
+    return saida
+
+
+def serie_ministerios(eventos: list[dict], hoje_iso: str) -> list[list]:
+    """[data, total, ministérios, presidência, outros] em cada data de mudança (e hoje)."""
+    datas = sorted({e["data"] for e in eventos} | {"2003-01-01", hoje_iso})
+    saida = []
+    for d in datas:
+        cats = [c for _, c in em_vigor(d)]
+        saida.append([d, len(cats), cats.count("ministerio"), cats.count("presidencia"), cats.count("orgao")])
+    return saida
+
+
+@cache
+def _historico_orcamento() -> dict:
+    """(ano, órgão) → [dot_ini, dot_atual, empenhado, pago, dot_atual_sem_oe, pago_sem_oe]."""
+    t = defaultdict(lambda: [0.0] * 6)
+    for r in _csv("orcamento_historico.csv"):
+        v = t[(int(r["exercicio"]), r["cod_orgao_superior"])]
+        vals = [float(r[c]) for c in ("dotacao_inicial", "dotacao_atual", "empenhado", "pago")]
+        for i in range(4):
+            v[i] += vals[i]
+        if r["operacao_especial"] != "1":
+            v[4] += vals[1]; v[5] += vals[3]
+    return t
+
+
+def orcamento_anual(m: dict, exercicio: int) -> list[list]:
+    """Série anual do órgão orçamentário do ministério: [ano, dot_ini, dot_atual, empenhado, pago, dot_atual_sem_oe, pago_sem_oe].
+    O ano corrente vem do orçamento detalhado (pago = soma mensal, ainda parcial)."""
+    cod = m.get("orgao_orcamentario")
+    if not cod:
+        return []
+    hist = _historico_orcamento()
+    saida = [[ano, *[round(x, 2) for x in v]] for (ano, c), v in sorted(hist.items()) if c == cod]
+    atual = [0.0] * 6
+    oe = {r["cod_programa"] for r in _csv("programa.csv") if r["exercicio"] == str(exercicio) and e_operacao_especial(r["nome"], r["cod_programa"])}
+    for r in _csv("orcamento.csv"):
+        if r["exercicio"] == str(exercicio) and r["cod_orgao_superior"] == cod:
+            vals = [float(r[c]) for c in ("dotacao_inicial", "dotacao_atual", "empenhado", "pago")]
+            for i in range(4):
+                atual[i] += vals[i]
+            if r["cod_programa"] not in oe:
+                atual[4] += vals[1]; atual[5] += vals[3]
+    if any(atual):
+        saida.append([exercicio, *[round(x, 2) for x in atual]])
+    return saida
+
+
 def montar_orcamento(m: dict, exercicio: int) -> dict | None:
     orgao = m.get("orgao_orcamentario")
     ex = str(exercicio)
@@ -220,12 +313,16 @@ def montar_orcamento(m: dict, exercicio: int) -> dict | None:
         "programas": {c: programas.get(c, c) for c in sorted(usados_p)},
         "acoes": {c: acoes.get(c, c) for c in sorted(usados_a)},
         # Dívida, transferências constitucionais, sentenças etc.: distorcem comparações entre ministérios.
-        "operacoes_especiais": sorted(c for c in usados_p if e_operacao_especial(programas.get(c, ""))),
+        "operacoes_especiais": sorted(c for c in usados_p if e_operacao_especial(programas.get(c, ""), c)),
     }
 
 
-def e_operacao_especial(nome_programa: str) -> bool:
-    return nome_programa.upper().startswith("OPERACOES ESPECIAIS")
+OPERACOES_ESPECIAIS = {f"09{n:02d}" for n in range(1, 14)}   # 0901–0913 (dívida, transferências, sentenças…)
+
+
+def e_operacao_especial(nome_programa: str, cod_programa: str = "") -> bool:
+    """Pelo código (estável; em alguns anos o Portal publica o nome como "Sem informação") ou pelo nome."""
+    return cod_programa in OPERACOES_ESPECIAIS or nome_programa.upper().startswith("OPERACOES ESPECIAIS")
 
 
 def _totais(orc: dict | None, sem_oe: bool = False) -> dict | None:
@@ -299,6 +396,7 @@ def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
         "mensal": _mensal_acumulado(orc),
         "mensal_sem_oe": _mensal_acumulado(orc, sem_oe=True),
         "principais_programas": programas,
+        "orcamento_anual": [[l[0], l[5], l[6], l[2], l[4]] for l in dados["orcamento_anual"]],
         "politicas": [p["nome"] for p in dados["politicas"]],
         "ocupantes": [{"nome": o["nome"], "cargo": o["cargo"], "partido": (o["partido"] or {}).get("sigla")}
                       for o in dados["ocupantes"] if o["papel"] == "titular" and not o["ate"]][:8],
@@ -306,20 +404,31 @@ def resumir(m: dict, dados: dict) -> tuple[dict, dict]:
     return resumo, detalhe
 
 
+def ipca_publicado() -> dict | None:
+    from .historico import fatores_ipca
+    ipca = list(_csv("ipca.csv"))
+    return {"referencia": ipca[-1]["mes"], "fatores": fatores_ipca(ipca)} if ipca else None
+
+
 def publicar(exercicio: int) -> dict[str, int]:
     """Regera site/public/data do zero. Devolve o tamanho (bytes) de cada arquivo."""
     _csv.cache_clear(); _partidos.cache_clear(); _filiacoes_manuais.cache_clear()
+    _identidades.cache_clear(); _historico_orcamento.cache_clear()
     if PUBLICADO.exists():
         shutil.rmtree(PUBLICADO)
     normas = {n["id"]: n for n in curadoria.normas()}
     fontes_reg = fontes()
     tamanhos, resumos, detalhes = {}, [], []
+    total_anual = defaultdict(lambda: [0.0, 0.0, 0.0, 0.0])   # ano → [dot_atual_sem_oe, pago_sem_oe, dot_atual, pago]
     for m in curadoria.no_escopo():
         dados = montar_ministerio(m, exercicio, normas, fontes_reg)
         comp = dados.pop("competencias_unidades")
         tamanhos[f"ministerios/{m['id']}.json"] = _gravar(PUBLICADO / "ministerios" / f"{m['id']}.json", dados)
         tamanhos[f"ministerios/{m['id']}-competencias.json"] = _gravar(
             PUBLICADO / "ministerios" / f"{m['id']}-competencias.json", comp)
+        for l in dados["orcamento_anual"]:
+            v = total_anual[l[0]]
+            v[0] += l[5]; v[1] += l[6]; v[2] += l[2]; v[3] += l[4]
         r, d = resumir(m, dados)
         resumos.append(r)
         detalhes.append(d)
@@ -327,7 +436,12 @@ def publicar(exercicio: int) -> dict[str, int]:
         "gerado_em": agora_utc(),
         "exercicio": exercicio,
         "ministerios": sorted(resumos, key=lambda r: r["nome"]),
-        "eventos": curadoria.eventos(),
+        "eventos": [{**e, "nomes": nomes_evento(e)} for e in curadoria.eventos()],
+        "normas": {n["id"]: {k: n.get(k) for k in ("tipo", "numero", "data", "url")} for n in curadoria.normas()},
+        "serie_ministerios": serie_ministerios(curadoria.eventos(), agora_utc()[:10]),
+        "ipca": ipca_publicado(),
+        # Soma dos órgãos orçamentários dos órgãos atuais (ver docs/DECISOES.md: série por órgão orçamentário).
+        "orcamento_anual_total": [[ano, *[round(x, 2) for x in v]] for ano, v in sorted(total_anual.items())],
         "fontes": {k: {c: v[c] for c in ("nome", "url", "data_referencia", "coletado_em")} for k, v in fontes_reg.items()},
     }
     tamanhos["index.json"] = _gravar(PUBLICADO / "index.json", index)
