@@ -83,7 +83,9 @@ jobs:
       - name: Issue de curadoria do Diário Oficial
         if: hashFiles('data/bruto/dou/novos.md') != ''
         # apagado depois: o cache de data/bruto é compartilhado e a issue não pode se repetir em outra execução
-        run: bash .github/scripts/issue.sh "DOU $(date -I): atos para revisão" data/bruto/dou/novos.md curadoria && rm data/bruto/dou/novos.md
+        run: |
+          bash .github/scripts/issue.sh "DOU $(date -I): atos para revisão" data/bruto/dou/novos.md curadoria
+          rm data/bruto/dou/novos.md
 
       - name: Commit dos dados novos
         if: steps.coleta.outputs.mudou == 'true'
