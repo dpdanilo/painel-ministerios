@@ -9,14 +9,14 @@ Site: https://dpdanilo.github.io/painel-ministerios/ · Repositório: `dpdanilo/
 
 ## Arquitetura
 ```
-SIORG · Transparência · SIAPE · TSE · IPCA ─► etl/ (Python) ─► data/normalizado (no git) ─► etl publicar ─► site/public/data/*.json ─► Vite/Svelte ─► GitHub Pages
+SIORG · Transparência · SIAPE · TSE · IPCA · DOU ─► etl/ (Python) ─► data/normalizado (no git) ─► etl publicar ─► site/public/data/*.json ─► Vite/Svelte ─► GitHub Pages
                                     ▲
                      data/curadoria/*.yaml (manual, toda linha com fonte)
 ```
 - O navegador **nunca** chama APIs do governo. A coleta roda no GitHub Actions.
-- `etl/`: um módulo por fonte (`siorg.py`, `orcamento.py`, `servidores.py`, `tse.py`, `historico.py`), mais `correspondencia.py` (UO ↔ SIORG), `versionamento.py` (vigência por comparação de snapshots), `validar.py` e `publicar.py`.
+- `etl/`: um módulo por fonte (`siorg.py`, `orcamento.py`, `servidores.py`, `tse.py`, `historico.py`, `dou.py`), mais `correspondencia.py` (UO ↔ SIORG), `versionamento.py` (vigência por comparação de snapshots), `validar.py` e `publicar.py`.
 - `site/src/`: `App.svelte`, `components/` (uma tela por componente) e `lib/` (lógica pura, testada em `lib.test.js`). Estado da tela na URL (`#/m/<id>/<aba>?...`).
-- `.github/workflows/atualizar.yml`: orçamento às segundas; SIORG no dia 3; SIAPE e TSE no dia 12; anos anteriores e IPCA no dia 20. Só faz commit (`Dados: ...`) se o hash mudou. Falhas e pontos de curadoria abrem issue.
+- `.github/workflows/atualizar.yml`: orçamento às segundas; SIORG no dia 3; SIAPE e TSE no dia 12; anos anteriores e IPCA no dia 20; Diário Oficial todo dia às 07h30. Só faz commit (`Dados: ...`) se o hash mudou. Falhas e pontos de curadoria abrem issue.
 - `.github/workflows/publicar.yml`: testes + build + deploy (reutilizável, chamado pelo atualizar).
 
 ## Comandos

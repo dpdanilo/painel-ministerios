@@ -333,3 +333,101 @@ def test_nomes_antes_e_depois_de_um_evento():
 def test_fator_ipca_usa_media_do_ano():
     ipca = [{"mes": "2020-01", "indice": "100"}, {"mes": "2020-02", "indice": "100"}, {"mes": "2021-01", "indice": "110"}]
     assert fatores_ipca(ipca) == {2020: 1.1, 2021: 1.0}
+
+
+# ---------------------------------------------------------------- Fase 5: Diário Oficial
+from etl import dou
+
+
+def _ato(hier, tipo="Portaria", content="resolve: NOMEAR", url="ato-de-teste-123"):
+    return {"hierarchyList": hier, "artType": tipo, "content": content, "urlTitle": url, "pubDate": "31/03/2026",
+            "pubName": "DO2_EXTRA_A", "title": "DECRETOS DE 31 DE MARÇO DE 2026"}
+
+
+def test_dou_candidatos_so_do_alto_escalao():
+    assert dou.candidato_pessoal(_ato(["Atos do Poder Executivo"], "Decreto de Pessoal"))
+    assert dou.candidato_pessoal(_ato(["Presidência da República", "Casa Civil"]))
+    assert dou.candidato_pessoal(_ato(["Ministério das Mulheres", "Gabinete da Ministra"]))
+    # universidade, autarquia e ato sem nomear/exonerar ficam de fora
+    assert not dou.candidato_pessoal(_ato(["Ministério da Educação", "Universidade Federal do Paraná"]))
+    assert not dou.candidato_pessoal(_ato(["Ministério da Educação", "Secretaria Executiva", "Subsecretaria"]))
+    assert not dou.candidato_pessoal(_ato(["Presidência da República", "Casa Civil"], content="resolve: AUTORIZAR o afastamento"))
+
+
+def test_dou_le_decreto_e_portaria_da_casa_civil():
+    r = dou.resolvedor_ministerios()
+    decreto = "\n".join([
+        "titulo\tMINISTÉRIO DA IGUALDADE RACIAL", "identifica\tDECRETOS DE 31 DE MARÇO DE 2026",
+        "dou-paragraph\tO PRESIDENTE DA REPÚBLICA, no uso da atribuição que lhe confere o art. 84, resolve:",
+        "dou-paragraph\tEXONERAR", "dou-paragraph\tANIELLE FRANCISCO DA SILVA do cargo de Ministra de Estado da Igualdade Racial.",
+        "dou-paragraph\tNOMEAR",
+        "dou-paragraph\tRACHEL BARROS DE OLIVEIRA, para exercer o cargo de Ministra de Estado da Igualdade Racial, ficando exonerada do cargo que atualmente ocupa.",
+    ])
+    atos = dou.ler_ato(_ato(["Atos do Poder Executivo"], "Decreto de Pessoal"), decreto, r)
+    assert [(a["acao"], a["nome"], a["funcao"], a["ministerio_id"]) for a in atos] == [
+        ("exoneracao", "Anielle Francisco da Silva", "Ministro(a) de Estado", "mir"),
+        ("nomeacao", "Rachel Barros de Oliveira", "Ministro(a) de Estado", "mir")]
+    assert atos[1]["cargo"] == "Ministra de Estado da Igualdade Racial"
+
+    portaria = "\n".join([
+        "identifica\tPORTARIAS DE 30 DE MARÇO DE 2026", "subtitulo\tSECRETARIA DE RELAÇÕES INSTITUCIONAIS",
+        "dou-paragraph\tNº 250 - EXONERAR",
+        "dou-paragraph\tMARTIN ESTECHE do cargo de Assessor Especial do Gabinete da Secretaria de Relações Institucionais, código CCE 2.16.",
+        "dou-paragraph\tMINISTÉRIO DOS POVOS INDÍGENAS",
+        "dou-paragraph\tNº 254 - EXONERAR",
+        "dou-paragraph\tJOENIA BATISTA DE CARVALHO do cargo de Presidente da Fundação Nacional do Índio - Funai, código CCE 1.17.",
+        "dou-paragraph\tNº 255 - NOMEAR",
+        "dou-paragraph\tFULANO DE TAL para exercer o cargo de Coordenador do Ministério dos Povos Indígenas, código CCE 1.13.",
+    ])
+    atos = dou.ler_ato(_ato(["Presidência da República", "Casa Civil"]), portaria, r)
+    # CCE 2.16 (assessoramento) e 1.13 ficam de fora; a Funai é atribuída pelo cabeçalho ao MPI
+    assert [(a["nome"], a["codigo"], a["nivel"], a["ministerio_id"]) for a in atos] == [
+        ("Joenia Batista de Carvalho", "CCE 1.17", 17, "mpi")]
+
+
+def test_dou_classifica_cargos():
+    assert dou.classificar("Secretário-Executivo do Ministério das Cidades", "", True) == ("Natureza Especial", 19)
+    assert dou.classificar("Diretor-Presidente da Embratur", "", True) == ("Decreto do Presidente", 18)
+    assert dou.classificar("Natureza Especial de Secretário-Executivo", "", True) == ("Natureza Especial", 19)
+    assert dou.classificar("Chefe de Gabinete da Ministra de Estado das Mulheres", "CCE 1.15", False) == ("CCE 1.15", 15)
+    assert dou.classificar("Diretor", "FCE 1.13", False) == ("FCE 1.13", 13)
+
+
+def test_dou_resolve_orgao_pelo_cargo():
+    r = dou.resolvedor_ministerios()
+    assert r("Ministro de Estado Chefe da Casa Civil da Presidência da República") == "cc"
+    assert r("Secretário Nacional de Habitação do Ministério das Cidades") == "mcid"
+    assert r("SECRETARIA-GERAL", exato=True) == "sg"
+    assert r("Diretor da Secretaria-Geral de Consultoria da Advocacia-Geral da União") == "agu"
+
+
+def test_dou_variacoes_de_redacao():
+    r = dou.resolvedor_ministerios()
+    t = ("dou-paragraph\tArt. 1º Nomear, a contar de 13 de agosto de 2026, a servidora TALITA BARBOSA DE FREITAS, matrícula SIAPE nº 1324911, "
+         "para exercer o Cargo Comissionado Executivo de Coordenadora-Geral de Agenda, código CCE 1.16, do Gabinete do Ministro de Estado do Planejamento e Orçamento.\n"
+         "dou-paragraph\tNº 930 - EXONERAR , a pedido,\n"
+         "dou-paragraph\tDANIELA OLIMPIO DE OLIVEIRA do cargo de Subsecretária de Autorização do Ministério da Fazenda, código CCE 1.15, a partir de 1º de agosto de 2026.")
+    atos = dou.ler_ato(_ato(["Ministério do Planejamento e Orçamento", "Gabinete do Ministro"]), t, r)
+    assert [(a["acao"], a["nome"], a["nivel"], a["ministerio_id"]) for a in atos] == [
+        ("nomeacao", "Talita Barbosa de Freitas", 16, "mpo"), ("exoneracao", "Daniela Olimpio de Oliveira", 15, "mf")]
+
+
+def test_dou_funcao_fce_designada_conta_e_substituto_nao():
+    r = dou.resolvedor_ministerios()
+    t = ("dou-paragraph\tNº 960 - DESIGNAR\n"
+         "dou-paragraph\tANA SOUZA para exercer a função de Secretária de Controle do Ministério da Fazenda, código FCE 1.17.\n"
+         "dou-paragraph\tDESIGNAR BRUNO LIMA para exercer o encargo de substituto eventual do cargo de Secretário, código CCE 1.17.\n"
+         "dou-paragraph\tNº 961 - DISPENSAR\n"
+         "dou-paragraph\tCARLA DIAS da função de Substituta do Secretário do Ministério da Fazenda, código FCE 1.17.")
+    atos = dou.ler_ato(_ato(["Presidência da República", "Casa Civil"]), t, r)
+    assert [(a["acao"], a["nome"], a["funcao"]) for a in atos] == [("nomeacao", "Ana Souza", "FCE 1.17")]
+
+
+def test_dou_decreto_sem_codigo_so_para_dirigentes_e_normas_numeradas():
+    assert dou.classificar("Reitor da Universidade Federal Fluminense", "", True) == ("", None)
+    assert dou.classificar("Adido Policial Federal na Embaixada do Brasil em Quito", "", True) == ("", None)
+    assert dou.classificar("Presidente da Agência Nacional de Águas", "", True) == ("Decreto do Presidente", 18)
+    norma = {"artType": "Decreto numerado", "content": "DECRETO Nº 13.139 Altera o Decreto nº 11.427, que aprova a Estrutura Regimental"}
+    assert dou.norma_de_estrutura(norma)
+    assert not dou.norma_de_estrutura({**norma, "artType": "Decreto de Pessoal"})
+    assert not dou.norma_de_estrutura({**norma, "artType": "Portaria"})

@@ -410,6 +410,25 @@ def ipca_publicado() -> dict | None:
     return {"referencia": ipca[-1]["mes"], "fatores": fatores_ipca(ipca)} if ipca else None
 
 
+def dou_publicado() -> dict | None:
+    """Atos do DOU para o site: nomeações/exonerações (1.15+) e normas de estrutura, na janela da coleta."""
+    atos, normas = list(_csv("dou_ato.csv")), list(_csv("dou_norma.csv"))
+    f = fontes().get("dou")
+    if not f:
+        return None
+    ref = (fontes().get("siape", {}).get("data_referencia") or "")[:7]
+    return {
+        "ultimo_dia": f["data_referencia"],
+        "referencia_siape": ref,
+        "desde": min((a["data"] for a in atos), default=None),
+        # [data, acao (n|e), nome, cargo, funcao, nivel, ministerio_id, url]
+        "atos": [[a["data"], a["acao"][0], a["nome"], a["cargo"], a["funcao"], int(a["nivel"]), a["ministerio_id"], a["url"]]
+                 for a in sorted(atos, key=lambda a: (a["data"], a["id"]), reverse=True)],
+        "normas": [{k: n[k] for k in ("data", "tipo", "titulo", "resumo", "ministerio_id", "url")}
+                   for n in sorted(normas, key=lambda n: n["data"], reverse=True)],
+    }
+
+
 def publicar(exercicio: int) -> dict[str, int]:
     """Regera site/public/data do zero. Devolve o tamanho (bytes) de cada arquivo."""
     _csv.cache_clear(); _partidos.cache_clear(); _filiacoes_manuais.cache_clear()
@@ -445,6 +464,8 @@ def publicar(exercicio: int) -> dict[str, int]:
         "fontes": {k: {c: v[c] for c in ("nome", "url", "data_referencia", "coletado_em")} for k, v in fontes_reg.items()},
     }
     tamanhos["index.json"] = _gravar(PUBLICADO / "index.json", index)
+    if (dou := dou_publicado()) is not None:
+        tamanhos["dou.json"] = _gravar(PUBLICADO / "dou.json", dou)
     tamanhos["agregados/comparacao.json"] = _gravar(PUBLICADO / "agregados" / "comparacao.json",
                                                     {"exercicio": exercicio, "ministerios": detalhes})
     return tamanhos

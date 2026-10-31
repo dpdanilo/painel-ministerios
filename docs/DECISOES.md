@@ -213,9 +213,46 @@ Registro das escolhas feitas, com o motivo. Datas em ordem cronológica.
 - Orçamento anual em barras (dotação atual × pago), uma só matiz e mesmo eixo. Na comparação, linhas por órgão na
   dotação corrigida.
 
+## 2026-10-31 · Fase 5 (Diário Oficial diário)
+
+### Fonte
+- **Página de leitura do DOU** (`in.gov.br/leiturajornal?data=DD-MM-AAAA&secao=do1|do2|do1e|do2e`): traz em JSON todos os
+  atos do dia, com órgão, tipo e o começo do texto. Não pede chave nem cadastro. O INLABS (XML completo) exige login e
+  a base mensal de dados abertos sai com atraso, por isso ficaram de fora.
+- O portal recusa (403) o User-Agent padrão do projeto; o coletor usa um "Mozilla/5.0 (compatible; painel-ministerios…)".
+- Edições extras (`do1e`, `do2e`) entram: as trocas de ministro de 31/03/2026 (desincompatibilização) saíram todas em extra.
+
+### O que se lê
+- **Seção 2, pessoal.** Abre-se o texto completo só dos atos candidatos: falam em nomear/exonerar e vêm de "Atos do Poder
+  Executivo" (decretos do Presidente), da Presidência da República (Casa Civil, que nomeia CCE 1.15+ pelo Decreto 9.794/2019,
+  art. 4º) ou do gabinete/secretaria-executiva de um ministério. Universidades, institutos e autarquias ficam de fora.
+  Num dia comum são ~4 a 10 atos abertos, de um total que passa de 800.
+- Do texto: pessoa, cargo, código e órgão. O órgão sai do próprio cargo ("…do Ministério das Cidades"); se o cargo não
+  diz, do cabeçalho da portaria (a Casa Civil agrupa por ministério) e, por último, do órgão que publicou.
+- Ficam: Ministro(a) de Estado, Natureza Especial (inclui secretário(a)-executivo(a) nomeado(a) por decreto), cargos providos
+  por decreto do Presidente (dirigentes de agências e entidades) e CCE/FCE 1.15 a 1.18. Funções FCE (de servidores de
+  carreira) são providas com "designar/dispensar", que contam como nomeação/exoneração. Substitutos e interinos
+  ("encargo de substituto eventual") e cargos de assessoramento (CCE/FCE 2.x e 3.x) não entram.
+- Volume: de agosto a outubro de 2026, ~20 atos por mês a partir de Diretor, quase todos em portarias agrupadas da Casa
+  Civil. Conferido contra a busca do próprio DOU por "CCE 1.17" (setembro): os demais resultados eram substituições.
+- **Seção 1, estrutura.** Decretos, MPs e leis que aprovam estrutura regimental ou citam a Lei 14.600/2023: só o título e
+  a ementa, para a curadoria conferir.
+
+### Janela e atraso do SIAPE
+- A coleta cobre do 1º dia do mês de referência do SIAPE (ou 90 dias atrás) até hoje. O site mostra, por padrão, só o que
+  saiu depois do mês do SIAPE, ou seja, o que o cadastro ainda não reflete. O usuário pode ver a janela toda.
+- Os últimos 3 dias são relidos a cada execução: edições extras saem à tarde.
+- O DOU não substitui o SIAPE: o ato pode ser tornado sem efeito ou retificado (não tratado), e a posse pode demorar.
+  Por isso o DOU aparece em seção própria, com link para o ato, e não altera a lista de ocupantes.
+
+### Curadoria
+- Troca de ministro, nomeação de Natureza Especial e norma de estrutura dos últimos 7 dias geram a issue
+  "DOU <data>: atos para revisão" (rótulo `curadoria`), com o que conferir em `data/curadoria/`.
+- Na tela de governo, se o DOU traz um(a) ministro(a) diferente do SIAPE, a linha do órgão mostra "Nomeação no DOU em…".
+
 ## Roteiro
 1. ~~MVP: Ministério das Cidades~~
 2. ~~Todos os ministérios atuais, visão de governo e comparação~~
 3. ~~Ocupantes de todos os ministérios, partidos e histórico~~ (SIAPE + TSE)
 4. ~~Série histórica: eventos institucionais desde 2003 e orçamento desde 2014~~
-5. Automação completa: DOU diário, issues de curadoria por nomeação/exoneração
+5. ~~Automação completa: DOU diário, issues de curadoria por nomeação/exoneração~~
