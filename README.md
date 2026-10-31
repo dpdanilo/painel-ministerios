@@ -21,9 +21,10 @@ Transparência ┼─ etl/ (Python) ─ data/normalizado ┤
 - O navegador **nunca** chama as APIs do governo: os dados são coletados no GitHub Actions e publicados como arquivos estáticos.
 - `data/normalizado/` fica no git. Cada atualização vira um commit com o diff do que mudou.
 - O GitHub Actions atualiza sozinho: orçamento toda segunda, estrutura (SIORG) todo dia 3 e ocupantes
-  (SIAPE) + partidos (TSE) todo dia 12, orçamento de anos anteriores + IPCA todo dia 20. Só faz commit e
-  deploy se algo mudou.
-- Falhas de coleta e pontos de curadoria abrem uma *issue* automaticamente.
+  (SIAPE) + partidos (TSE) todo dia 12, orçamento de anos anteriores + IPCA todo dia 20 e o Diário Oficial
+  (nomeações, exonerações e decretos de estrutura) todo dia às 07h30. Só faz commit e deploy se algo mudou.
+- Falhas de coleta e pontos de curadoria abrem uma *issue* automaticamente. Troca de ministro, nomeação para
+  cargo de Natureza Especial e decreto de estrutura publicados no DOU abrem a issue "DOU <data>: atos para revisão".
 
 ## Rodar localmente
 

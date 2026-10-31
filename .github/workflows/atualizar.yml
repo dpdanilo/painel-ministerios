@@ -6,12 +6,13 @@ on:
     - cron: "0 8 3 * *"   # dia 3 de cada mês: estrutura (SIORG)
     - cron: "0 8 12 * *"  # dia 12 de cada mês: ocupantes (SIAPE, publicado com ~2 meses de atraso) e partidos (TSE)
     - cron: "0 8 20 * *"  # dia 20 de cada mês: orçamento de anos anteriores (ajustes de fechamento) e IPCA
+    - cron: "30 10 * * *" # todo dia, 07h30 de Brasília: Diário Oficial (nomeações, exonerações, decretos de estrutura)
   workflow_dispatch:
     inputs:
       fonte:
         description: Fonte a atualizar
         type: choice
-        options: [tudo, siorg, orcamento, ocupantes, historico]
+        options: [tudo, siorg, orcamento, ocupantes, historico, dou]
         default: tudo
 
 permissions:
@@ -46,6 +47,7 @@ jobs:
           elif [ "${{ github.event.schedule }}" = "0 8 3 * *" ]; then f=siorg
           elif [ "${{ github.event.schedule }}" = "0 8 12 * *" ]; then f=ocupantes
           elif [ "${{ github.event.schedule }}" = "0 8 20 * *" ]; then f=historico
+          elif [ "${{ github.event.schedule }}" = "30 10 * * *" ]; then f=dou
           else f=orcamento; fi
           echo "fonte=$f" >> "$GITHUB_OUTPUT"
 
@@ -77,6 +79,11 @@ jobs:
               echo; echo "Edite os arquivos em \`data/curadoria/\` (ver README) e rode \`python -m etl validar\`."; } > corpo.md
             bash .github/scripts/issue.sh "Curadoria: pontos para revisão" corpo.md curadoria
           fi
+
+      - name: Issue de curadoria do Diário Oficial
+        if: hashFiles('data/bruto/dou/novos.md') != ''
+        # apagado depois: o cache de data/bruto é compartilhado e a issue não pode se repetir em outra execução
+        run: bash .github/scripts/issue.sh "DOU $(date -I): atos para revisão" data/bruto/dou/novos.md curadoria && rm data/bruto/dou/novos.md
 
       - name: Commit dos dados novos
         if: steps.coleta.outputs.mudou == 'true'

@@ -7,10 +7,17 @@
   import HistoriaGoverno from "../components/HistoriaGoverno.svelte";
   import MapaExecutivo from "../components/MapaExecutivo.svelte";
   import BotaoCsv from "../components/BotaoCsv.svelte";
+  import AtosDou from "../components/AtosDou.svelte";
+  import { carregar } from "../lib/dados.js";
+  import { decodificar, ministrosNovos, depoisDoSiape } from "../lib/dou.js";
 
   let idx = $state(null);
   let erro = $state(null);
   carregarIndice().then((d) => (idx = d), (e) => (erro = e));
+  // Ministros nomeados no DOU depois do último mês do SIAPE (o SIAPE tem ~2 meses de atraso).
+  let novosMinistros = $state(new Map());
+  carregar("dou.json").then((d) => (novosMinistros = ministrosNovos(d.atos.map(decodificar), depoisDoSiape(d.referencia_siape))), () => {});
+  let siglas = $derived(Object.fromEntries((idx?.ministerios ?? []).map((m) => [m.id, m.sigla])));
 
   let metrica = $derived(METRICAS.find((m) => m.id === rota.params.metrica) ?? METRICAS[0]);
   let categoria = $derived(rota.params.cat || "");
@@ -139,6 +146,7 @@
                 <td>
                   <a href={href(["m", m.id, "estrutura"])}><strong>{m.sigla}</strong></a> <span class="sec">{m.nome}</span>
                   {#if m.ministro}<div class="mudo pequeno">{m.ministro.nome} · <span title={partidoDetalhe(m.ministro.partido)}>{partidoSigla(m.ministro.partido) ?? "sem candidatura"}</span></div>{/if}
+                  {#if novosMinistros.get(m.id) && novosMinistros.get(m.id).nome !== m.ministro?.nome}<div class="pequeno novo-dou">Nomeação no DOU em {fmtData(novosMinistros.get(m.id).data)}: {novosMinistros.get(m.id).nome}</div>{/if}
                 </td>
                 <td class="num">{m.n_secretarias}</td>
                 <td class="num">{num(m.n_unidades)}</td>
@@ -192,6 +200,8 @@
       {/if}
     </section>
 
+    <AtosDou nomes={siglas} titulo="Mudanças recentes no Diário Oficial" />
+
     <HistoriaGoverno {idx} />
 
     <div>
@@ -210,6 +220,7 @@
 
 <style>
   .intro { margin: 8px 0 20px; max-width: 760px; }
+  .novo-dou { color: var(--sec); font-weight: 600; }
   .intro h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); margin: 0 0 8px; }
   .intro p { margin: 0; font-size: 1.02rem; }
   .nota { font-size: 0.8rem; margin: 10px 0 16px; max-width: 900px; }

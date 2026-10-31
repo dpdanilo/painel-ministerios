@@ -19,6 +19,7 @@ Códigos oficiais (SIORG, UO, programa, ação) são sempre texto, para não per
 | `tse` | TSE: candidaturas 2018, 2020, 2022, 2024 e 2026 (`consulta_cand`) | download, sem chave | mensal |
 | `transparencia-orcamento-historico` | Portal da Transparência: "Orçamento da Despesa" de 2014 até o ano passado | download, sem chave | mensal (ajustes de fechamento) |
 | `ipca` | IBGE: IPCA número-índice (SIDRA, tabela 1737) | API pública | mensal |
+| `dou` | Imprensa Nacional: Diário Oficial da União, seções 1 e 2 e edições extras (`in.gov.br/leiturajornal`) | página pública com JSON, sem chave | diária |
 | curadoria | gov.br dos ministérios, legislação (Planalto/LexML), DOU | leitura humana | sob demanda |
 
 Endpoints SIORG usados:
@@ -112,6 +113,16 @@ Portal publicou os nomes de programa como "Sem informação"). Liquidado não ex
 ### `ipca.csv`
 `mes, indice`: número-índice mensal do IPCA (base dez/1993 = 100).
 
+### `dou_ato.csv`: nomeações e exonerações publicadas no DOU
+`id, data, edicao, acao (nomeacao|exoneracao), nome, cargo, codigo, funcao, nivel, ministerio_id, titulo, url`.
+`nivel`: 20 = Ministro(a) de Estado, 19 = Natureza Especial, 18 = provido por decreto do Presidente sem código,
+15–18 = CCE/FCE 1.15–1.18. Janela: do 1º dia do mês de referência do SIAPE (ou 90 dias atrás, o que vier antes) até hoje.
+Leitura automática do texto do ato; `url` leva ao original.
+
+### `dou_norma.csv`: normas de estrutura publicadas no DOU
+`id, data, edicao, tipo, titulo, resumo, ministerio_id, url`: decretos de estrutura regimental e normas que citam a
+Lei 14.600/2023 ou a organização dos ministérios. `resumo` é o começo do texto (ementa).
+
 ### `orcamento_mensal.csv`
 `exercicio, mes, cod_uo, cod_programa, cod_acao, empenhado, liquidado, pago`: valores **do mês** (não acumulados).
 
@@ -132,6 +143,10 @@ n_unidades, n_secretarias` (órgãos singulares do 1º nível) `, n_cargos, pct_
 Também no `index.json`: `serie_ministerios` (`[data, total, ministérios, Presidência, outros]` em cada data de mudança),
 `eventos[]` com `nomes{origem, destino}` (nome de cada órgão antes/depois do evento), `normas{}`,
 `ipca{referencia, fatores{ano: multiplicador}}` e `orcamento_anual_total` (`[ano, dotação sem OE, pago sem OE, dotação, pago]`).
+
+### `dou.json` (carregado nas telas Governo e Quem é quem)
+`ultimo_dia`, `referencia_siape` (AAAA-MM), `desde`, `atos[]` (`[data, n|e, nome, cargo, funcao, nivel, ministerio_id, url]`,
+mais recentes primeiro) e `normas[]` (`{data, tipo, titulo, resumo, ministerio_id, url}`).
 
 ### `agregados/comparacao.json` (carregado só na tela de comparação, ~120 KB)
 Por ministério: `unidades_por_bloco{}`, `cargos_por_nivel{"CCE 1.17": n…}`, `mensal` e `mensal_sem_oe`

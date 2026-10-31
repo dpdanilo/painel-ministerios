@@ -237,6 +237,9 @@ def validar_idade(rel: Relatorio) -> None:
                 idade = (date.today() - date.fromisoformat(f["data_referencia"])).days
                 if idade > limite:
                     rel.aviso(f"fonte {fid}: dados de {f['data_referencia']} ({idade} dias, limite {limite})")
+    dou = fontes().get("dou")
+    if dou and dou["data_referencia"] and (date.today() - date.fromisoformat(dou["data_referencia"])).days > 3:
+        rel.aviso(f"fonte dou: Diário Oficial lido só até {dou['data_referencia']} (a coleta diária parou?)")
 
 
 def validar_tudo() -> Relatorio:

@@ -132,3 +132,23 @@ test("história: agrupamento por norma e correção pelo IPCA", () => {
   const linhas = [[2014, 1, 2, 3, 4, 5, 6], [2026, 1, 2, 3, 4, 5, 6]];
   assert.deepEqual(serieAnual(linhas, "pago_sem_oe", { real: true, ipca }), [["2014", 12], ["2026", 6]]);
 });
+
+import { decodificar, depoisDoSiape, filtrarAtos, ministrosNovos, contar } from "./dou.js";
+
+test("atos do DOU", () => {
+  assert.equal(depoisDoSiape("2026-08"), "2026-09-01");
+  assert.equal(depoisDoSiape("2026-12"), "2027-01-01");
+  const atos = [
+    ["2026-10-20", "n", "Ana", "Ministra de Estado X", "Ministro(a) de Estado", 20, "mir", "u1"],
+    ["2026-10-20", "e", "Bia", "Ministra de Estado X", "Ministro(a) de Estado", 20, "mir", "u2"],
+    ["2026-08-10", "n", "Cris", "Ministra de Estado X", "Ministro(a) de Estado", 20, "mir", "u3"],
+    ["2026-10-01", "n", "Duda", "Diretora", "CCE 1.15", 15, "mcid", "u4"],
+  ].map(decodificar);
+  assert.equal(filtrarAtos(atos, { nivelMin: 17 }).length, 3);
+  assert.equal(filtrarAtos(atos, { mid: "mcid" })[0].nome, "Duda");
+  assert.equal(filtrarAtos(atos, { desde: "2026-09-01", acao: "nomeacao" }).length, 2);
+  const novos = ministrosNovos(atos, "2026-09-01");
+  assert.equal(novos.get("mir").nome, "Ana");
+  assert.equal(novos.has("mcid"), false);
+  assert.deepEqual(contar(atos), { nomeacao: 3, exoneracao: 1, ministros: 2 });
+});

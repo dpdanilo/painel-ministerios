@@ -3,6 +3,7 @@
   import { normalizar, data as fmtData, mesAno, partidoSigla, partidoDetalhe } from "../lib/formato.js";
   import BotaoCsv from "./BotaoCsv.svelte";
   import Fonte from "./Fonte.svelte";
+  import AtosDou from "./AtosDou.svelte";
 
   let { m, idx } = $props();
   let filtro = $state("");
@@ -40,6 +41,8 @@
     </ol>
   </section>
 {/if}
+
+<AtosDou mid={m.id} titulo="Depois do SIAPE: atos no Diário Oficial" />
 
 <section class="cartao" aria-labelledby="t-pessoas">
   <h2 id="t-pessoas">Quem ocupa os cargos de direção</h2>
