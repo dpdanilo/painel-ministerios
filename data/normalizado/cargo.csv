@@ -25370,6 +25370,7 @@ cod_unidade,ministerio_id,tipo,categoria,nivel,denominacao,mobilidade,quantidade
 110673,mre,FCE,2,07,Assistente,DD,1,2026-10-29,
 112726,mre,CCE,1,07,Gerente,DD,1,2026-10-29,
 1423,mre,FCE,1,13,Chefe,DD,1,2026-10-29,
+1423,mre,FCE,2,01,Assistente Técnico,DD,1,2026-11-03,
 1423,mre,FCE,2,07,Assistente,DD,1,2026-10-29,
 14565,mre,CCE,3,13,Gerente de Projeto,FX,1,2026-10-29,
 14565,mre,FCE,1,14,Chefe,FX,1,2026-10-29,
@@ -25565,7 +25566,7 @@ cod_unidade,ministerio_id,tipo,categoria,nivel,denominacao,mobilidade,quantidade
 293291,mre,FCE,2,07,Assistente,FX,1,2026-10-29,
 293291,mre,FCE,2,10,Assessor Técnico,FX,1,2026-10-29,
 293293,mre,FCE,1,13,Chefe,DD,1,2026-10-29,
-293293,mre,FCE,2,01,Assistente Técnico,DD,1,2026-10-29,
+293293,mre,FCE,2,01,Assistente Técnico,DD,1,2026-10-29,2026-11-03
 293293,mre,FCE,2,07,Assistente,DD,1,2026-10-29,
 293295,mre,FCE,1,15,Diretor,FX,1,2026-10-29,
 293295,mre,FCE,2,07,Assistente,FX,1,2026-10-29,
