@@ -1,8 +1,8 @@
 fonte_id,nome,url,data_referencia,coletado_em,hash
 dou,"Imprensa Nacional – Diário Oficial da União, seções 1 e 2 (inclusive extras)",https://www.in.gov.br/leiturajornal,2026-11-11,2026-11-11,3c67ec8850e45978d1c00f21027b76688775516dc92dba9a438978ccc5460ba9
 ipca,"IBGE – IPCA, número-índice (SIDRA, tabela 1737)",https://sidra.ibge.gov.br/tabela/1737,2026-09-01,2026-10-29,82d850723e9b20aab01e4ba43f724ff9057d434135f3cdf61bd1d05832013f83
-siape,"Portal da Transparência – Servidores (SIAPE), cadastro mensal (CGU)",https://portaldatransparencia.gov.br/download-de-dados/servidores,2026-08-01,2026-10-29,9f5b3218a71c0ef4f5f1bd131fceb56b353cde8727ca95ab55a6c29866f27ce7
+siape,"Portal da Transparência – Servidores (SIAPE), cadastro mensal (CGU)",https://portaldatransparencia.gov.br/download-de-dados/servidores,2026-09-01,2026-11-12,af87af08e0eef7795ccba64093e6457aa16947068a37505fdbf790db0c902d11
 siorg,SIORG – Estrutura Organizacional (MGI),https://estruturaorganizacional.dados.gov.br/doc,2026-11-03,2026-11-03,ea1f533081f1a45e3f8d1128846151ef7d6a03ccb835673d2d85e2d16a38cdc6
 transparencia-orcamento-2026,Portal da Transparência – Orçamento da Despesa e Execução 2026 (CGU),https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa/2026,2026-10-30,2026-11-02,e7685426b728a35bbf03cd6f3e7222fe1052f1cfcbf125c6deb0bae616c251ef
 transparencia-orcamento-historico,Portal da Transparência – Orçamento da Despesa 2014–2025 (CGU),https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa,2025-12-31,2026-10-29,06db1a17d7e796d6b26e46fe6c5003f9eea7a6a272738d1eee3316c8d1b32bdd
-tse,"TSE – Candidaturas (dados abertos), 2018 a 2026",https://dadosabertos.tse.jus.br/dataset/?q=candidatos,2026-10-29,2026-10-29,83562f7def2268c4b2c997b2ea6eee85641bac1a78844097ce032e09b13eb333
+tse,"TSE – Candidaturas (dados abertos), 2018 a 2026",https://dadosabertos.tse.jus.br/dataset/?q=candidatos,2026-11-12,2026-11-12,c117ed19e45a803e20ee93495ea27878337dba2d9a8f1a5a90143cb60d3b054c
