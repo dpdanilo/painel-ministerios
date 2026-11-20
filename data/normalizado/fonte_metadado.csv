@@ -1,5 +1,5 @@
 fonte_id,nome,url,data_referencia,coletado_em,hash
-dou,"Imprensa Nacional – Diário Oficial da União, seções 1 e 2 (inclusive extras)",https://www.in.gov.br/leiturajornal,2026-11-19,2026-11-19,b65d2cd25398cabbf408eee56859a47690fa1ecaf6b227de5d372f974b39e6fe
+dou,"Imprensa Nacional – Diário Oficial da União, seções 1 e 2 (inclusive extras)",https://www.in.gov.br/leiturajornal,2026-11-20,2026-11-20,5e35771a6a644d1ddd02873beee7203e3900a8ab49caf03afd2991fe3ad478ba
 ipca,"IBGE – IPCA, número-índice (SIDRA, tabela 1737)",https://sidra.ibge.gov.br/tabela/1737,2026-10-01,2026-11-20,6cf9ec66748438a5282c0f3a3d5098169c3c65f0acafb63c5ed59ed3095fe715
 siape,"Portal da Transparência – Servidores (SIAPE), cadastro mensal (CGU)",https://portaldatransparencia.gov.br/download-de-dados/servidores,2026-09-01,2026-11-12,af87af08e0eef7795ccba64093e6457aa16947068a37505fdbf790db0c902d11
 siorg,SIORG – Estrutura Organizacional (MGI),https://estruturaorganizacional.dados.gov.br/doc,2026-11-03,2026-11-03,ea1f533081f1a45e3f8d1128846151ef7d6a03ccb835673d2d85e2d16a38cdc6
